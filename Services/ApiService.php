@@ -2,9 +2,10 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Services;
 
-use petrepatrasc\BlizzardApiBundle\Entities\Profile;
+use petrepatrasc\BlizzardApiBundle\Entities\Player;
 
-class ApiService {
+class ApiService
+{
 
     /**
      * Get a player's profile via the Battle.NET API.
@@ -12,10 +13,11 @@ class ApiService {
      * @param int $battleNetId
      * @param int $realm
      * @param string $playerName
-     * @return Profile
+     * @return Player
      */
-    public function getPlayerProfile($battleNetId, $realm, $playerName) {
-        $player = new Profile();
+    public function getPlayerProfile($battleNetId, $realm, $playerName)
+    {
+        $player = new Player();
 
         return $player;
     }
