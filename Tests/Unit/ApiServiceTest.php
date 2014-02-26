@@ -26,6 +26,24 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
     public function testGetPlayerProfile()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::PROFILE_MOCK_PATH)));
-        $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
+        $playerProfile = $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
+
+        // Player general verification
+        $this->assertEquals(2048419, $playerProfile->getId());
+        $this->assertEquals(1, $playerProfile->getRealm());
+        $this->assertEquals("LionHeart", $playerProfile->getDisplayName());
+        $this->assertEquals("Cegeka Guild", $playerProfile->getClanName());
+        $this->assertEquals("CGK", $playerProfile->getClanTag());
+        $this->assertEquals("/profile/2048419/1/LionHeart/", $playerProfile->getProfilePath());
+
+        // Portrait verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait', $playerProfile->getPortrait());
+        $playerPortrait = $playerProfile->getPortrait();
+        $this->assertEquals(-270, $playerPortrait->getXCoordinate());
+        $this->assertEquals(-180, $playerPortrait->getYCoordinate());
+        $this->assertEquals(90, $playerPortrait->getWidth());
+        $this->assertEquals(90, $playerPortrait->getHeight());
+        $this->assertEquals(15, $playerPortrait->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/portraits/1-90.jpg", $playerPortrait->getUrl());
     }
 }

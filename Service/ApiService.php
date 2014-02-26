@@ -3,6 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
+use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
 
 class ApiService
 {
@@ -35,20 +36,28 @@ class ApiService
         $apiParameters = array($battleNetId, $realm, $playerName);
         $apiData = $this->makeCall($locale, self::API_PROFILE_METHOD, $apiParameters);
 
+        $portrait = new PlayerPortrait();
+        $portrait->setXCoordinate($apiData['portrait']['x'])
+            ->setYCoordinate($apiData['portrait']['y'])
+            ->setWidth($apiData['portrait']['w'])
+            ->setHeight($apiData['portrait']['h'])
+            ->setOffset($apiData['portrait']['offset'])
+            ->setUrl($apiData['portrait']['url']);
+
         $player = new Player();
         $player->setId($apiData['id'])
             ->setRealm($apiData['realm'])
             ->setDisplayName($apiData['displayName'])
             ->setClanName($apiData['clanName'])
             ->setClanTag($apiData['clanTag'])
-            ->setProfilePath($apiData['profilePath']);
-
-        var_dump($player);
+            ->setProfilePath($apiData['profilePath'])
+            ->setPortrait($portrait);
 
         return $player;
     }
 
-    public function makeCall($locale, $apiMethod, $params = array()) {
+    public function makeCall($locale, $apiMethod, $params = array())
+    {
         return json_decode($this->callService->makeCallToApiService($locale, $apiMethod, $params), true);
     }
 }

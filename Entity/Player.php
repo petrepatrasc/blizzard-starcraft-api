@@ -42,6 +42,11 @@ class Player
     protected $profilePath;
 
     /**
+     * @var PlayerPortrait
+     */
+    protected $portrait;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -147,6 +152,24 @@ class Player
     public function getRealm()
     {
         return $this->realm;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait $portrait
+     * @return $this
+     */
+    public function setPortrait($portrait)
+    {
+        $this->portrait = $portrait;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait
+     */
+    public function getPortrait()
+    {
+        return $this->portrait;
     }
 
 
