@@ -39,6 +39,35 @@ class ApiService
         $apiParameters = array($battleNetId, $realm, $playerName);
         $apiData = $this->makeCall($locale, self::API_PROFILE_METHOD, $apiParameters);
 
+        $portrait = $this->extractPlayerPortraitFromProfileData($apiData);
+        $career = $this->extractPlayerCareerFromProfileData($apiData);
+        $playerSwarmLevels = $this->extractPlayerSwarmLevelsFromProfileData($apiData);
+
+        $player = new Player();
+        $player->setId($apiData['id'])
+            ->setRealm($apiData['realm'])
+            ->setDisplayName($apiData['displayName'])
+            ->setClanName($apiData['clanName'])
+            ->setClanTag($apiData['clanTag'])
+            ->setProfilePath($apiData['profilePath'])
+            ->setPortrait($portrait)
+            ->setCareer($career)
+            ->setSwarmLevels($playerSwarmLevels);
+
+        return $player;
+    }
+
+    public function makeCall($locale, $apiMethod, $params = array())
+    {
+        return json_decode($this->callService->makeCallToApiService($locale, $apiMethod, $params), true);
+    }
+
+    /**
+     * @param $apiData
+     * @return PlayerPortrait
+     */
+    protected function extractPlayerPortraitFromProfileData($apiData)
+    {
         $portrait = new PlayerPortrait();
         $portrait->setXCoordinate($apiData['portrait']['x'])
             ->setYCoordinate($apiData['portrait']['y'])
@@ -46,7 +75,15 @@ class ApiService
             ->setHeight($apiData['portrait']['h'])
             ->setOffset($apiData['portrait']['offset'])
             ->setUrl($apiData['portrait']['url']);
+        return $portrait;
+    }
 
+    /**
+     * @param $apiData
+     * @return PlayerCareer
+     */
+    protected function extractPlayerCareerFromProfileData($apiData)
+    {
         $career = new PlayerCareer();
         $career->setPrimaryRace($apiData['career']['primaryRace'])
             ->setLeague($apiData['career']['league'])
@@ -57,7 +94,15 @@ class ApiService
             ->setHighestTeamRank($apiData['career']['highestTeamRank'])
             ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
             ->setCareerTotalGames($apiData['career']['careerTotalGames']);
+        return $career;
+    }
 
+    /**
+     * @param $apiData
+     * @return PlayerSwarmLevels
+     */
+    protected function extractPlayerSwarmLevelsFromProfileData($apiData)
+    {
         $terranSwarmLevel = new SwarmLevel();
         $terranSwarmLevel->setLevel($apiData['swarmLevels']['terran']['level'])
             ->setTotalLevelXp($apiData['swarmLevels']['terran']['totalLevelXP'])
@@ -78,23 +123,6 @@ class ApiService
             ->setTerranLevel($terranSwarmLevel)
             ->setProtossLevel($protossSwarmLevel)
             ->setZergLevel($zergSwarmLevel);
-
-        $player = new Player();
-        $player->setId($apiData['id'])
-            ->setRealm($apiData['realm'])
-            ->setDisplayName($apiData['displayName'])
-            ->setClanName($apiData['clanName'])
-            ->setClanTag($apiData['clanTag'])
-            ->setProfilePath($apiData['profilePath'])
-            ->setPortrait($portrait)
-            ->setCareer($career)
-            ->setSwarmLevels($playerSwarmLevels);
-
-        return $player;
-    }
-
-    public function makeCall($locale, $apiMethod, $params = array())
-    {
-        return json_decode($this->callService->makeCallToApiService($locale, $apiMethod, $params), true);
+        return $playerSwarmLevels;
     }
 }
