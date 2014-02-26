@@ -85,15 +85,15 @@ class ApiService
     protected function extractPlayerCareerFromProfileData($apiData)
     {
         $career = new PlayerCareer();
-        $career->setPrimaryRace($apiData['career']['primaryRace'])
-            ->setLeague($apiData['career']['league'])
-            ->setTerranWins($apiData['career']['terranWins'])
-            ->setProtossWins($apiData['career']['protossWins'])
-            ->setZergWins($apiData['career']['zergWins'])
-            ->setHighest1v1Rank($apiData['career']['highest1v1Rank'])
-            ->setHighestTeamRank($apiData['career']['highestTeamRank'])
-            ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
-            ->setCareerTotalGames($apiData['career']['careerTotalGames']);
+        $career->setPrimaryRace(isset($apiData['career']['primaryRace']) ? $apiData['career']['primaryRace'] : null)
+            ->setLeague(isset($apiData['career']['league']) ? $apiData['career']['league'] : null)
+            ->setTerranWins(isset($apiData['career']['terranWins']) ? $apiData['career']['terranWins'] : null)
+            ->setProtossWins(isset($apiData['career']['protossWins']) ? $apiData['career']['protossWins'] : null)
+            ->setZergWins(isset($apiData['career']['zergWins']) ? $apiData['career']['zergWins'] : null)
+            ->setHighest1v1Rank(isset($apiData['career']['highest1v1Rank']) ? $apiData['career']['highest1v1Rank'] : null)
+            ->setHighestTeamRank(isset($apiData['career']['highestTeamRank']) ? $apiData['career']['highestTeamRank'] : null)
+            ->setSeasonTotalGames(isset($apiData['career']['seasonTotalGames']) ? $apiData['career']['seasonTotalGames'] : null)
+            ->setCareerTotalGames(isset($apiData['career']['careerTotalGames']) ? $apiData['career']['careerTotalGames'] : null);
         return $career;
     }
 
