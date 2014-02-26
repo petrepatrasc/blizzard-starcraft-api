@@ -102,6 +102,11 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2014, $season->getSeasonYear());
 
         $seasonStats = $season->getStats();
+
+        /**
+         * @var $season1v1 \petrepatrasc\BlizzardApiBundle\Entity\SeasonStats
+         * @var $season2v2 \petrepatrasc\BlizzardApiBundle\Entity\SeasonStats
+         */
         $season1v1 = $seasonStats[0];
         $season2v2 = $seasonStats[1];
 
