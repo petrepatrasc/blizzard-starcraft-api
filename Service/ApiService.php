@@ -3,6 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
+use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
 
 class ApiService
@@ -44,6 +45,17 @@ class ApiService
             ->setOffset($apiData['portrait']['offset'])
             ->setUrl($apiData['portrait']['url']);
 
+        $career = new PlayerCareer();
+        $career->setPrimaryRace($apiData['career']['primaryRace'])
+            ->setLeague($apiData['career']['league'])
+            ->setTerranWins($apiData['career']['terranWins'])
+            ->setProtossWins($apiData['career']['protossWins'])
+            ->setZergWins($apiData['career']['zergWins'])
+            ->setHighest1v1Rank($apiData['career']['highest1v1Rank'])
+            ->setHighestTeamRank($apiData['career']['highestTeamRank'])
+            ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
+            ->setCareerTotalGames($apiData['career']['careerTotalGames']);
+
         $player = new Player();
         $player->setId($apiData['id'])
             ->setRealm($apiData['realm'])
@@ -51,7 +63,8 @@ class ApiService
             ->setClanName($apiData['clanName'])
             ->setClanTag($apiData['clanTag'])
             ->setProfilePath($apiData['profilePath'])
-            ->setPortrait($portrait);
+            ->setPortrait($portrait)
+            ->setCareer($career);
 
         return $player;
     }

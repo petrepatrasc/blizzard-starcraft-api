@@ -45,5 +45,18 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(90, $playerPortrait->getHeight());
         $this->assertEquals(15, $playerPortrait->getOffset());
         $this->assertEquals("http://media.blizzard.com/sc2/portraits/1-90.jpg", $playerPortrait->getUrl());
+
+        // Career verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer', $playerProfile->getCareer());
+        $playerCareer = $playerProfile->getCareer();
+        $this->assertEquals("TERRAN", $playerCareer->getPrimaryRace());
+        $this->assertEquals("GOLD", $playerCareer->getLeague());
+        $this->assertEquals(106, $playerCareer->getTerranWins());
+        $this->assertEquals(0, $playerCareer->getProtossWins());
+        $this->assertEquals(0, $playerCareer->getZergWins());
+        $this->assertEquals("PLATINUM", $playerCareer->getHighest1v1Rank());
+        $this->assertEquals("DIAMOND", $playerCareer->getHighestTeamRank());
+        $this->assertEquals(160, $playerCareer->getSeasonTotalGames());
+        $this->assertEquals(1534, $playerCareer->getCareerTotalGames());
     }
 }

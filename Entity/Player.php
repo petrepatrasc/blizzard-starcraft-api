@@ -47,6 +47,11 @@ class Player
     protected $portrait;
 
     /**
+     * @var PlayerCareer
+     */
+    protected $career;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -170,6 +175,24 @@ class Player
     public function getPortrait()
     {
         return $this->portrait;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer $career
+     * @return $this
+     */
+    public function setCareer($career)
+    {
+        $this->career = $career;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer
+     */
+    public function getCareer()
+    {
+        return $this->career;
     }
 
 
