@@ -57,6 +57,11 @@ class Player
     protected $swarmLevels;
 
     /**
+     * @var PlayerCampaign
+     */
+    protected $campaign;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -216,6 +221,24 @@ class Player
     public function getSwarmLevels()
     {
         return $this->swarmLevels;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign $campaign
+     * @return $this
+     */
+    public function setCampaign($campaign)
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
     }
 
 

@@ -3,6 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
+use petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
@@ -42,6 +43,7 @@ class ApiService
         $portrait = $this->extractPlayerPortraitFromProfileData($apiData);
         $career = $this->extractPlayerCareerFromProfileData($apiData);
         $playerSwarmLevels = $this->extractPlayerSwarmLevelsFromProfileData($apiData);
+        $campaign = $this->extractCampaignDataFromProfile($apiData);
 
         $player = new Player();
         $player->setId($apiData['id'])
@@ -52,7 +54,8 @@ class ApiService
             ->setProfilePath($apiData['profilePath'])
             ->setPortrait($portrait)
             ->setCareer($career)
-            ->setSwarmLevels($playerSwarmLevels);
+            ->setSwarmLevels($playerSwarmLevels)
+            ->setCampaign($campaign);
 
         return $player;
     }
@@ -124,5 +127,17 @@ class ApiService
             ->setProtossLevel($protossSwarmLevel)
             ->setZergLevel($zergSwarmLevel);
         return $playerSwarmLevels;
+    }
+
+    /**
+     * @param $apiData
+     * @return PlayerCampaign
+     */
+    protected function extractCampaignDataFromProfile($apiData)
+    {
+        $campaign = new PlayerCampaign();
+        $campaign->setWingsOfLibertyStatus(isset($apiData['campaign']['wol']) ? $apiData['campaign']['wol'] : null)
+            ->setHeartOfTheSwarmStatus(isset($apiData['campaign']['hots']) ? $apiData['campaign']['hots'] : null);
+        return $campaign;
     }
 }
