@@ -2,7 +2,7 @@
     "name": " petrepatrasc/blizzard-starcraft-api",
     "type": "symfony-bundle",
     "description": "A PHP wrapper for the Starcraft 2 API ",
-    "keywords": ["PHP","Starcraft 2","API","Blizzard"],
+    "keywords": ["PHP", "Starcraft 2", "API", "Blizzard"],
     "homepage": "http://petrepatrasc.github.io",
     "license": "MIT",
     "authors": [
@@ -19,15 +19,15 @@
         "symfony/security-bundle": ">=2.1"
     },
     "require-dev": {
-//        "twig/twig": "*",
-//        "doctrine/doctrine-bundle": "*",
-//        "swiftmailer/swiftmailer": "*",
-//        "willdurand/propel-typehintable-behavior": "dev-master",
-//        "symfony/yaml": "2.1.*",
-//        "symfony/validator": "2.1.*"
+        "twig/twig": "*",
+        "doctrine/doctrine-bundle": "*",
+        "symfony/yaml": "2.1.*",
+        "symfony/validator": "2.1.*"
     },
     "autoload": {
-        "psr-0": { "petrepatrasc\\BlizzardApiBundle": "" }
+        "psr-0": {
+            "petrepatrasc\\BlizzardApiBundle": ""
+        }
     },
     "target-dir": "petrepatrasc/BlizzardApiBundle"
 }
