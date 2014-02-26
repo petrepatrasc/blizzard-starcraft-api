@@ -1,0 +1,7 @@
+parameters:
+#    blizzard_api.example.class: petrepatrasc\BlizzardApiBundle\Example
+
+services:
+#    blizzard_api.example:
+#        class: %blizzard_api.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
