@@ -26,37 +26,60 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
     public function testGetPlayerProfile()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::PROFILE_MOCK_PATH)));
-        $playerProfile = $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
+        $profile = $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
 
         // Player general verification
-        $this->assertEquals(2048419, $playerProfile->getId());
-        $this->assertEquals(1, $playerProfile->getRealm());
-        $this->assertEquals("LionHeart", $playerProfile->getDisplayName());
-        $this->assertEquals("Cegeka Guild", $playerProfile->getClanName());
-        $this->assertEquals("CGK", $playerProfile->getClanTag());
-        $this->assertEquals("/profile/2048419/1/LionHeart/", $playerProfile->getProfilePath());
+        $this->assertEquals(2048419, $profile->getId());
+        $this->assertEquals(1, $profile->getRealm());
+        $this->assertEquals("LionHeart", $profile->getDisplayName());
+        $this->assertEquals("Cegeka Guild", $profile->getClanName());
+        $this->assertEquals("CGK", $profile->getClanTag());
+        $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getProfilePath());
 
         // Portrait verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait', $playerProfile->getPortrait());
-        $playerPortrait = $playerProfile->getPortrait();
-        $this->assertEquals(-270, $playerPortrait->getXCoordinate());
-        $this->assertEquals(-180, $playerPortrait->getYCoordinate());
-        $this->assertEquals(90, $playerPortrait->getWidth());
-        $this->assertEquals(90, $playerPortrait->getHeight());
-        $this->assertEquals(15, $playerPortrait->getOffset());
-        $this->assertEquals("http://media.blizzard.com/sc2/portraits/1-90.jpg", $playerPortrait->getUrl());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait', $profile->getPortrait());
+        $portrait = $profile->getPortrait();
+        $this->assertEquals(-270, $portrait->getXCoordinate());
+        $this->assertEquals(-180, $portrait->getYCoordinate());
+        $this->assertEquals(90, $portrait->getWidth());
+        $this->assertEquals(90, $portrait->getHeight());
+        $this->assertEquals(15, $portrait->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/portraits/1-90.jpg", $portrait->getUrl());
 
         // Career verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer', $playerProfile->getCareer());
-        $playerCareer = $playerProfile->getCareer();
-        $this->assertEquals("TERRAN", $playerCareer->getPrimaryRace());
-        $this->assertEquals("GOLD", $playerCareer->getLeague());
-        $this->assertEquals(106, $playerCareer->getTerranWins());
-        $this->assertEquals(0, $playerCareer->getProtossWins());
-        $this->assertEquals(0, $playerCareer->getZergWins());
-        $this->assertEquals("PLATINUM", $playerCareer->getHighest1v1Rank());
-        $this->assertEquals("DIAMOND", $playerCareer->getHighestTeamRank());
-        $this->assertEquals(160, $playerCareer->getSeasonTotalGames());
-        $this->assertEquals(1534, $playerCareer->getCareerTotalGames());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer', $profile->getCareer());
+        $career = $profile->getCareer();
+        $this->assertEquals("TERRAN", $career->getPrimaryRace());
+        $this->assertEquals("GOLD", $career->getLeague());
+        $this->assertEquals(106, $career->getTerranWins());
+        $this->assertEquals(0, $career->getProtossWins());
+        $this->assertEquals(0, $career->getZergWins());
+        $this->assertEquals("PLATINUM", $career->getHighest1v1Rank());
+        $this->assertEquals("DIAMOND", $career->getHighestTeamRank());
+        $this->assertEquals(160, $career->getSeasonTotalGames());
+        $this->assertEquals(1534, $career->getCareerTotalGames());
+
+        // Swarm levels verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels', $profile->getSwarmLevels());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getTerranLevel());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getProtossLevel());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getZergLevel());
+        $this->assertEquals(35, $profile->getSwarmLevels()->getPlayerLevel());
+
+        $terranSwarmLevel = $profile->getSwarmLevels()->getTerranLevel();
+        $protossSwarmLevel = $profile->getSwarmLevels()->getProtossLevel();
+        $zergSwarmLevel = $profile->getSwarmLevels()->getZergLevel();
+
+        $this->assertEquals(35, $terranSwarmLevel->getLevel());
+        $this->assertEquals(5850000, $terranSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(-1, $terranSwarmLevel->getCurrentLevelXp());
+
+        $this->assertEquals(0, $protossSwarmLevel->getLevel());
+        $this->assertEquals(5000, $protossSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(0, $protossSwarmLevel->getCurrentLevelXp());
+
+        $this->assertEquals(0, $zergSwarmLevel->getLevel());
+        $this->assertEquals(5000, $zergSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(0, $zergSwarmLevel->getCurrentLevelXp());
     }
 }

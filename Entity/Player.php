@@ -52,6 +52,11 @@ class Player
     protected $career;
 
     /**
+     * @var PlayerSwarmLevels
+     */
+    protected $swarmLevels;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -193,6 +198,24 @@ class Player
     public function getCareer()
     {
         return $this->career;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels $swarmLevels
+     * @return $this
+     */
+    public function setSwarmLevels($swarmLevels)
+    {
+        $this->swarmLevels = $swarmLevels;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels
+     */
+    public function getSwarmLevels()
+    {
+        return $this->swarmLevels;
     }
 
 

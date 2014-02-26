@@ -5,6 +5,8 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
+use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
+use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 
 class ApiService
 {
@@ -56,6 +58,27 @@ class ApiService
             ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
             ->setCareerTotalGames($apiData['career']['careerTotalGames']);
 
+        $terranSwarmLevel = new SwarmLevel();
+        $terranSwarmLevel->setLevel($apiData['swarmLevels']['terran']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['terran']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['terran']['currentLevelXP']);
+
+        $protossSwarmLevel = new SwarmLevel();
+        $protossSwarmLevel->setLevel($apiData['swarmLevels']['protoss']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['protoss']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['protoss']['currentLevelXP']);
+
+        $zergSwarmLevel = new SwarmLevel();
+        $zergSwarmLevel->setLevel($apiData['swarmLevels']['zerg']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['zerg']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['zerg']['currentLevelXP']);
+
+        $playerSwarmLevels = new PlayerSwarmLevels();
+        $playerSwarmLevels->setPlayerLevel($apiData['swarmLevels']['level'])
+            ->setTerranLevel($terranSwarmLevel)
+            ->setProtossLevel($protossSwarmLevel)
+            ->setZergLevel($zergSwarmLevel);
+
         $player = new Player();
         $player->setId($apiData['id'])
             ->setRealm($apiData['realm'])
@@ -64,7 +87,8 @@ class ApiService
             ->setClanTag($apiData['clanTag'])
             ->setProfilePath($apiData['profilePath'])
             ->setPortrait($portrait)
-            ->setCareer($career);
+            ->setCareer($career)
+            ->setSwarmLevels($playerSwarmLevels);
 
         return $player;
     }
