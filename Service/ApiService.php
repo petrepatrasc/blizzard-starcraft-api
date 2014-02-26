@@ -69,12 +69,12 @@ class ApiService
     protected function extractPlayerPortraitFromProfileData($apiData)
     {
         $portrait = new PlayerPortrait();
-        $portrait->setXCoordinate($apiData['portrait']['x'])
-            ->setYCoordinate($apiData['portrait']['y'])
-            ->setWidth($apiData['portrait']['w'])
-            ->setHeight($apiData['portrait']['h'])
-            ->setOffset($apiData['portrait']['offset'])
-            ->setUrl($apiData['portrait']['url']);
+        $portrait->setXCoordinate(isset($apiData['portrait']['x']) ? $apiData['portrait']['x'] : null)
+            ->setYCoordinate(isset($apiData['portrait']['y']) ? $apiData['portrait']['y'] : null)
+            ->setWidth(isset($apiData['portrait']['w']) ? $apiData['portrait']['w'] : null)
+            ->setHeight(isset($apiData['portrait']['h']) ? $apiData['portrait']['h'] : null)
+            ->setOffset(isset($apiData['portrait']['offset']) ? $apiData['portrait']['offset'] : null)
+            ->setUrl(isset($apiData['portrait']['url']) ? $apiData['portrait']['url'] : null);
         return $portrait;
     }
 
