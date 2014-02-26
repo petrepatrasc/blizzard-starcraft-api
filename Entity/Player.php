@@ -1,6 +1,6 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Entities;
+namespace petrepatrasc\BlizzardApiBundle\Entity;
 
 /**
  * Class holds a representation of a player's profile.
