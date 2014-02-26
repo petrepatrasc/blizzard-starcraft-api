@@ -62,6 +62,11 @@ class Player
     protected $campaign;
 
     /**
+     * @var PlayerSeason
+     */
+    protected $season;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -239,6 +244,24 @@ class Player
     public function getCampaign()
     {
         return $this->campaign;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason $season
+     * @return $this
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason
+     */
+    public function getSeason()
+    {
+        return $this->season;
     }
 
 

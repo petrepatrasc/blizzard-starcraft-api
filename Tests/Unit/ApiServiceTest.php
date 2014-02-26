@@ -87,5 +87,30 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $campaign = $profile->getCampaign();
         $this->assertEquals('CASUAL', $campaign->getWingsOfLibertyStatus());
         $this->assertNull($campaign->getHeartOfTheSwarmStatus());
+
+        // Season verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason', $profile->getSeason());
+        $season = $profile->getSeason();
+
+        foreach ($season->getStats() as $stats) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SeasonStats', $stats);
+        }
+
+        $this->assertEquals(17, $season->getSeasonId());
+        $this->assertEquals(160, $season->getTotalGamesThisSeason());
+        $this->assertEquals(1, $season->getSeasonNumber());
+        $this->assertEquals(2014, $season->getSeasonYear());
+
+        $seasonStats = $season->getStats();
+        $season1v1 = $seasonStats[0];
+        $season2v2 = $seasonStats[1];
+
+        $this->assertEquals('1v1', $season1v1->getType());
+        $this->assertEquals(52, $season1v1->getWins());
+        $this->assertEquals(73, $season1v1->getGames());
+
+        $this->assertEquals('2v2', $season2v2->getType());
+        $this->assertEquals(26, $season2v2->getWins());
+        $this->assertEquals(45, $season2v2->getGames());
     }
 }

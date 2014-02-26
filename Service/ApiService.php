@@ -6,7 +6,9 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
+use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
+use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 
 class ApiService
@@ -44,6 +46,7 @@ class ApiService
         $career = $this->extractPlayerCareerFromProfileData($apiData);
         $playerSwarmLevels = $this->extractPlayerSwarmLevelsFromProfileData($apiData);
         $campaign = $this->extractCampaignDataFromProfile($apiData);
+        $season = $this->extractSeasonDataFromProfile($apiData);
 
         $player = new Player();
         $player->setId($apiData['id'])
@@ -55,7 +58,8 @@ class ApiService
             ->setPortrait($portrait)
             ->setCareer($career)
             ->setSwarmLevels($playerSwarmLevels)
-            ->setCampaign($campaign);
+            ->setCampaign($campaign)
+            ->setSeason($season);
 
         return $player;
     }
@@ -139,5 +143,28 @@ class ApiService
         $campaign->setWingsOfLibertyStatus(isset($apiData['campaign']['wol']) ? $apiData['campaign']['wol'] : null)
             ->setHeartOfTheSwarmStatus(isset($apiData['campaign']['hots']) ? $apiData['campaign']['hots'] : null);
         return $campaign;
+    }
+
+    /**
+     * @param $apiData
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason
+     */
+    protected function extractSeasonDataFromProfile($apiData)
+    {
+        $season = new PlayerSeason();
+        $season->setSeasonId($apiData['season']['seasonId'])
+            ->setTotalGamesThisSeason($apiData['season']['totalGamesThisSeason'])
+            ->setSeasonNumber($apiData['season']['seasonNumber'])
+            ->setSeasonYear($apiData['season']['seasonYear']);
+
+        foreach ($apiData['season']['stats'] as $stats) {
+            $seasonStats = new SeasonStats();
+            $seasonStats->setType($stats['type'])
+                ->setWins($stats['wins'])
+                ->setGames($stats['games']);
+            $season->addSeasonStats($seasonStats);
+        }
+
+        return $season;
     }
 }
