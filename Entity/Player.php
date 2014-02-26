@@ -67,6 +67,11 @@ class Player
     protected $season;
 
     /**
+     * @var PlayerRewards
+     */
+    protected $rewards;
+
+    /**
      * @param string $clanName
      * @return $this
      */
@@ -262,6 +267,24 @@ class Player
     public function getSeason()
     {
         return $this->season;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards $rewards
+     * @return $this
+     */
+    public function setRewards($rewards)
+    {
+        $this->rewards = $rewards;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards
+     */
+    public function getRewards()
+    {
+        return $this->rewards;
     }
 
 
