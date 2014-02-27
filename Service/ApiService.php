@@ -7,7 +7,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
@@ -80,11 +80,11 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return PlayerPortrait
+     * @return Portrait
      */
     protected function extractPlayerPortraitFromProfileData($apiData)
     {
-        $portrait = new PlayerPortrait();
+        $portrait = new Portrait();
         $portrait->setXCoordinate(isset($apiData['portrait']['x']) ? $apiData['portrait']['x'] : null)
             ->setYCoordinate(isset($apiData['portrait']['y']) ? $apiData['portrait']['y'] : null)
             ->setWidth(isset($apiData['portrait']['w']) ? $apiData['portrait']['w'] : null)

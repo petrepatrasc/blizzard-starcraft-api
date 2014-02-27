@@ -1,9 +1,9 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Entity;
+namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-class PlayerPortrait
+class Portrait
 {
 
     /**

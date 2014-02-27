@@ -37,7 +37,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getProfilePath());
 
         // Portrait verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait', $profile->getPortrait());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());
         $portrait = $profile->getPortrait();
         $this->assertEquals(-270, $portrait->getXCoordinate());
         $this->assertEquals(-180, $portrait->getYCoordinate());

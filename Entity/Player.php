@@ -43,7 +43,7 @@ class Player
     protected $profilePath;
 
     /**
-     * @var PlayerPortrait
+     * @var Player\Portrait
      */
     protected $portrait;
 
@@ -186,7 +186,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait $portrait
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait $portrait
      * @return $this
      */
     public function setPortrait($portrait)
@@ -196,7 +196,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait
      */
     public function getPortrait()
     {
