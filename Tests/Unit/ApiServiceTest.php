@@ -60,7 +60,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1534, $career->getCareerTotalGames());
 
         // Swarm levels verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels', $profile->getSwarmLevels());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels', $profile->getSwarmLevels());
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getTerranLevel());
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getProtossLevel());
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getZergLevel());

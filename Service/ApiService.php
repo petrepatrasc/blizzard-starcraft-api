@@ -10,7 +10,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -115,7 +115,7 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return PlayerSwarmLevels
+     * @return Player\SwarmLevels
      */
     protected function extractPlayerSwarmLevelsFromProfileData($apiData)
     {
@@ -134,7 +134,7 @@ class ApiService
             ->setTotalLevelXp($apiData['swarmLevels']['zerg']['totalLevelXP'])
             ->setCurrentLevelXp($apiData['swarmLevels']['zerg']['currentLevelXP']);
 
-        $playerSwarmLevels = new PlayerSwarmLevels();
+        $playerSwarmLevels = new Player\SwarmLevels();
         $playerSwarmLevels->setPlayerLevel($apiData['swarmLevels']['level'])
             ->setTerranLevel($terranSwarmLevel)
             ->setProtossLevel($protossSwarmLevel)

@@ -53,7 +53,7 @@ class Player
     protected $career;
 
     /**
-     * @var PlayerSwarmLevels
+     * @var Player\SwarmLevels
      */
     protected $swarmLevels;
 
@@ -222,7 +222,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels $swarmLevels
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels $swarmLevels
      * @return $this
      */
     public function setSwarmLevels($swarmLevels)
@@ -232,7 +232,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels
      */
     public function getSwarmLevels()
     {

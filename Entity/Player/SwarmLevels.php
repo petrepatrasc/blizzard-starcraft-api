@@ -1,9 +1,11 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Entity;
+namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-class PlayerSwarmLevels
+use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
+
+class SwarmLevels
 {
 
     /**
