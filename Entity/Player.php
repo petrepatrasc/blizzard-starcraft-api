@@ -58,7 +58,7 @@ class Player
     protected $swarmLevels;
 
     /**
-     * @var PlayerCampaign
+     * @var Player\Campaign
      */
     protected $campaign;
 
@@ -240,7 +240,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign $campaign
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign $campaign
      * @return $this
      */
     public function setCampaign($campaign)
@@ -250,7 +250,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign
      */
     public function getCampaign()
     {

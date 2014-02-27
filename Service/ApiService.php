@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards;
@@ -144,11 +144,11 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return PlayerCampaign
+     * @return Player\Campaign
      */
     protected function extractCampaignDataFromProfile($apiData)
     {
-        $campaign = new PlayerCampaign();
+        $campaign = new Player\Campaign();
         $campaign->setWingsOfLibertyStatus(isset($apiData['campaign']['wol']) ? $apiData['campaign']['wol'] : null)
             ->setHeartOfTheSwarmStatus(isset($apiData['campaign']['hots']) ? $apiData['campaign']['hots'] : null);
         return $campaign;

@@ -83,7 +83,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $zergSwarmLevel->getCurrentLevelXp());
 
         // Campaign verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign', $profile->getCampaign());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign', $profile->getCampaign());
         $campaign = $profile->getCampaign();
         $this->assertEquals('CASUAL', $campaign->getWingsOfLibertyStatus());
         $this->assertNull($campaign->getHeartOfTheSwarmStatus());
