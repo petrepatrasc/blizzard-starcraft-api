@@ -47,7 +47,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("http://media.blizzard.com/sc2/portraits/1-90.jpg", $portrait->getUrl());
 
         // Career verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer', $profile->getCareer());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Career', $profile->getCareer());
         $career = $profile->getCareer();
         $this->assertEquals("TERRAN", $career->getPrimaryRace());
         $this->assertEquals("GOLD", $career->getLeague());

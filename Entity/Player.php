@@ -48,7 +48,7 @@ class Player
     protected $portrait;
 
     /**
-     * @var PlayerCareer
+     * @var Player\Career
      */
     protected $career;
 
@@ -204,7 +204,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer $career
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Career $career
      * @return $this
      */
     public function setCareer($career)
@@ -214,7 +214,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Career
      */
     public function getCareer()
     {

@@ -6,7 +6,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerPortrait;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
@@ -96,11 +96,11 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return PlayerCareer
+     * @return Player\Career
      */
     protected function extractPlayerCareerFromProfileData($apiData)
     {
-        $career = new PlayerCareer();
+        $career = new Player\Career();
         $career->setPrimaryRace(isset($apiData['career']['primaryRace']) ? $apiData['career']['primaryRace'] : null)
             ->setLeague(isset($apiData['career']['league']) ? $apiData['career']['league'] : null)
             ->setTerranWins(isset($apiData['career']['terranWins']) ? $apiData['career']['terranWins'] : null)
