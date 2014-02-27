@@ -89,7 +89,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertNull($campaign->getHeartOfTheSwarmStatus());
 
         // Season verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason', $profile->getSeason());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Season', $profile->getSeason());
         $season = $profile->getSeason();
 
         foreach ($season->getStats() as $stats) {

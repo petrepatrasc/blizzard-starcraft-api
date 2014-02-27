@@ -63,7 +63,7 @@ class Player
     protected $campaign;
 
     /**
-     * @var PlayerSeason
+     * @var Player\Season
      */
     protected $season;
 
@@ -258,7 +258,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason $season
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Season $season
      * @return $this
      */
     public function setSeason($season)
@@ -268,7 +268,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Season
      */
     public function getSeason()
     {

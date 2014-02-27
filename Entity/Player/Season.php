@@ -1,9 +1,11 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Entity;
+namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-class PlayerSeason
+use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
+
+class Season
 {
 
     /**

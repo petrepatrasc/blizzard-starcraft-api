@@ -9,7 +9,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
@@ -156,11 +156,11 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Season
      */
     protected function extractSeasonDataFromProfile($apiData)
     {
-        $season = new PlayerSeason();
+        $season = new Player\Season();
         $season->setSeasonId($apiData['season']['seasonId'])
             ->setTotalGamesThisSeason($apiData['season']['totalGamesThisSeason'])
             ->setSeasonNumber($apiData['season']['seasonNumber'])
