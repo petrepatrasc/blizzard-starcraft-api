@@ -1,6 +1,7 @@
 <?php
 
 namespace petrepatrasc\BlizzardApiBundle\Entity;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements;
 
 /**
  * Class holds a representation of a player's profile.
@@ -70,6 +71,11 @@ class Player
      * @var PlayerRewards
      */
     protected $rewards;
+
+    /**
+     * @var Achievements
+     */
+    protected $achievements;
 
     /**
      * @param string $clanName
@@ -285,6 +291,24 @@ class Player
     public function getRewards()
     {
         return $this->rewards;
+    }
+
+    /**
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements $achievements
+     * @return $this
+     */
+    public function setAchievements($achievements)
+    {
+        $this->achievements = $achievements;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements
+     */
+    public function getAchievements()
+    {
+        return $this->achievements;
     }
 
 

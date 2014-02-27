@@ -6,7 +6,8 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
  * Handles calling the Battle.NET service. Added for extensibility at the moment.
  * @package petrepatrasc\BlizzardApiBundle\Service
  */
-class CallService {
+class CallService
+{
 
     /**
      * Make a call to the Battle.NET Api Service.
@@ -16,10 +17,12 @@ class CallService {
      * @param array $params
      * @return string
      */
-    public function makeCallToApiService($locale, $apiMethod, $params = array()) {
+    public function makeCallToApiService($locale, $apiMethod, $params = array())
+    {
         $urlParameters = implode('/', $params);
         $battleNetUrl = 'http://' . $locale . '.battle.net' . $apiMethod . $urlParameters . '/';
 
         $result = file_get_contents($battleNetUrl);
+        return $result;
     }
 }

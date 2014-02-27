@@ -102,6 +102,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2014, $season->getSeasonYear());
 
         $seasonStats = $season->getStats();
+        $this->assertCount(2, $seasonStats);
 
         /**
          * @var $season1v1 \petrepatrasc\BlizzardApiBundle\Entity\SeasonStats
@@ -127,5 +128,34 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expectedEarned, $rewards->getEarned());
         $this->assertEquals($expectedSelected, $rewards->getSelected());
+
+        // Achievements verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements', $profile->getAchievements());
+        $achievements = $profile->getAchievements();
+
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points', $profile->getAchievements()->getPoints());
+        $points = $achievements->getPoints();
+        $this->assertEquals(2785, $points->getTotalPoints());
+
+        $categoryPoints = $points->getCategoryPoints();
+        $this->assertInternalType('array', $categoryPoints);
+        $this->assertEquals(240, $categoryPoints["4325382"]);
+        $this->assertEquals(490, $categoryPoints["4325380"]);
+        $this->assertEquals(90, $categoryPoints["4325408"]);
+        $this->assertEquals(1165, $categoryPoints["4325379"]);
+        $this->assertEquals(0, $categoryPoints["4325410"]);
+        $this->assertEquals(800, $categoryPoints["4325377"]);
+
+        $achievementsArray = $achievements->getAchievements();
+        $this->assertInternalType('array', $achievementsArray);
+
+        /**
+         * @var $entry \petrepatrasc\BlizzardApiBundle\Entity\Achievement
+         */
+        foreach ($achievementsArray as $entry) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement', $entry);
+            $this->assertInstanceOf('\DateTime', $entry->getCompletionDate());
+            $this->assertInternalType('int', $entry->getAchievementId());
+        }
     }
 }

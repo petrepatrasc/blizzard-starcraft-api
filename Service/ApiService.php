@@ -2,6 +2,8 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCampaign;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerCareer;
@@ -11,6 +13,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ApiService
 {
@@ -49,6 +52,7 @@ class ApiService
         $campaign = $this->extractCampaignDataFromProfile($apiData);
         $season = $this->extractSeasonDataFromProfile($apiData);
         $rewards = $this->extractRewardsDataFromProfile($apiData);
+        $achievements = $this->extractAchievementDataFromProfile($apiData);
 
 
         $player = new Player();
@@ -63,7 +67,8 @@ class ApiService
             ->setSwarmLevels($playerSwarmLevels)
             ->setCampaign($campaign)
             ->setSeason($season)
-            ->setRewards($rewards);
+            ->setRewards($rewards)
+            ->setAchievements($achievements);
 
         return $player;
     }
@@ -182,5 +187,31 @@ class ApiService
         $rewards->setSelected($apiData['rewards']['selected'])
             ->setEarned($apiData['rewards']['earned']);
         return $rewards;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\Achievements
+     */
+    protected function extractAchievementDataFromProfile($apiData)
+    {
+        $points = new Points();
+        $points->setTotalPoints($apiData['achievements']['points']['totalPoints'])
+            ->setCategoryPoints($apiData['achievements']['points']['categoryPoints']);
+
+        $achievements = new Player\Achievements();
+        $achievements->setPoints($points);
+
+        foreach ($apiData['achievements']['achievements'] as $achievementEntry) {
+            $completionDate = new \DateTime();
+            $completionDate->setTimestamp($achievementEntry['completionDate']);
+
+            $achievementEntity = new Achievement();
+            $achievementEntity->setAchievementId($achievementEntry['achievementId'])
+                ->setCompletionDate($completionDate);
+
+            $achievements->addAchievements($achievementEntity);
+        }
+        return $achievements;
     }
 }
