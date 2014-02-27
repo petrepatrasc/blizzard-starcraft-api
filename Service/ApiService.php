@@ -8,7 +8,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
-use petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSeason;
 use petrepatrasc\BlizzardApiBundle\Entity\PlayerSwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
@@ -179,11 +179,11 @@ class ApiService
 
     /**
      * @param $apiData
-     * @return PlayerRewards
+     * @return Player\Rewards
      */
     protected function extractRewardsDataFromProfile($apiData)
     {
-        $rewards = new PlayerRewards();
+        $rewards = new Player\Rewards();
         $rewards->setSelected($apiData['rewards']['selected'])
             ->setEarned($apiData['rewards']['earned']);
         return $rewards;

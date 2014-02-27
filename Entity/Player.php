@@ -68,7 +68,7 @@ class Player
     protected $season;
 
     /**
-     * @var PlayerRewards
+     * @var Player\Rewards
      */
     protected $rewards;
 
@@ -276,7 +276,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards $rewards
+     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards $rewards
      * @return $this
      */
     public function setRewards($rewards)
@@ -286,7 +286,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards
      */
     public function getRewards()
     {

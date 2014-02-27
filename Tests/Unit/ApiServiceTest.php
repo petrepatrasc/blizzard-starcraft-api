@@ -120,7 +120,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(45, $season2v2->getGames());
 
         // Rewards verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\PlayerRewards', $profile->getRewards());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards', $profile->getRewards());
         $rewards = $profile->getRewards();
 
         $expectedSelected = array(332775232, 547085114, 1202205842, 1399145799, 2665125299, 2718858952, 3837142423);
