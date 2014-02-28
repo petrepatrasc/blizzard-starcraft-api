@@ -120,22 +120,22 @@ class ApiService
     protected function extractPlayerSwarmLevelsFromProfileData($apiData)
     {
         $terranSwarmLevel = new SwarmLevel();
-        $terranSwarmLevel->setLevel($apiData['swarmLevels']['terran']['level'])
-            ->setTotalLevelXp($apiData['swarmLevels']['terran']['totalLevelXP'])
-            ->setCurrentLevelXp($apiData['swarmLevels']['terran']['currentLevelXP']);
+        $terranSwarmLevel->setLevel(isset($apiData['swarmLevels']['terran']['level']) ? $apiData['swarmLevels']['terran']['level'] : null)
+            ->setTotalLevelXp(isset($apiData['swarmLevels']['terran']['totalLevelXP']) ? $apiData['swarmLevels']['terran']['totalLevelXP'] : null)
+            ->setCurrentLevelXp(isset($apiData['swarmLevels']['terran']['currentLevelXP']) ? $apiData['swarmLevels']['terran']['currentLevelXP'] : null);
 
         $protossSwarmLevel = new SwarmLevel();
-        $protossSwarmLevel->setLevel($apiData['swarmLevels']['protoss']['level'])
-            ->setTotalLevelXp($apiData['swarmLevels']['protoss']['totalLevelXP'])
-            ->setCurrentLevelXp($apiData['swarmLevels']['protoss']['currentLevelXP']);
+        $protossSwarmLevel->setLevel(isset($apiData['swarmLevels']['protoss']['level']) ? $apiData['swarmLevels']['protoss']['level'] : null)
+            ->setTotalLevelXp(isset($apiData['swarmLevels']['protoss']['totalLevelXP']) ? $apiData['swarmLevels']['protoss']['totalLevelXP'] : null)
+            ->setCurrentLevelXp(isset($apiData['swarmLevels']['protoss']['currentLevelXP']) ? $apiData['swarmLevels']['protoss']['currentLevelXP'] : null);
 
         $zergSwarmLevel = new SwarmLevel();
-        $zergSwarmLevel->setLevel($apiData['swarmLevels']['zerg']['level'])
-            ->setTotalLevelXp($apiData['swarmLevels']['zerg']['totalLevelXP'])
-            ->setCurrentLevelXp($apiData['swarmLevels']['zerg']['currentLevelXP']);
+        $zergSwarmLevel->setLevel(isset($apiData['swarmLevels']['zerg']['level']) ? $apiData['swarmLevels']['zerg']['level'] : null)
+            ->setTotalLevelXp(isset($apiData['swarmLevels']['zerg']['totalLevelXP']) ? $apiData['swarmLevels']['zerg']['totalLevelXP'] : null)
+            ->setCurrentLevelXp(isset($apiData['swarmLevels']['zerg']['currentLevelXP']) ? $apiData['swarmLevels']['zerg']['currentLevelXP'] : null);
 
         $playerSwarmLevels = new Player\SwarmLevels();
-        $playerSwarmLevels->setPlayerLevel($apiData['swarmLevels']['level'])
+        $playerSwarmLevels->setPlayerLevel(isset($apiData['swarmLevels']['level']) ? $apiData['swarmLevels']['level'] : null)
             ->setTerranLevel($terranSwarmLevel)
             ->setProtossLevel($protossSwarmLevel)
             ->setZergLevel($zergSwarmLevel);
