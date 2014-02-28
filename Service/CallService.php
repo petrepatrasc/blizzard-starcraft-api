@@ -12,15 +12,15 @@ class CallService
     /**
      * Make a call to the Battle.NET Api Service.
      *
-     * @param string $locale
+     * @param string $region
      * @param string $apiMethod
      * @param array $params
      * @return string
      */
-    public function makeCallToApiService($locale, $apiMethod, $params = array())
+    public function makeCallToApiService($region, $apiMethod, $params = array())
     {
         $urlParameters = implode('/', $params);
-        $battleNetUrl = 'http://' . $locale . '.battle.net' . $apiMethod . $urlParameters . '/';
+        $battleNetUrl = $region . $apiMethod . $urlParameters . '/';
 
         $result = file_get_contents($battleNetUrl);
         return $result;

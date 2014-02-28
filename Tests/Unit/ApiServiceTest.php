@@ -1,6 +1,8 @@
 <?php
 
-class ApiServiceTest extends PHPUnit_Framework_TestCase
+namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
+
+class ApiServiceTest extends \PHPUnit_Framework_TestCase
 {
     const MOCK_PATH = './Resources/mocks/';
 
@@ -10,7 +12,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
     protected $apiService = null;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $callServiceMock = null;
 
@@ -26,7 +28,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
     public function testGetPlayerProfileLionHeart()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart.json')));
-        $profile = $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
+        $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Player general verification
         $this->assertEquals(2048419, $profile->getId());
@@ -163,7 +165,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
     public function testGetPlayerProfileDayJ()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-dayj.json')));
-        $profile = $this->apiService->getPlayerProfile('us', 999000, 'DayNine');
+        $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::US, 999000, 'DayNine');
 
         // Player general verification
         $this->assertEquals(999000, $profile->getId());

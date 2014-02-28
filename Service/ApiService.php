@@ -11,6 +11,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
+use petrepatrasc\BlizzardApiBundle\Entity\Region;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 
@@ -34,16 +35,16 @@ class ApiService
     /**
      * Get a player's profile via the Battle.NET API.
      *
-     * @param string $locale
+     * @param string $region
      * @param int $battleNetId
      * @param int $realm
      * @param string $playerName
      * @return Player
      */
-    public function getPlayerProfile($locale, $battleNetId, $playerName, $realm = 1)
+    public function getPlayerProfile($region, $battleNetId, $playerName, $realm = 1)
     {
         $apiParameters = array($battleNetId, $realm, $playerName);
-        $apiData = $this->makeCall($locale, self::API_PROFILE_METHOD, $apiParameters);
+        $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters);
 
         $portrait = $this->extractPlayerPortraitFromProfileData($apiData);
         $career = $this->extractPlayerCareerFromProfileData($apiData);
@@ -72,9 +73,15 @@ class ApiService
         return $player;
     }
 
-    public function makeCall($locale, $apiMethod, $params = array())
+    /**
+     * @param string $region
+     * @param string $apiMethod
+     * @param array $params
+     * @return mixed
+     */
+    public function makeCall($region, $apiMethod, $params = array())
     {
-        return json_decode($this->callService->makeCallToApiService($locale, $apiMethod, $params), true);
+        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params), true);
     }
 
     /**
