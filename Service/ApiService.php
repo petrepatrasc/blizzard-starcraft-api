@@ -56,12 +56,12 @@ class ApiService
 
 
         $player = new Player();
-        $player->setId($apiData['id'])
-            ->setRealm($apiData['realm'])
-            ->setDisplayName($apiData['displayName'])
-            ->setClanName($apiData['clanName'])
-            ->setClanTag($apiData['clanTag'])
-            ->setProfilePath($apiData['profilePath'])
+        $player->setId(isset($apiData['id']) ? $apiData['id'] : null)
+            ->setRealm(isset($apiData['realm']) ? $apiData['realm'] : null)
+            ->setDisplayName(isset($apiData['displayName']) ? $apiData['displayName'] : null)
+            ->setClanName(isset($apiData['clanName']) ? $apiData['clanName'] : null)
+            ->setClanTag(isset($apiData['clanTag']) ? $apiData['clanTag'] : null)
+            ->setProfilePath(isset($apiData['profilePath']) ? $apiData['profilePath'] : null)
             ->setPortrait($portrait)
             ->setCareer($career)
             ->setSwarmLevels($playerSwarmLevels)
@@ -196,18 +196,18 @@ class ApiService
     protected function extractAchievementDataFromProfile($apiData)
     {
         $points = new Points();
-        $points->setTotalPoints($apiData['achievements']['points']['totalPoints'])
-            ->setCategoryPoints($apiData['achievements']['points']['categoryPoints']);
+        $points->setTotalPoints(isset($apiData['achievements']['points']['totalPoints']) ? $apiData['achievements']['points']['totalPoints'] : null)
+            ->setCategoryPoints(isset($apiData['achievements']['points']['categoryPoints']) ? $apiData['achievements']['points']['categoryPoints'] : null);
 
         $achievements = new Player\Achievements();
         $achievements->setPoints($points);
 
         foreach ($apiData['achievements']['achievements'] as $achievementEntry) {
             $completionDate = new \DateTime();
-            $completionDate->setTimestamp($achievementEntry['completionDate']);
+            $completionDate->setTimestamp(isset($achievementEntry['completionDate']) ? $achievementEntry['completionDate'] : null);
 
             $achievementEntity = new Achievement();
-            $achievementEntity->setAchievementId($achievementEntry['achievementId'])
+            $achievementEntity->setAchievementId(isset($achievementEntry['achievementId']) ? $achievementEntry['achievementId'] : null)
                 ->setCompletionDate($completionDate);
 
             $achievements->addAchievements($achievementEntity);
