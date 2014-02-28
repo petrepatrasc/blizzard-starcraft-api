@@ -161,16 +161,16 @@ class ApiService
     protected function extractSeasonDataFromProfile($apiData)
     {
         $season = new Player\Season();
-        $season->setSeasonId($apiData['season']['seasonId'])
-            ->setTotalGamesThisSeason($apiData['season']['totalGamesThisSeason'])
-            ->setSeasonNumber($apiData['season']['seasonNumber'])
-            ->setSeasonYear($apiData['season']['seasonYear']);
+        $season->setSeasonId(isset($apiData['season']['seasonId']) ? $apiData['season']['seasonId'] : null)
+            ->setTotalGamesThisSeason(isset($apiData['season']['totalGamesThisSeason']) ? $apiData['season']['totalGamesThisSeason'] : null)
+            ->setSeasonNumber(isset($apiData['season']['seasonNumber']) ? $apiData['season']['seasonNumber'] : null)
+            ->setSeasonYear(isset($apiData['season']['seasonYear']) ? $apiData['season']['seasonYear'] : null);
 
         foreach ($apiData['season']['stats'] as $stats) {
             $seasonStats = new SeasonStats();
-            $seasonStats->setType($stats['type'])
-                ->setWins($stats['wins'])
-                ->setGames($stats['games']);
+            $seasonStats->setType(isset($stats['type']) ? $stats['type'] : null)
+                ->setWins(isset($stats['wins']) ? $stats['wins'] : null)
+                ->setGames(isset($stats['games']) ? $stats['games'] : null);
             $season->addSeasonStats($seasonStats);
         }
 
