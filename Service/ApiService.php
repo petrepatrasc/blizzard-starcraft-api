@@ -91,13 +91,36 @@ class ApiService
     protected function extractPlayerPortraitFromProfileData($apiData)
     {
         $portrait = new Portrait();
-        $portrait->setXCoordinate(isset($apiData['portrait']['x']) ? $apiData['portrait']['x'] : null)
-            ->setYCoordinate(isset($apiData['portrait']['y']) ? $apiData['portrait']['y'] : null)
-            ->setWidth(isset($apiData['portrait']['w']) ? $apiData['portrait']['w'] : null)
-            ->setHeight(isset($apiData['portrait']['h']) ? $apiData['portrait']['h'] : null)
-            ->setOffset(isset($apiData['portrait']['offset']) ? $apiData['portrait']['offset'] : null)
-            ->setUrl(isset($apiData['portrait']['url']) ? $apiData['portrait']['url'] : null);
+
+        if (!isset($apiData['portrait'])) {
+            return $portrait;
+        }
+
+        $portrait->setXCoordinate($this->getPortraitData($apiData, 'x'))
+            ->setYCoordinate($this->getPortraitData($apiData, 'y'))
+            ->setWidth($this->getPortraitData($apiData, 'w'))
+            ->setHeight($this->getPortraitData($apiData, 'h'))
+            ->setOffset($this->getPortraitData($apiData, 'offset'))
+            ->setUrl($this->getPortraitData($apiData, 'url'));
         return $portrait;
+    }
+
+    /**
+     * Get the portrait data if it is set.
+     *
+     * @param array $apiData
+     * @param string $key
+     * @return null
+     */
+    protected function getPortraitData($apiData, $key)
+    {
+        $portrait = $apiData['portrait'];
+
+        if (isset($portrait[$key])) {
+            return $portrait[$key];
+        }
+
+        return null;
     }
 
     /**
