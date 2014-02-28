@@ -184,8 +184,8 @@ class ApiService
     protected function extractRewardsDataFromProfile($apiData)
     {
         $rewards = new Player\Rewards();
-        $rewards->setSelected($apiData['rewards']['selected'])
-            ->setEarned($apiData['rewards']['earned']);
+        $rewards->setSelected(isset($apiData['rewards']['selected']) ? $apiData['rewards']['selected'] : null)
+            ->setEarned(isset($apiData['rewards']['earned']) ? $apiData['rewards']['earned'] : null);
         return $rewards;
     }
 
