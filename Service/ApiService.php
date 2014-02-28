@@ -13,7 +13,6 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class ApiService
 {
@@ -165,6 +164,10 @@ class ApiService
             ->setTotalGamesThisSeason(isset($apiData['season']['totalGamesThisSeason']) ? $apiData['season']['totalGamesThisSeason'] : null)
             ->setSeasonNumber(isset($apiData['season']['seasonNumber']) ? $apiData['season']['seasonNumber'] : null)
             ->setSeasonYear(isset($apiData['season']['seasonYear']) ? $apiData['season']['seasonYear'] : null);
+
+        if (!isset($apiData['season']['stats'])) {
+            return $season;
+        }
 
         foreach ($apiData['season']['stats'] as $stats) {
             $seasonStats = new SeasonStats();

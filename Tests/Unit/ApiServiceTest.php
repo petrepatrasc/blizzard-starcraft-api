@@ -2,7 +2,7 @@
 
 class ApiServiceTest extends PHPUnit_Framework_TestCase
 {
-    const PROFILE_MOCK_PATH = './Resources/mocks/profile-retrieval.json';
+    const MOCK_PATH = './Resources/mocks/';
 
     /**
      * @var \petrepatrasc\BlizzardApiBundle\Service\ApiService
@@ -23,9 +23,9 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->apiService = new \petrepatrasc\BlizzardApiBundle\Service\ApiService($this->callServiceMock);
     }
 
-    public function testGetPlayerProfile()
+    public function testGetPlayerProfileLionHeart()
     {
-        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::PROFILE_MOCK_PATH)));
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart.json')));
         $profile = $this->apiService->getPlayerProfile('eu', 2048419, 'LionHeart');
 
         // Player general verification
@@ -118,6 +118,7 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('2v2', $season2v2->getType());
         $this->assertEquals(26, $season2v2->getWins());
         $this->assertEquals(45, $season2v2->getGames());
+        $this->assertCount(2, $seasonStats);
 
         // Rewards verification
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards', $profile->getRewards());
@@ -145,6 +146,127 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1165, $categoryPoints["4325379"]);
         $this->assertEquals(0, $categoryPoints["4325410"]);
         $this->assertEquals(800, $categoryPoints["4325377"]);
+
+        $achievementsArray = $achievements->getAchievements();
+        $this->assertInternalType('array', $achievementsArray);
+
+        /**
+         * @var $entry \petrepatrasc\BlizzardApiBundle\Entity\Achievement
+         */
+        foreach ($achievementsArray as $entry) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement', $entry);
+            $this->assertInstanceOf('\DateTime', $entry->getCompletionDate());
+            $this->assertInternalType('int', $entry->getAchievementId());
+        }
+    }
+
+    public function testGetPlayerProfileDayJ()
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-dayj.json')));
+        $profile = $this->apiService->getPlayerProfile('us', 999000, 'DayNine');
+
+        // Player general verification
+        $this->assertEquals(999000, $profile->getId());
+        $this->assertEquals(1, $profile->getRealm());
+        $this->assertEquals("DayNine", $profile->getDisplayName());
+        $this->assertEquals("Team 9", $profile->getClanName());
+        $this->assertEquals("Nine", $profile->getClanTag());
+        $this->assertEquals("/profile/999000/1/DayNine/", $profile->getProfilePath());
+
+        // Portrait verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());
+        $portrait = $profile->getPortrait();
+        $this->assertEquals(-360, $portrait->getXCoordinate());
+        $this->assertEquals(-450, $portrait->getYCoordinate());
+        $this->assertEquals(90, $portrait->getWidth());
+        $this->assertEquals(90, $portrait->getHeight());
+        $this->assertEquals(34, $portrait->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/portraits/0-90.jpg", $portrait->getUrl());
+
+        // Career verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Career', $profile->getCareer());
+        $career = $profile->getCareer();
+        $this->assertEquals("RANDOM", $career->getPrimaryRace());
+        $this->assertNull($career->getLeague());
+        $this->assertEquals(0, $career->getTerranWins());
+        $this->assertEquals(0, $career->getProtossWins());
+        $this->assertEquals(0, $career->getZergWins());
+        $this->assertEquals("PLATINUM", $career->getHighest1v1Rank());
+        $this->assertEquals("MASTER", $career->getHighestTeamRank());
+        $this->assertEquals(0, $career->getSeasonTotalGames());
+        $this->assertEquals(268, $career->getCareerTotalGames());
+
+        // Swarm levels verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels', $profile->getSwarmLevels());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getTerranLevel());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getProtossLevel());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel', $profile->getSwarmLevels()->getZergLevel());
+        $this->assertEquals(19, $profile->getSwarmLevels()->getPlayerLevel());
+
+        $terranSwarmLevel = $profile->getSwarmLevels()->getTerranLevel();
+        $protossSwarmLevel = $profile->getSwarmLevels()->getProtossLevel();
+        $zergSwarmLevel = $profile->getSwarmLevels()->getZergLevel();
+
+        $this->assertEquals(5, $terranSwarmLevel->getLevel());
+        $this->assertEquals(125000, $terranSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(124122, $terranSwarmLevel->getCurrentLevelXp());
+
+        $this->assertEquals(10, $protossSwarmLevel->getLevel());
+        $this->assertEquals(155000, $protossSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(85501, $protossSwarmLevel->getCurrentLevelXp());
+
+        $this->assertEquals(4, $zergSwarmLevel->getLevel());
+        $this->assertEquals(105000, $zergSwarmLevel->getTotalLevelXp());
+        $this->assertEquals(89800, $zergSwarmLevel->getCurrentLevelXp());
+
+        // Campaign verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign', $profile->getCampaign());
+        $campaign = $profile->getCampaign();
+        $this->assertEquals('BRUTAL', $campaign->getWingsOfLibertyStatus());
+        $this->assertEquals('BRUTAL', $campaign->getHeartOfTheSwarmStatus());
+
+        // Season verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Season', $profile->getSeason());
+        $season = $profile->getSeason();
+
+        foreach ($season->getStats() as $stats) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\SeasonStats', $stats);
+        }
+
+        $this->assertEquals(17, $season->getSeasonId());
+        $this->assertEquals(0, $season->getTotalGamesThisSeason());
+        $this->assertEquals(1, $season->getSeasonNumber());
+        $this->assertEquals(2014, $season->getSeasonYear());
+
+        $seasonStats = $season->getStats();
+        $this->assertCount(0, $seasonStats);
+
+        // Rewards verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards', $profile->getRewards());
+        $rewards = $profile->getRewards();
+
+        $expectedSelected = array(18730036, 2009110693, 2359737029, 3319454886);
+        $expectedEarned = array(19065053, 97993138, 171155159, 199895074, 354595443, 367294557, 382993515, 414497095, 540410724, 547085114, 595375415, 615147322, 637508413, 722125123, 744177281, 836744187, 863976264, 868991824, 983487403, 1002357867, 1034610896, 1060652497, 1079649078, 1101809667, 1177038943, 1202205842, 1232091643, 1256759101, 1330937594, 1399145799, 1435566629, 1443233935, 1453233559, 1467565626, 1542695810, 1563607663, 1686196380, 1702690519, 1716314872, 1728751618, 1750262021, 1756072743, 1798698573, 1807193192, 1919498533, 1950195664, 2069737544, 2071251289, 2113477352, 2119427912, 2184379176, 2288979736, 2419802213, 2420367594, 2449282564, 2486919067, 2584611494, 2636717639, 2646575556, 2665125299, 2710644389, 2718858952, 2730379211, 2809480242, 2825428175, 2908978867, 2951203821, 3032291021, 3045219362, 3205179785, 3247325755, 3319454886, 3492698187, 3566090531, 3587970117, 3625001715, 3630735430, 3638208774, 3688882959, 3690831617, 3692299263, 3759131515, 3821720584, 3846834130, 3918875355, 3977184535, 4017064141, 4017588258, 4130543639, 4162301223, 4179975174, 4189275055, 4196367769, 4229064357);
+
+        $this->assertEquals($expectedEarned, $rewards->getEarned());
+        $this->assertEquals($expectedSelected, $rewards->getSelected());
+
+        // Achievements verification
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements', $profile->getAchievements());
+        $achievements = $profile->getAchievements();
+
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points', $profile->getAchievements()->getPoints());
+        $points = $achievements->getPoints();
+        $this->assertEquals(3420, $points->getTotalPoints());
+
+        $categoryPoints = $points->getCategoryPoints();
+        $this->assertInternalType('array', $categoryPoints);
+        $this->assertEquals(0, $categoryPoints["4325382"]);
+        $this->assertEquals(80, $categoryPoints["4325380"]);
+        $this->assertEquals(0, $categoryPoints["4325408"]);
+        $this->assertEquals(1560, $categoryPoints["4325379"]);
+        $this->assertEquals(1280, $categoryPoints["4325410"]);
+        $this->assertEquals(500, $categoryPoints["4325377"]);
 
         $achievementsArray = $achievements->getAchievements();
         $this->assertInternalType('array', $achievementsArray);
