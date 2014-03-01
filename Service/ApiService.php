@@ -4,6 +4,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
+use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
@@ -76,9 +77,42 @@ class ApiService
     }
 
     /**
+     * Get the last ten matches that a player has played.
+     *
+     * @param string $region
+     * @param int $battleNetId
+     * @param string $playerName
+     * @param int $realm
+     * @return array
+     */
+    public function getLatestMatchesPlayedByPlayer($region, $battleNetId, $playerName, $realm = 1)
+    {
+        $apiParameters = array($battleNetId, $realm, $playerName, 'matches');
+        $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters, false);
+
+        $matches = array();
+        foreach ($apiData['matches'] as $apiMatch) {
+            $matchDate = new \DateTime();
+            $matchDate->setTimestamp($apiMatch['date']);
+
+            $match = new Match();
+            $match->setMap($apiMatch['map'])
+                ->setType($apiMatch['type'])
+                ->setDecision($apiMatch['decision'])
+                ->setSpeed($apiMatch['speed'])
+                ->setDate($matchDate);
+
+            $matches[] = $match;
+        }
+
+        return $matches;
+    }
+
+    /**
      * @param string $region
      * @param string $apiMethod
      * @param array $params
+     * @param bool $trailingSlash
      * @return array
      */
     public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)

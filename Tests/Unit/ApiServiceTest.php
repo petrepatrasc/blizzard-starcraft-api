@@ -2,6 +2,8 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Match;
+
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
 {
     const MOCK_PATH = './Resources/mocks/';
@@ -281,5 +283,34 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf('\DateTime', $entry->getCompletionDate());
             $this->assertInternalType('int', $entry->getAchievementId());
         }
+    }
+
+    public function testGetLatestMatchesPlayedByPlayer()
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-matches.json')));
+        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
+
+        // Do a general data check.
+        $this->assertGreaterThan(0, count($matches));
+
+        /**
+         * @var $match Match
+         * @var $latestMatch Match
+         */
+        foreach ($matches as $match) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Match', $match);
+            $this->assertInternalType('string', $match->getMap());
+            $this->assertInternalType('string', $match->getType());
+            $this->assertInternalType('string', $match->getDecision());
+            $this->assertInternalType('string', $match->getSpeed());
+            $this->assertInstanceOf('\DateTime', $match->getDate());
+        }
+
+        // Now validate that latest match to make sure that it is indeed valid.
+        $latestMatch = $matches[0];
+        $this->assertEquals('Heavy Rain LE', $latestMatch->getMap());
+        $this->assertEquals('SOLO', $latestMatch->getType());
+        $this->assertEquals('WIN', $latestMatch->getDecision());
+        $this->assertEquals('FASTER', $latestMatch->getSpeed());
     }
 }
