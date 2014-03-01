@@ -54,14 +54,16 @@ class ApiService
         $rewards = $this->extractRewardsDataFromProfile($apiData);
         $achievements = $this->extractAchievementDataFromProfile($apiData);
 
-
-        $player = new Player();
-        $player->setId($apiData['id'])
+        $profileBasicInformation = new Player\Basic();
+        $profileBasicInformation->setId($apiData['id'])
             ->setRealm($apiData['realm'])
             ->setDisplayName($apiData['displayName'])
             ->setClanName($apiData['clanName'])
             ->setClanTag($apiData['clanTag'])
-            ->setProfilePath($apiData['profilePath'])
+            ->setProfilePath($apiData['profilePath']);
+
+        $player = new Player();
+        $player->setBasicInformation($profileBasicInformation)
             ->setPortrait($portrait)
             ->setCareer($career)
             ->setSwarmLevels($playerSwarmLevels)

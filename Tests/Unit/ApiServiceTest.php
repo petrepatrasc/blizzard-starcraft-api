@@ -31,12 +31,12 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Player general verification
-        $this->assertEquals(2048419, $profile->getId());
-        $this->assertEquals(1, $profile->getRealm());
-        $this->assertEquals("LionHeart", $profile->getDisplayName());
-        $this->assertEquals("Cegeka Guild", $profile->getClanName());
-        $this->assertEquals("CGK", $profile->getClanTag());
-        $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getProfilePath());
+        $this->assertEquals(2048419, $profile->getBasicInformation()->getId());
+        $this->assertEquals(1, $profile->getBasicInformation()->getRealm());
+        $this->assertEquals("LionHeart", $profile->getBasicInformation()->getDisplayName());
+        $this->assertEquals("Cegeka Guild", $profile->getBasicInformation()->getClanName());
+        $this->assertEquals("CGK", $profile->getBasicInformation()->getClanTag());
+        $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getBasicInformation()->getProfilePath());
 
         // Portrait verification
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());
@@ -168,12 +168,12 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::US, 999000, 'DayNine');
 
         // Player general verification
-        $this->assertEquals(999000, $profile->getId());
-        $this->assertEquals(1, $profile->getRealm());
-        $this->assertEquals("DayNine", $profile->getDisplayName());
-        $this->assertEquals("Team 9", $profile->getClanName());
-        $this->assertEquals("Nine", $profile->getClanTag());
-        $this->assertEquals("/profile/999000/1/DayNine/", $profile->getProfilePath());
+        $this->assertEquals(999000, $profile->getBasicInformation()->getId());
+        $this->assertEquals(1, $profile->getBasicInformation()->getRealm());
+        $this->assertEquals("DayNine", $profile->getBasicInformation()->getDisplayName());
+        $this->assertEquals("Team 9", $profile->getBasicInformation()->getClanName());
+        $this->assertEquals("Nine", $profile->getBasicInformation()->getClanTag());
+        $this->assertEquals("/profile/999000/1/DayNine/", $profile->getBasicInformation()->getProfilePath());
 
         // Portrait verification
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());

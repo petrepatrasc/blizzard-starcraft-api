@@ -21,9 +21,9 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
         $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Player general verification
-        $this->assertEquals(2048419, $profile->getId());
-        $this->assertEquals(1, $profile->getRealm());
-        $this->assertEquals("LionHeart", $profile->getDisplayName());
-        $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getProfilePath());
+        $this->assertEquals(2048419, $profile->getBasicInformation()->getId());
+        $this->assertEquals(1, $profile->getBasicInformation()->getRealm());
+        $this->assertEquals("LionHeart", $profile->getBasicInformation()->getDisplayName());
+        $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getBasicInformation()->getProfilePath());
     }
 }
