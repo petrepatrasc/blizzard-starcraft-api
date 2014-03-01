@@ -15,12 +15,17 @@ class CallService
      * @param string $region
      * @param string $apiMethod
      * @param array $params
+     * @param bool $trailingSlash
      * @return string
      */
-    public function makeCallToApiService($region, $apiMethod, $params = array())
+    public function makeCallToApiService($region, $apiMethod, $params = array(), $trailingSlash = true)
     {
         $urlParameters = implode('/', $params);
-        $battleNetUrl = $region . $apiMethod . $urlParameters . '/';
+        $battleNetUrl = $region . $apiMethod . $urlParameters;
+
+        if ($trailingSlash) {
+            $battleNetUrl .= '/';
+        }
 
         $result = file_get_contents($battleNetUrl);
         return $result;

@@ -1,0 +1,302 @@
+{
+    "currentSeason": [
+        {
+            "ladder": [
+                {
+                    "ladderName": "Archon Kappa",
+                    "ladderId": 152724,
+                    "division": 124,
+                    "rank": 77,
+                    "league": "SILVER",
+                    "matchMakingQueue": "HOTS_TWOS",
+                    "wins": 4,
+                    "losses": 6,
+                    "showcase": true
+                }
+            ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 3690427,
+                    "realm": 1,
+                    "displayName": "Kodran",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/3690427/1/Kodran/"
+                }
+            ],
+            "nonRanked": [ ]
+        },
+        {
+            "ladder": [
+                {
+                    "ladderName": "Leviathan Lima",
+                    "ladderId": 150704,
+                    "division": 12,
+                    "rank": 13,
+                    "league": "GOLD",
+                    "matchMakingQueue": "HOTS_TWOS",
+                    "wins": 22,
+                    "losses": 13,
+                    "showcase": true
+                }
+            ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 2328024,
+                    "realm": 1,
+                    "displayName": "Highlander",
+                    "clanName": "",
+                    "clanTag": "",
+                    "profilePath": "/profile/2328024/1/Highlander/"
+                }
+            ],
+            "nonRanked": [ ]
+        },
+        {
+            "ladder": [ ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 2266133,
+                    "realm": 1,
+                    "displayName": "metallicaRO",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2266133/1/metallicaRO/"
+                },
+                {
+                    "id": 3690427,
+                    "realm": 1,
+                    "displayName": "Kodran",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/3690427/1/Kodran/"
+                }
+            ],
+            "nonRanked": [
+                {
+                    "mmq": "HOTS_THREES",
+                    "gamesPlayed": 3
+                }
+            ]
+        },
+        {
+            "ladder": [
+                {
+                    "ladderName": "Sarengo Oscar",
+                    "ladderId": 151146,
+                    "division": 97,
+                    "rank": 1,
+                    "league": "GOLD",
+                    "matchMakingQueue": "HOTS_SOLO",
+                    "wins": 56,
+                    "losses": 23,
+                    "showcase": true
+                }
+            ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                }
+            ],
+            "nonRanked": [ ]
+        },
+        {
+            "ladder": [ ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 4368914,
+                    "realm": 1,
+                    "displayName": "MrDee",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/4368914/1/MrDee/"
+                },
+                {
+                    "id": 4439024,
+                    "realm": 1,
+                    "displayName": "DrNickIT",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/4439024/1/DrNickIT/"
+                }
+            ],
+            "nonRanked": [
+                {
+                    "mmq": "HOTS_THREES",
+                    "gamesPlayed": 3
+                }
+            ]
+        }
+    ],
+    "previousSeason": [
+        {
+            "ladder": [
+                {
+                    "ladderName": "Roxara Yankee",
+                    "ladderId": 148407,
+                    "division": 257,
+                    "rank": 38,
+                    "league": "SILVER",
+                    "matchMakingQueue": "HOTS_SOLO",
+                    "wins": 19,
+                    "losses": 15,
+                    "showcase": false
+                }
+            ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                }
+            ],
+            "nonRanked": [ ]
+        },
+        {
+            "ladder": [
+                {
+                    "ladderName": "DuGalle Omega",
+                    "ladderId": 148265,
+                    "division": 39,
+                    "rank": 4,
+                    "league": "GOLD",
+                    "matchMakingQueue": "HOTS_TWOS",
+                    "wins": 25,
+                    "losses": 17,
+                    "showcase": false
+                }
+            ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 2328024,
+                    "realm": 1,
+                    "displayName": "Highlander",
+                    "clanName": "",
+                    "clanTag": "",
+                    "profilePath": "/profile/2328024/1/Highlander/"
+                }
+            ],
+            "nonRanked": [ ]
+        }
+    ],
+    "showcasePlacement": [
+        {
+            "ladder": [ ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 2266133,
+                    "realm": 1,
+                    "displayName": "metallicaRO",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2266133/1/metallicaRO/"
+                },
+                {
+                    "id": 3690427,
+                    "realm": 1,
+                    "displayName": "Kodran",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/3690427/1/Kodran/"
+                }
+            ],
+            "nonRanked": [
+                {
+                    "mmq": "HOTS_THREES",
+                    "gamesPlayed": 3
+                }
+            ]
+        },
+        {
+            "ladder": [ ],
+            "characters": [
+                {
+                    "id": 2048419,
+                    "realm": 1,
+                    "displayName": "LionHeart",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/2048419/1/LionHeart/"
+                },
+                {
+                    "id": 4368914,
+                    "realm": 1,
+                    "displayName": "MrDee",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/4368914/1/MrDee/"
+                },
+                {
+                    "id": 4439024,
+                    "realm": 1,
+                    "displayName": "DrNickIT",
+                    "clanName": "Cegeka Guild",
+                    "clanTag": "CGK",
+                    "profilePath": "/profile/4439024/1/DrNickIT/"
+                }
+            ],
+            "nonRanked": [
+                {
+                    "mmq": "HOTS_THREES",
+                    "gamesPlayed": 3
+                }
+            ]
+        }
+    ]
+}

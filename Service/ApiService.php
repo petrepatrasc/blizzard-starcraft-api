@@ -79,9 +79,9 @@ class ApiService
      * @param array $params
      * @return array
      */
-    public function makeCall($region, $apiMethod, $params = array())
+    public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)
     {
-        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params), true);
+        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params, $trailingSlash), true);
     }
 
     /**
