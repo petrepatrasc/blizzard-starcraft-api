@@ -11,7 +11,6 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
-use petrepatrasc\BlizzardApiBundle\Entity\Region;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 
@@ -71,6 +70,89 @@ class ApiService
             ->setAchievements($achievements);
 
         return $player;
+    }
+
+    /**
+     * Return a normalised player profile array, so that we have defaults set for everything in the event that certain
+     * values aren't set in the array returned by the API.
+     * @return array
+     */
+    protected function getNormalisedPlayerProfileArray()
+    {
+        return array(
+            'id' => null,
+            'realm' => null,
+            'displayName' => null,
+            'clanName' => null,
+            'clanTag' => null,
+            'profilePath' => null,
+            'portrait' => array(
+                'x' => null,
+                'y' => null,
+                'w' => null,
+                'h' => null,
+                'offset' => null,
+                'url' => null
+            ),
+            'career' => array(
+                'primaryRace' => null,
+                'league' => null,
+                'terranWins' => null,
+                'protossWins' => null,
+                'zergWins' => null,
+                'highest1v1Rank' => null,
+                'highestTeamRank' => null,
+                'seasonTotalGames' => null,
+                'careerTotalGames' => null
+            ),
+            'swarmLevels' => array(
+                'level' => null,
+                'terran' => array(
+                    'level' => null,
+                    'totalLevelXP' => null,
+                    'currentLevelXP' => null
+                ),
+                'zerg' => array(
+                    'level' => null,
+                    'totalLevelXP' => null,
+                    'currentLevelXP' => null
+                ),
+                'protoss' => array(
+                    'level' => null,
+                    'totalLevelXP' => null,
+                    'currentLevelXP' => null
+                )
+            ),
+            'campaign' => array(
+                'wol' => null,
+                'hots' => null
+            ),
+            'season' => array(
+                'seasonId' => null,
+                'totalGamesThisSeason' => null,
+                'stats' => array(),
+                'seasonNumber' => null,
+                'seasonYear' => null
+            ),
+            'rewards' => array(
+                'selected' => array(),
+                'earned' => array()
+            ),
+            'achievements' => array(
+                'points' => array(
+                    'totalPoints' => null,
+                    'categoryPoints' => array(
+                        '4325382' => null,
+                        '4325380' => null,
+                        '4325408' => null,
+                        '4325379' => null,
+                        '4325410' => null,
+                        '4325377' => null
+                    )
+                ),
+                'achievements' => array()
+            )
+        );
     }
 
     /**
