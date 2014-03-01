@@ -77,7 +77,7 @@ class ApiService
      * @param string $region
      * @param string $apiMethod
      * @param array $params
-     * @return mixed
+     * @return array
      */
     public function makeCall($region, $apiMethod, $params = array())
     {
@@ -232,86 +232,13 @@ class ApiService
 
     /**
      * Return a normalised player profile array, so that we have defaults set for everything in the event that certain
-     * values aren't set in the array returned by the API.
+     * values are not set in the array returned by the API.
      * @param array $apiData
      * @return array
      */
     protected function getNormalisedPlayerProfileArray($apiData = array())
     {
-        $normalisedArray = array(
-            'id' => null,
-            'realm' => null,
-            'displayName' => null,
-            'clanName' => null,
-            'clanTag' => null,
-            'profilePath' => null,
-            'portrait' => array(
-                'x' => null,
-                'y' => null,
-                'w' => null,
-                'h' => null,
-                'offset' => null,
-                'url' => null
-            ),
-            'career' => array(
-                'primaryRace' => null,
-                'league' => null,
-                'terranWins' => null,
-                'protossWins' => null,
-                'zergWins' => null,
-                'highest1v1Rank' => null,
-                'highestTeamRank' => null,
-                'seasonTotalGames' => null,
-                'careerTotalGames' => null
-            ),
-            'swarmLevels' => array(
-                'level' => null,
-                'terran' => array(
-                    'level' => null,
-                    'totalLevelXP' => null,
-                    'currentLevelXP' => null
-                ),
-                'zerg' => array(
-                    'level' => null,
-                    'totalLevelXP' => null,
-                    'currentLevelXP' => null
-                ),
-                'protoss' => array(
-                    'level' => null,
-                    'totalLevelXP' => null,
-                    'currentLevelXP' => null
-                )
-            ),
-            'campaign' => array(
-                'wol' => null,
-                'hots' => null
-            ),
-            'season' => array(
-                'seasonId' => null,
-                'totalGamesThisSeason' => null,
-                'stats' => array(),
-                'seasonNumber' => null,
-                'seasonYear' => null
-            ),
-            'rewards' => array(
-                'selected' => array(),
-                'earned' => array()
-            ),
-            'achievements' => array(
-                'points' => array(
-                    'totalPoints' => null,
-                    'categoryPoints' => array(
-                        '4325382' => null,
-                        '4325380' => null,
-                        '4325408' => null,
-                        '4325379' => null,
-                        '4325410' => null,
-                        '4325377' => null
-                    )
-                ),
-                'achievements' => array()
-            )
-        );
+        $normalisedArray = NormalisationService::getNormalisedPlayerProfile();
 
         $apiData['campaign'] = array_merge($normalisedArray['campaign'], $apiData['campaign']);
         $apiData['career'] = array_merge($normalisedArray['career'], $apiData['career']);
