@@ -44,6 +44,7 @@ class ApiService
     {
         $apiParameters = array($battleNetId, $realm, $playerName);
         $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters);
+        $apiData = $this->getNormalisedPlayerProfileArray($apiData);
 
         $portrait = $this->extractPlayerPortraitFromProfileData($apiData);
         $career = $this->extractPlayerCareerFromProfileData($apiData);
@@ -55,12 +56,12 @@ class ApiService
 
 
         $player = new Player();
-        $player->setId(isset($apiData['id']) ? $apiData['id'] : null)
-            ->setRealm(isset($apiData['realm']) ? $apiData['realm'] : null)
-            ->setDisplayName(isset($apiData['displayName']) ? $apiData['displayName'] : null)
-            ->setClanName(isset($apiData['clanName']) ? $apiData['clanName'] : null)
-            ->setClanTag(isset($apiData['clanTag']) ? $apiData['clanTag'] : null)
-            ->setProfilePath(isset($apiData['profilePath']) ? $apiData['profilePath'] : null)
+        $player->setId($apiData['id'])
+            ->setRealm($apiData['realm'])
+            ->setDisplayName($apiData['displayName'])
+            ->setClanName($apiData['clanName'])
+            ->setClanTag($apiData['clanTag'])
+            ->setProfilePath($apiData['profilePath'])
             ->setPortrait($portrait)
             ->setCareer($career)
             ->setSwarmLevels($playerSwarmLevels)
@@ -73,13 +74,171 @@ class ApiService
     }
 
     /**
+     * @param string $region
+     * @param string $apiMethod
+     * @param array $params
+     * @return mixed
+     */
+    public function makeCall($region, $apiMethod, $params = array())
+    {
+        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params), true);
+    }
+
+    /**
+     * @param $apiData
+     * @return Portrait
+     */
+    protected function extractPlayerPortraitFromProfileData($apiData)
+    {
+        $portrait = new Portrait();
+
+        if (!isset($apiData['portrait'])) {
+            return $portrait;
+        }
+
+        $portrait->setXCoordinate($apiData['portrait']['x'])
+            ->setYCoordinate($apiData['portrait']['y'])
+            ->setWidth($apiData['portrait']['w'])
+            ->setHeight($apiData['portrait']['h'])
+            ->setOffset($apiData['portrait']['offset'])
+            ->setUrl($apiData['portrait']['url']);
+        return $portrait;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\Career
+     */
+    protected function extractPlayerCareerFromProfileData($apiData)
+    {
+        $career = new Player\Career();
+        $career->setPrimaryRace($apiData['career']['primaryRace'])
+            ->setLeague($apiData['career']['league'])
+            ->setTerranWins($apiData['career']['terranWins'])
+            ->setProtossWins($apiData['career']['protossWins'])
+            ->setZergWins($apiData['career']['zergWins'])
+            ->setHighest1v1Rank($apiData['career']['highest1v1Rank'])
+            ->setHighestTeamRank($apiData['career']['highestTeamRank'])
+            ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
+            ->setCareerTotalGames($apiData['career']['careerTotalGames']);
+        return $career;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\SwarmLevels
+     */
+    protected function extractPlayerSwarmLevelsFromProfileData($apiData)
+    {
+        $terranSwarmLevel = new SwarmLevel();
+        $terranSwarmLevel->setLevel($apiData['swarmLevels']['terran']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['terran']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['terran']['currentLevelXP']);
+
+        $protossSwarmLevel = new SwarmLevel();
+        $protossSwarmLevel->setLevel($apiData['swarmLevels']['protoss']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['protoss']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['protoss']['currentLevelXP']);
+
+        $zergSwarmLevel = new SwarmLevel();
+        $zergSwarmLevel->setLevel($apiData['swarmLevels']['zerg']['level'])
+            ->setTotalLevelXp($apiData['swarmLevels']['zerg']['totalLevelXP'])
+            ->setCurrentLevelXp($apiData['swarmLevels']['zerg']['currentLevelXP']);
+
+        $playerSwarmLevels = new Player\SwarmLevels();
+        $playerSwarmLevels->setPlayerLevel($apiData['swarmLevels']['level'])
+            ->setTerranLevel($terranSwarmLevel)
+            ->setProtossLevel($protossSwarmLevel)
+            ->setZergLevel($zergSwarmLevel);
+        return $playerSwarmLevels;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\Campaign
+     */
+    protected function extractCampaignDataFromProfile($apiData)
+    {
+        $campaign = new Player\Campaign();
+        $campaign->setWingsOfLibertyStatus($apiData['campaign']['wol'])
+            ->setHeartOfTheSwarmStatus($apiData['campaign']['hots']);
+        return $campaign;
+    }
+
+    /**
+     * @param $apiData
+     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Season
+     */
+    protected function extractSeasonDataFromProfile($apiData)
+    {
+        $season = new Player\Season();
+        $season->setSeasonId($apiData['season']['seasonId'])
+            ->setTotalGamesThisSeason($apiData['season']['totalGamesThisSeason'])
+            ->setSeasonNumber($apiData['season']['seasonNumber'])
+            ->setSeasonYear($apiData['season']['seasonYear']);
+
+        if (!isset($apiData['season']['stats'])) {
+            return $season;
+        }
+
+        foreach ($apiData['season']['stats'] as $stats) {
+            $seasonStats = new SeasonStats();
+            $seasonStats->setType($stats['type'])
+                ->setWins($stats['wins'])
+                ->setGames($stats['games']);
+            $season->addSeasonStats($seasonStats);
+        }
+
+        return $season;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\Rewards
+     */
+    protected function extractRewardsDataFromProfile($apiData)
+    {
+        $rewards = new Player\Rewards();
+        $rewards->setSelected($apiData['rewards']['selected'])
+            ->setEarned($apiData['rewards']['earned']);
+        return $rewards;
+    }
+
+    /**
+     * @param $apiData
+     * @return Player\Achievements
+     */
+    protected function extractAchievementDataFromProfile($apiData)
+    {
+        $points = new Points();
+        $points->setTotalPoints($apiData['achievements']['points']['totalPoints'])
+            ->setCategoryPoints($apiData['achievements']['points']['categoryPoints']);
+
+        $achievements = new Player\Achievements();
+        $achievements->setPoints($points);
+
+        foreach ($apiData['achievements']['achievements'] as $achievementEntry) {
+            $completionDate = new \DateTime();
+            $completionDate->setTimestamp($achievementEntry['completionDate']);
+
+            $achievementEntity = new Achievement();
+            $achievementEntity->setAchievementId($achievementEntry['achievementId'])
+                ->setCompletionDate($completionDate);
+
+            $achievements->addAchievements($achievementEntity);
+        }
+        return $achievements;
+    }
+
+    /**
      * Return a normalised player profile array, so that we have defaults set for everything in the event that certain
      * values aren't set in the array returned by the API.
+     * @param array $apiData
      * @return array
      */
-    protected function getNormalisedPlayerProfileArray()
+    protected function getNormalisedPlayerProfileArray($apiData = array())
     {
-        return array(
+        $normalisedArray = array(
             'id' => null,
             'realm' => null,
             'displayName' => null,
@@ -153,180 +312,9 @@ class ApiService
                 'achievements' => array()
             )
         );
-    }
 
-    /**
-     * @param string $region
-     * @param string $apiMethod
-     * @param array $params
-     * @return mixed
-     */
-    public function makeCall($region, $apiMethod, $params = array())
-    {
-        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params), true);
-    }
-
-    /**
-     * @param $apiData
-     * @return Portrait
-     */
-    protected function extractPlayerPortraitFromProfileData($apiData)
-    {
-        $portrait = new Portrait();
-
-        if (!isset($apiData['portrait'])) {
-            return $portrait;
-        }
-
-        $portrait->setXCoordinate($this->getPortraitData($apiData, 'x'))
-            ->setYCoordinate($this->getPortraitData($apiData, 'y'))
-            ->setWidth($this->getPortraitData($apiData, 'w'))
-            ->setHeight($this->getPortraitData($apiData, 'h'))
-            ->setOffset($this->getPortraitData($apiData, 'offset'))
-            ->setUrl($this->getPortraitData($apiData, 'url'));
-        return $portrait;
-    }
-
-    /**
-     * Get the portrait data if it is set.
-     *
-     * @param array $apiData
-     * @param string $key
-     * @return null
-     */
-    protected function getPortraitData($apiData, $key)
-    {
-        $portrait = $apiData['portrait'];
-
-        if (isset($portrait[$key])) {
-            return $portrait[$key];
-        }
-
-        return null;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\Career
-     */
-    protected function extractPlayerCareerFromProfileData($apiData)
-    {
-        $career = new Player\Career();
-        $career->setPrimaryRace(isset($apiData['career']['primaryRace']) ? $apiData['career']['primaryRace'] : null)
-            ->setLeague(isset($apiData['career']['league']) ? $apiData['career']['league'] : null)
-            ->setTerranWins(isset($apiData['career']['terranWins']) ? $apiData['career']['terranWins'] : null)
-            ->setProtossWins(isset($apiData['career']['protossWins']) ? $apiData['career']['protossWins'] : null)
-            ->setZergWins(isset($apiData['career']['zergWins']) ? $apiData['career']['zergWins'] : null)
-            ->setHighest1v1Rank(isset($apiData['career']['highest1v1Rank']) ? $apiData['career']['highest1v1Rank'] : null)
-            ->setHighestTeamRank(isset($apiData['career']['highestTeamRank']) ? $apiData['career']['highestTeamRank'] : null)
-            ->setSeasonTotalGames(isset($apiData['career']['seasonTotalGames']) ? $apiData['career']['seasonTotalGames'] : null)
-            ->setCareerTotalGames(isset($apiData['career']['careerTotalGames']) ? $apiData['career']['careerTotalGames'] : null);
-        return $career;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\SwarmLevels
-     */
-    protected function extractPlayerSwarmLevelsFromProfileData($apiData)
-    {
-        $terranSwarmLevel = new SwarmLevel();
-        $terranSwarmLevel->setLevel(isset($apiData['swarmLevels']['terran']['level']) ? $apiData['swarmLevels']['terran']['level'] : null)
-            ->setTotalLevelXp(isset($apiData['swarmLevels']['terran']['totalLevelXP']) ? $apiData['swarmLevels']['terran']['totalLevelXP'] : null)
-            ->setCurrentLevelXp(isset($apiData['swarmLevels']['terran']['currentLevelXP']) ? $apiData['swarmLevels']['terran']['currentLevelXP'] : null);
-
-        $protossSwarmLevel = new SwarmLevel();
-        $protossSwarmLevel->setLevel(isset($apiData['swarmLevels']['protoss']['level']) ? $apiData['swarmLevels']['protoss']['level'] : null)
-            ->setTotalLevelXp(isset($apiData['swarmLevels']['protoss']['totalLevelXP']) ? $apiData['swarmLevels']['protoss']['totalLevelXP'] : null)
-            ->setCurrentLevelXp(isset($apiData['swarmLevels']['protoss']['currentLevelXP']) ? $apiData['swarmLevels']['protoss']['currentLevelXP'] : null);
-
-        $zergSwarmLevel = new SwarmLevel();
-        $zergSwarmLevel->setLevel(isset($apiData['swarmLevels']['zerg']['level']) ? $apiData['swarmLevels']['zerg']['level'] : null)
-            ->setTotalLevelXp(isset($apiData['swarmLevels']['zerg']['totalLevelXP']) ? $apiData['swarmLevels']['zerg']['totalLevelXP'] : null)
-            ->setCurrentLevelXp(isset($apiData['swarmLevels']['zerg']['currentLevelXP']) ? $apiData['swarmLevels']['zerg']['currentLevelXP'] : null);
-
-        $playerSwarmLevels = new Player\SwarmLevels();
-        $playerSwarmLevels->setPlayerLevel(isset($apiData['swarmLevels']['level']) ? $apiData['swarmLevels']['level'] : null)
-            ->setTerranLevel($terranSwarmLevel)
-            ->setProtossLevel($protossSwarmLevel)
-            ->setZergLevel($zergSwarmLevel);
-        return $playerSwarmLevels;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\Campaign
-     */
-    protected function extractCampaignDataFromProfile($apiData)
-    {
-        $campaign = new Player\Campaign();
-        $campaign->setWingsOfLibertyStatus(isset($apiData['campaign']['wol']) ? $apiData['campaign']['wol'] : null)
-            ->setHeartOfTheSwarmStatus(isset($apiData['campaign']['hots']) ? $apiData['campaign']['hots'] : null);
-        return $campaign;
-    }
-
-    /**
-     * @param $apiData
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Season
-     */
-    protected function extractSeasonDataFromProfile($apiData)
-    {
-        $season = new Player\Season();
-        $season->setSeasonId(isset($apiData['season']['seasonId']) ? $apiData['season']['seasonId'] : null)
-            ->setTotalGamesThisSeason(isset($apiData['season']['totalGamesThisSeason']) ? $apiData['season']['totalGamesThisSeason'] : null)
-            ->setSeasonNumber(isset($apiData['season']['seasonNumber']) ? $apiData['season']['seasonNumber'] : null)
-            ->setSeasonYear(isset($apiData['season']['seasonYear']) ? $apiData['season']['seasonYear'] : null);
-
-        if (!isset($apiData['season']['stats'])) {
-            return $season;
-        }
-
-        foreach ($apiData['season']['stats'] as $stats) {
-            $seasonStats = new SeasonStats();
-            $seasonStats->setType(isset($stats['type']) ? $stats['type'] : null)
-                ->setWins(isset($stats['wins']) ? $stats['wins'] : null)
-                ->setGames(isset($stats['games']) ? $stats['games'] : null);
-            $season->addSeasonStats($seasonStats);
-        }
-
-        return $season;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\Rewards
-     */
-    protected function extractRewardsDataFromProfile($apiData)
-    {
-        $rewards = new Player\Rewards();
-        $rewards->setSelected(isset($apiData['rewards']['selected']) ? $apiData['rewards']['selected'] : null)
-            ->setEarned(isset($apiData['rewards']['earned']) ? $apiData['rewards']['earned'] : null);
-        return $rewards;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\Achievements
-     */
-    protected function extractAchievementDataFromProfile($apiData)
-    {
-        $points = new Points();
-        $points->setTotalPoints(isset($apiData['achievements']['points']['totalPoints']) ? $apiData['achievements']['points']['totalPoints'] : null)
-            ->setCategoryPoints(isset($apiData['achievements']['points']['categoryPoints']) ? $apiData['achievements']['points']['categoryPoints'] : null);
-
-        $achievements = new Player\Achievements();
-        $achievements->setPoints($points);
-
-        foreach ($apiData['achievements']['achievements'] as $achievementEntry) {
-            $completionDate = new \DateTime();
-            $completionDate->setTimestamp(isset($achievementEntry['completionDate']) ? $achievementEntry['completionDate'] : null);
-
-            $achievementEntity = new Achievement();
-            $achievementEntity->setAchievementId(isset($achievementEntry['achievementId']) ? $achievementEntry['achievementId'] : null)
-                ->setCompletionDate($completionDate);
-
-            $achievements->addAchievements($achievementEntity);
-        }
-        return $achievements;
+        $apiData['campaign'] = array_merge($normalisedArray['campaign'], $apiData['campaign']);
+        $apiData['career'] = array_merge($normalisedArray['career'], $apiData['career']);
+        return $apiData;
     }
 }
