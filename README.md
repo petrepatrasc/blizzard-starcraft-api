@@ -14,7 +14,7 @@ Checklist for 0.5
 | ------------------------- |:---------:|
 | Player's profile          | Ready     |
 | Player's latest matches   | Ready     |
-| General information       | Not ready |
+| General ladder information| Not ready |
 | Player ladder information | Not ready |
 | Rewards information       | Not ready |
 | Achievements information  | Not ready |
