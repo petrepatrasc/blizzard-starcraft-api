@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
 
-class PortraitService implements ParsingInterface
+class PortraitParsingService implements ParsingInterface
 {
 
     /**

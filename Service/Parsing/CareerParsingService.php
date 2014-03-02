@@ -5,10 +5,10 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Career;
 
-class CareerService implements ParsingInterface
+class CareerParsingService implements ParsingInterface
 {
     /**
-     * Extract a career information from an array.
+     * Extract career information from an array.
      *
      * @param array $params
      * @return Career
