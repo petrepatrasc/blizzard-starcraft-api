@@ -15,6 +15,8 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\BasicProfileService;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\CareerService;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\PortraitService;
 
 class ApiService
 {
@@ -48,8 +50,8 @@ class ApiService
         $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters);
         $apiData = $this->getNormalisedPlayerProfileArray($apiData);
 
-        $portrait = $this->extractPlayerPortraitFromProfileData($apiData);
-        $career = $this->extractPlayerCareerFromProfileData($apiData);
+        $portrait = PortraitService::extract($apiData['portrait']);
+        $career = CareerService::extract($apiData['career']);
         $playerSwarmLevels = $this->extractPlayerSwarmLevelsFromProfileData($apiData);
         $campaign = $this->extractCampaignDataFromProfile($apiData);
         $season = $this->extractSeasonDataFromProfile($apiData);
@@ -112,46 +114,6 @@ class ApiService
     public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)
     {
         return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params, $trailingSlash), true);
-    }
-
-    /**
-     * @param $apiData
-     * @return Portrait
-     */
-    protected function extractPlayerPortraitFromProfileData($apiData)
-    {
-        $portrait = new Portrait();
-
-        if (!isset($apiData['portrait'])) {
-            return $portrait;
-        }
-
-        $portrait->setXCoordinate($apiData['portrait']['x'])
-            ->setYCoordinate($apiData['portrait']['y'])
-            ->setWidth($apiData['portrait']['w'])
-            ->setHeight($apiData['portrait']['h'])
-            ->setOffset($apiData['portrait']['offset'])
-            ->setUrl($apiData['portrait']['url']);
-        return $portrait;
-    }
-
-    /**
-     * @param $apiData
-     * @return Player\Career
-     */
-    protected function extractPlayerCareerFromProfileData($apiData)
-    {
-        $career = new Player\Career();
-        $career->setPrimaryRace($apiData['career']['primaryRace'])
-            ->setLeague($apiData['career']['league'])
-            ->setTerranWins($apiData['career']['terranWins'])
-            ->setProtossWins($apiData['career']['protossWins'])
-            ->setZergWins($apiData['career']['zergWins'])
-            ->setHighest1v1Rank($apiData['career']['highest1v1Rank'])
-            ->setHighestTeamRank($apiData['career']['highestTeamRank'])
-            ->setSeasonTotalGames($apiData['career']['seasonTotalGames'])
-            ->setCareerTotalGames($apiData['career']['careerTotalGames']);
-        return $career;
     }
 
     /**
