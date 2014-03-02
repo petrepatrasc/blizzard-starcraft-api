@@ -14,6 +14,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\BasicProfileService;
 
 class ApiService
 {
@@ -54,14 +55,7 @@ class ApiService
         $season = $this->extractSeasonDataFromProfile($apiData);
         $rewards = $this->extractRewardsDataFromProfile($apiData);
         $achievements = $this->extractAchievementDataFromProfile($apiData);
-
-        $profileBasicInformation = new Player\Basic();
-        $profileBasicInformation->setId($apiData['id'])
-            ->setRealm($apiData['realm'])
-            ->setDisplayName($apiData['displayName'])
-            ->setClanName($apiData['clanName'])
-            ->setClanTag($apiData['clanTag'])
-            ->setProfilePath($apiData['profilePath']);
+        $profileBasicInformation = BasicProfileService::extract($apiData);
 
         $player = new Player();
         $player->setBasicInformation($profileBasicInformation)
