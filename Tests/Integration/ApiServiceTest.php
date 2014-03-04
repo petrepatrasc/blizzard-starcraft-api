@@ -56,12 +56,13 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
 
     /**
      * @param string $region
-     * @param bool $previousSeason
+     * @param string $method
+     * @param mixed $identifier
      * @dataProvider grandmasterLeagueInformationDataProvider
      */
-    public function testGetGrandmasterLeagueInformation($region, $previousSeason = false)
+    public function testGetGrandmasterLeagueInformation($region, $method, $identifier)
     {
-        $ladderMembers = $this->apiService->getGrandmasterLeagueInformation($region, $previousSeason);
+        $ladderMembers = $this->apiService->$method($region, $identifier);
 
         /**
          * @var $member Position
@@ -83,8 +84,9 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
     public function grandmasterLeagueInformationDataProvider()
     {
         return array(
-            array(Region::Europe, false),
-            array(Region::Europe, true)
+            array(Region::Europe, 'getGrandmasterLeagueInformation', false),
+            array(Region::Europe, 'getGrandmasterLeagueInformation', true),
+            array(Region::Europe, 'getLeagueInformation', 151146),
         );
     }
 }

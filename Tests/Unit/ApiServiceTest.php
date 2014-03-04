@@ -320,13 +320,15 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $region
      * @param string $mockFile
-     * @param bool $previousSeason
+     * @param string $method
+     * @param mixed $identifier
+     * @param $expectedObject
      * @dataProvider grandmasterLeagueInformationDataProvider
      */
-    public function testGetGrandmasterLeagueInformation($region, $mockFile, $previousSeason = false, $expectedObject)
+    public function testGetGrandmasterLeagueInformation($region, $mockFile, $method, $identifier = false, $expectedObject)
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . $mockFile)));
-        $ladderMembers = $this->apiService->getGrandmasterLeagueInformation($region, $previousSeason);
+        $ladderMembers = $this->apiService->$method($region, $identifier);
 
         /**
          * @var $member Position
@@ -400,9 +402,32 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             ->setPreviousRank(1)
             ->setFavoriteRaceP1("TERRAN");
 
+        // Player ladder information
+        $playerLadderInformation = new Position();
+        $character = new Basic();
+        $character->setId(2048419)
+            ->setRealm(1)
+            ->setDisplayName("LionHeart")
+            ->setClanName('Cegeka Guild')
+            ->setClanTag('CGK')
+            ->setProfilePath('/profile/2048419/1/LionHeart/');
+
+        $joinDate = new \DateTime();
+        $joinDate->setTimestamp(1391555842);
+
+        $playerLadderInformation->setCharacter($character)
+            ->setJoinDate($joinDate)
+            ->setPoints(1111.0)
+            ->setWins(56)
+            ->setLosses(23)
+            ->setHighestRank(1)
+            ->setPreviousRank(1)
+            ->setFavoriteRaceP1("TERRAN");
+
         return array(
-            array(Region::Europe, 'ladder-grandmaster.json', false, $currentSeasonMemberToCheck),
-            array(Region::Europe, 'ladder-grandmaster-last.json', true, $previousSeasonMemberToCheck)
+            array(Region::Europe, 'ladder-grandmaster.json', 'getGrandmasterLeagueInformation', false, $currentSeasonMemberToCheck),
+            array(Region::Europe, 'ladder-grandmaster-last.json', 'getGrandmasterLeagueInformation', true, $previousSeasonMemberToCheck),
+            array(Region::Europe, 'ladder-information.json', 'getLeagueInformation', 151146, $playerLadderInformation),
         );
     }
 }

@@ -68,9 +68,9 @@ class ApiService
     }
 
     /**
-     * Get information on the current grandmaster league from a region.
+     * Get information on the grandmaster league from a region.
      *
-     * @param string $region The region, use the Region class in order to maintain consistency.
+     * @param string $region The region for the API, use the Region class in order to maintain consistency.
      * @param bool $previousSeason Whether the information should be for the previous season or not.
      * @return array Array containing all of the ladder members as LadderPosition instances.
      */
@@ -82,7 +82,20 @@ class ApiService
             $parameters[] = 'last';
         }
 
-        return $this->getLeagueInformation($region, $parameters);
+        return $this->getLeagueInformationWrapper($region, $parameters);
+    }
+
+    /**
+     * Get information on a particular league from a region.
+     *
+     * @param string $region The region for the API, use the Region class in order to maintain consistency.
+     * @param int $id The ID of the league.
+     * @return array
+     */
+    public function getLeagueInformation($region, $id)
+    {
+        $parameters = array($id);
+        return $this->getLeagueInformationWrapper($region, $parameters);
     }
 
     /**
@@ -92,7 +105,7 @@ class ApiService
      * @param array $parameters The parameters that should be passed to the league API method.
      * @return array Array containing all of the ladder members as LadderPosition instances.
      */
-    public function getLeagueInformation($region, $parameters)
+    protected function getLeagueInformationWrapper($region, $parameters)
     {
         $apiData = $this->makeCall($region, self::API_LADDER_METHOD, $parameters, false);
 
