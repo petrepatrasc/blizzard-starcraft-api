@@ -31,9 +31,9 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
         $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getBasicInformation()->getProfilePath());
     }
 
-    public function testGetLatestMatchesPlayedByPlayer()
+    public function testGetPlayerLatestMatches()
     {
-        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getPlayerLatestMatches(Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));

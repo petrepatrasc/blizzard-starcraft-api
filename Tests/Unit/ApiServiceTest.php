@@ -2,10 +2,13 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Information;
+use petrepatrasc\BlizzardApiBundle\Entity\Ladder\NonRanked;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
+use petrepatrasc\BlizzardApiBundle\Entity\Season\Entry;
 
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -288,10 +291,10 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testGetLatestMatchesPlayedByPlayer()
+    public function testGetPlayerLatestMatches()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-matches.json')));
-        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getPlayerLatestMatches(Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));
@@ -429,5 +432,76 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             array(Region::Europe, 'ladder-grandmaster-last.json', 'getGrandmasterLeagueInformation', true, $previousSeasonMemberToCheck),
             array(Region::Europe, 'ladder-information.json', 'getLeagueInformation', 151146, $playerLadderInformation),
         );
+    }
+
+    public function testGetPlayerLaddersInformation()
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-ladders.json')));
+        $ladderInformation = $this->apiService->getPlayerLaddersInformation(Region::Europe, 2048419, 'LionHeart');
+
+        // Assert types for sanity
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Ladder', $ladderInformation);
+        $this->assertInternalType('array', $ladderInformation->getCurrentSeason());
+        $this->assertInternalType('array', $ladderInformation->getPreviousSeason());
+        $this->assertInternalType('array', $ladderInformation->getShowcasePlacement());
+
+        /**
+         * @var $currentSeasonEntry Entry
+         * @var $previousSeasonEntry Entry
+         * @var $showcasePlacementEntry Entry
+         */
+
+        // Assert one entry from current season.
+        $temp = $ladderInformation->getCurrentSeason();
+        $currentSeasonEntry = $temp[0];
+        $this->assertPlayerLaddersCurrentSeason($currentSeasonEntry);
+
+        // Assert one entry from previous season.
+        $temp = $ladderInformation->getPreviousSeason();
+        $previousSeasonEntry = $temp[0];
+
+        // Assert one entry from showcase placement.
+
+        $temp = $ladderInformation->getShowcasePlacement();
+        $showcasePlacementEntry = $temp[0];
+    }
+
+    /**
+     * @param Entry $currentSeasonEntry
+     */
+    protected function assertPlayerLaddersCurrentSeason($currentSeasonEntry)
+    {
+        /**
+         * @var $ladderInformation Information
+         * @var $characterInformation Basic
+         * @var $nonRanked array
+         */
+
+        $temp = $currentSeasonEntry->getLadderInformation();
+        $ladderInformation = $temp[0];
+
+        $this->assertEquals("Archon Kappa", $ladderInformation->getLadderName());
+        $this->assertEquals(152724, $ladderInformation->getLadderId());
+        $this->assertEquals(124, $ladderInformation->getDivision());
+        $this->assertEquals(77, $ladderInformation->getRank());
+        $this->assertEquals("SILVER", $ladderInformation->getLeague());
+        $this->assertEquals("HOTS_TWOS", $ladderInformation->getMatchMakingQueue());
+        $this->assertEquals(4, $ladderInformation->getWins());
+        $this->assertEquals(6, $ladderInformation->getLosses());
+        $this->assertTrue($ladderInformation->getShowcase());
+
+        $temp = $currentSeasonEntry->getCharacters();
+        $characterInformation = $temp[1];
+
+        $this->assertEquals(3690427, $characterInformation->getId());
+        $this->assertEquals(1, $characterInformation->getRealm());
+        $this->assertEquals("Kodran", $characterInformation->getDisplayName());
+        $this->assertEquals("Cegeka Guild", $characterInformation->getClanName());
+        $this->assertEquals("CGK", $characterInformation->getClanTag());
+        $this->assertEquals("/profile/3690427/1/Kodran/", $characterInformation->getProfilePath());
+
+        $nonRanked = $currentSeasonEntry->getNonRanked();
+        $this->assertInternalType('array', $nonRanked);
+        $this->assertCount(0, $nonRanked);
     }
 }

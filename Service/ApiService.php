@@ -6,6 +6,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\PositionParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\MatchParsingService;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\Player\LadderParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\PlayerProfileParsingService;
 
 class ApiService
@@ -53,7 +54,7 @@ class ApiService
      * @param int $realm
      * @return array
      */
-    public function getLatestMatchesPlayedByPlayer($region, $battleNetId, $playerName, $realm = 1)
+    public function getPlayerLatestMatches($region, $battleNetId, $playerName, $realm = 1)
     {
         $apiParameters = array($battleNetId, $realm, $playerName, 'matches');
         $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters, false);
@@ -64,6 +65,25 @@ class ApiService
         }
 
         return $matches;
+    }
+
+    /**
+     * Get information regarding a player's ladders.
+     *
+     * @param string $region
+     * @param int $battleNetId
+     * @param string $playerName
+     * @param int $realm
+     * @return Player\Ladder
+     */
+    public function getPlayerLaddersInformation($region, $battleNetId, $playerName, $realm = 1)
+    {
+        $apiParameters = array($battleNetId, $realm, $playerName, 'ladders');
+        $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters, false);
+
+        $playerLadder = LadderParsingService::extract($apiData);
+
+        return $playerLadder;
     }
 
     /**
