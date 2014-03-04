@@ -2,7 +2,9 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
+use petrepatrasc\BlizzardApiBundle\Entity\Region;
 
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,7 +32,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetPlayerProfileLionHeart()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart.json')));
-        $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
+        $profile = $this->apiService->getPlayerProfile(Region::Europe, 2048419, 'LionHeart');
 
         // Player general verification
         $this->assertEquals(2048419, $profile->getBasicInformation()->getId());
@@ -167,7 +169,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetPlayerProfileDayJ()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-dayj.json')));
-        $profile = $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::US, 999000, 'DayNine');
+        $profile = $this->apiService->getPlayerProfile(Region::US, 999000, 'DayNine');
 
         // Player general verification
         $this->assertEquals(999000, $profile->getBasicInformation()->getId());
@@ -288,7 +290,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetLatestMatchesPlayedByPlayer()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-matches.json')));
-        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));
@@ -312,5 +314,41 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('SOLO', $latestMatch->getType());
         $this->assertEquals('WIN', $latestMatch->getDecision());
         $this->assertEquals('FASTER', $latestMatch->getSpeed());
+    }
+
+    /**
+     * @param string $region
+     * @param string $mockFile
+     * @param bool $previousSeason
+     * @dataProvider grandmasterLeagueInformationDataProvider
+     */
+    public function testGetGrandmasterLeagueInformation($region, $mockFile, $previousSeason = false)
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . $mockFile)));
+        $ladderMembers = $this->apiService->getGrandmasterLeagueInformation($region, $previousSeason);
+
+        /**
+         * @var $member Position
+         */
+        foreach ($ladderMembers as $member) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position', $member);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic', $member->getCharacter());
+
+            $this->assertNotNull($member->getJoinDate());
+            $this->assertInstanceOf('\DateTime', $member->getJoinDate());
+            $this->assertInternalType('float', $member->getPoints());
+            $this->assertInternalType('int', $member->getWins());
+            $this->assertInternalType('int', $member->getLosses());
+            $this->assertInternalType('int', $member->getHighestRank());
+            $this->assertInternalType('int', $member->getPreviousRank());
+        }
+    }
+
+    public function grandmasterLeagueInformationDataProvider()
+    {
+        return array(
+            array(Region::Europe, 'ladder-grandmaster.json', false),
+            array(Region::Europe, 'ladder-grandmaster-last.json', true)
+        );
     }
 }

@@ -2,7 +2,9 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
+use petrepatrasc\BlizzardApiBundle\Entity\Region;
 
 class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase
 {
@@ -31,7 +33,7 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
 
     public function testGetLatestMatchesPlayedByPlayer()
     {
-        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getLatestMatchesPlayedByPlayer(Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));
@@ -48,5 +50,39 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
             $this->assertInternalType('string', $match->getSpeed());
             $this->assertInstanceOf('\DateTime', $match->getDate());
         }
+    }
+
+    /**
+     * @param string $region
+     * @param bool $previousSeason
+     * @dataProvider grandmasterLeagueInformationDataProvider
+     */
+    public function testGetGrandmasterLeagueInformation($region, $previousSeason = false)
+    {
+        $ladderMembers = $this->apiService->getGrandmasterLeagueInformation($region, $previousSeason);
+
+        /**
+         * @var $member Position
+         */
+        foreach ($ladderMembers as $member) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position', $member);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic', $member->getCharacter());
+
+            $this->assertNotNull($member->getJoinDate());
+            $this->assertInstanceOf('\DateTime', $member->getJoinDate());
+            $this->assertInternalType('float', $member->getPoints());
+            $this->assertInternalType('int', $member->getWins());
+            $this->assertInternalType('int', $member->getLosses());
+            $this->assertInternalType('int', $member->getHighestRank());
+            $this->assertInternalType('int', $member->getPreviousRank());
+        }
+    }
+
+    public function grandmasterLeagueInformationDataProvider()
+    {
+        return array(
+            array(Region::Europe, false),
+            array(Region::Europe, true)
+        );
     }
 }

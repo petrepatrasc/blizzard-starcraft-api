@@ -5,12 +5,14 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\PositionParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\MatchParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\PlayerProfileParsingService;
 
 class ApiService
 {
     const API_PROFILE_METHOD = '/api/sc2/profile/';
+    const API_LADDER_METHOD = '/api/sc2/ladder/';
 
     /**
      * @var CallService
@@ -63,6 +65,43 @@ class ApiService
         }
 
         return $matches;
+    }
+
+    /**
+     * Get information on the current grandmaster league from a region.
+     *
+     * @param string $region The region, use the Region class in order to maintain consistency.
+     * @param bool $previousSeason Whether the information should be for the previous season or not.
+     * @return array Array containing all of the ladder members as LadderPosition instances.
+     */
+    public function getGrandmasterLeagueInformation($region, $previousSeason = false)
+    {
+        $parameters = array('grandmaster');
+
+        if ($previousSeason) {
+            $parameters[] = 'last';
+        }
+
+        return $this->getLeagueInformation($region, $parameters);
+    }
+
+    /**
+     * Customisable league method, try using the wrapper methods first.
+     *
+     * @param string $region The region, use the Region class in order to maintain consistency.
+     * @param array $parameters The parameters that should be passed to the league API method.
+     * @return array Array containing all of the ladder members as LadderPosition instances.
+     */
+    public function getLeagueInformation($region, $parameters)
+    {
+        $apiData = $this->makeCall($region, self::API_LADDER_METHOD, $parameters, false);
+
+        $ladderMembers = array();
+        foreach ($apiData['ladderMembers'] as $member) {
+            $ladderMembers[] = PositionParsingService::extract($member);
+        }
+
+        return $ladderMembers;
     }
 
     /**
