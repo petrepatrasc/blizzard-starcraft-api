@@ -3,7 +3,6 @@
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
-use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\PositionParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\MatchParsingService;

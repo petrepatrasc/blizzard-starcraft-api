@@ -5,7 +5,7 @@ Blizzard Starcraft 2 API
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/badges/quality-score.png?s=a3a76a2caa656d9aadbadc9dba2e50e27634f1f0)](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/)
 
 
-Currently in development for version 1, updating very quickly so stay tuned!
+Currently in development for version 0.5, updating very quickly so stay tuned!
 
 Checklist for 0.5
 -----------------
@@ -14,7 +14,7 @@ Checklist for 0.5
 | ------------------------- |:---------:|
 | Player's profile          | Ready     |
 | Player's latest matches   | Ready     |
-| General ladder information| Not ready |
+| General ladder information| Ready     |
 | Player ladder information | Not ready |
 | Rewards information       | Not ready |
 | Achievements information  | Not ready |

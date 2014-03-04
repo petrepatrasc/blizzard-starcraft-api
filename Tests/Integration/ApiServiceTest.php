@@ -4,9 +4,7 @@ namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase
 {
