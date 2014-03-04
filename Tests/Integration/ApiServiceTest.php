@@ -4,7 +4,9 @@ namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase
 {
@@ -68,13 +70,13 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position', $member);
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic', $member->getCharacter());
 
-            $this->assertNotNull($member->getJoinDate());
+            // Some general checks
             $this->assertInstanceOf('\DateTime', $member->getJoinDate());
             $this->assertInternalType('float', $member->getPoints());
-            $this->assertInternalType('int', $member->getWins());
-            $this->assertInternalType('int', $member->getLosses());
             $this->assertInternalType('int', $member->getHighestRank());
+            $this->assertInternalType('int', $member->getWins());
             $this->assertInternalType('int', $member->getPreviousRank());
+            $this->assertInternalType('int', $member->getLosses());
         }
     }
 

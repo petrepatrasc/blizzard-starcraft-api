@@ -4,6 +4,7 @@ namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
+use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
 
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
@@ -322,7 +323,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
      * @param bool $previousSeason
      * @dataProvider grandmasterLeagueInformationDataProvider
      */
-    public function testGetGrandmasterLeagueInformation($region, $mockFile, $previousSeason = false)
+    public function testGetGrandmasterLeagueInformation($region, $mockFile, $previousSeason = false, $expectedObject)
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . $mockFile)));
         $ladderMembers = $this->apiService->getGrandmasterLeagueInformation($region, $previousSeason);
@@ -335,6 +336,13 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic', $member->getCharacter());
 
             $this->assertNotNull($member->getJoinDate());
+            $this->assertNotNull($member->getPoints());
+            $this->assertNotNull($member->getWins());
+            $this->assertNotNull($member->getLosses());
+            $this->assertNotNull($member->getHighestRank());
+            $this->assertNotNull($member->getHighestRank());
+
+            $this->assertNotNull($member->getJoinDate());
             $this->assertInstanceOf('\DateTime', $member->getJoinDate());
             $this->assertInternalType('float', $member->getPoints());
             $this->assertInternalType('int', $member->getWins());
@@ -342,13 +350,59 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             $this->assertInternalType('int', $member->getHighestRank());
             $this->assertInternalType('int', $member->getPreviousRank());
         }
+
+        $this->assertEquals($expectedObject, $ladderMembers[0]);
     }
 
     public function grandmasterLeagueInformationDataProvider()
     {
+        // Current season member
+        $currentSeasonMemberToCheck = new Position();
+        $character = new Basic();
+        $character->setId(4685683)
+            ->setRealm(1)
+            ->setDisplayName("IIIIIIIIIIII")
+            ->setClanName('')
+            ->setClanTag('')
+            ->setProfilePath('/profile/4685683/1/IIIIIIIIIIII/');
+
+        $joinDate = new \DateTime();
+        $joinDate->setTimestamp(1392756107);
+
+        $currentSeasonMemberToCheck->setCharacter($character)
+            ->setJoinDate($joinDate)
+            ->setPoints(2781.0)
+            ->setWins(200)
+            ->setLosses(101)
+            ->setHighestRank(1)
+            ->setPreviousRank(18)
+            ->setFavoriteRaceP1("PROTOSS");
+
+        // Previous season member
+        $previousSeasonMemberToCheck = new Position();
+        $character = new Basic();
+        $character->setId(4149248)
+            ->setRealm(1)
+            ->setDisplayName("JJAKJI")
+            ->setClanName('mYinsanity')
+            ->setClanTag('mYi')
+            ->setProfilePath('/profile/4149248/1/JJAKJI/');
+
+        $joinDate = new \DateTime();
+        $joinDate->setTimestamp(1385578333);
+
+        $previousSeasonMemberToCheck->setCharacter($character)
+            ->setJoinDate($joinDate)
+            ->setPoints(2323.0)
+            ->setWins(200)
+            ->setLosses(36)
+            ->setHighestRank(1)
+            ->setPreviousRank(1)
+            ->setFavoriteRaceP1("TERRAN");
+
         return array(
-            array(Region::Europe, 'ladder-grandmaster.json', false),
-            array(Region::Europe, 'ladder-grandmaster-last.json', true)
+            array(Region::Europe, 'ladder-grandmaster.json', false, $currentSeasonMemberToCheck),
+            array(Region::Europe, 'ladder-grandmaster-last.json', true, $previousSeasonMemberToCheck)
         );
     }
 }
