@@ -2,8 +2,7 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Service;
 
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
-use petrepatrasc\BlizzardApiBundle\Entity\Player;
+use petrepatrasc\BlizzardApiBundle\Entity;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 class ApiService
@@ -11,6 +10,7 @@ class ApiService
     const API_PROFILE_METHOD = '/api/sc2/profile/';
     const API_LADDER_METHOD = '/api/sc2/ladder/';
     const API_REWARDS_METHOD = '/api/sc2/data/rewards';
+    const API_ACHIEVEMENTS_METHOD = '/api/sc2/data/achievements';
 
     /**
      * @var CallService
@@ -36,7 +36,7 @@ class ApiService
      * @param int $battleNetId
      * @param int $realm
      * @param string $playerName
-     * @return Player
+     * @return Entity\Player
      */
     public function getPlayerProfile($region, $battleNetId, $playerName, $realm = 1)
     {
@@ -76,7 +76,7 @@ class ApiService
      * @param int $battleNetId
      * @param string $playerName
      * @param int $realm
-     * @return Player\Ladder
+     * @return Entity\Player\Ladder
      */
     public function getPlayerLaddersInformation($region, $battleNetId, $playerName, $realm = 1)
     {
@@ -119,10 +119,31 @@ class ApiService
         return $this->getLeagueInformationWrapper($region, $parameters);
     }
 
-    public function getRewardsInformationData($region) {
+    /**
+     * Get information on the rewards that are available.
+     *
+     * @param string $region The region from which the data should be retrieved.
+     * @return Entity\Reward\Information
+     */
+    public function getRewardsInformationData($region)
+    {
         $apiData = $this->makeCall($region, self::API_REWARDS_METHOD, array(), false);
 
         $information = Parsing\Reward\InformationParsingService::extract($apiData);
+        return $information;
+    }
+
+    /**
+     * Get information on the achievements that are available.
+     *
+     * @param string $region The region from which the data should be retrieved.
+     * @return Entity\Achievement\Information
+     */
+    public function getAchievementsInformationData($region)
+    {
+        $apiData = $this->makeCall($region, self::API_ACHIEVEMENTS_METHOD, array(), false);
+
+        $information = Parsing\Achievement\InformationParsingService::extract($apiData);
         return $information;
     }
 
@@ -146,11 +167,13 @@ class ApiService
     }
 
     /**
-     * @param string $region
-     * @param string $apiMethod
-     * @param array $params
-     * @param bool $trailingSlash
-     * @return array
+     * Make a call to the public API.
+     *
+     * @param string $region The region that should be used.
+     * @param string $apiMethod The API method that should be called.
+     * @param array $params The parameters that should be attached to the method call.
+     * @param bool $trailingSlash Whether or not to include a trailing slash in the request (makes a large difference)
+     * @return array JSON decoded array of the response.
      */
     public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)
     {

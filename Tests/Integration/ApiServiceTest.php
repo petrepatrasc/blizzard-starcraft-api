@@ -2,6 +2,8 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category;
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
@@ -109,12 +111,12 @@ class ApiServiceTest extends WebTestCase
         foreach ($information->getPortraits() as $portrait) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait', $portrait);
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $portrait->getIcon());
-            
+
             $this->assertNotNull($portrait->getId());
             $this->assertNotNull($portrait->getTitle());
             $this->assertNotNull($portrait->getAchievementId());
         }
-        
+
         foreach ($information->getTerranDecals() as $terranDecal) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal', $terranDecal);
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $terranDecal->getIcon());
@@ -158,6 +160,42 @@ class ApiServiceTest extends WebTestCase
             $this->assertNotNull($animation->getId());
             $this->assertNotNull($animation->getTitle());
             $this->assertNotNull($animation->getAchievementId());
+        }
+    }
+
+    public function testGetAchievementsInformationData()
+    {
+        $information = $this->apiService->getAchievementsInformationData(Region::Europe);
+
+        /**
+         * @var $achievement Standard
+         * @var $category Category
+         */
+
+        foreach ($information->getAchievements() as $achievement) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard', $achievement);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $achievement->getIcon());
+
+            $this->assertNotNull($achievement->getTitle());
+            $this->assertNotNull($achievement->getDescription());
+            $this->assertNotNull($achievement->getAchievementId());
+            $this->assertNotNull($achievement->getCategoryId());
+            $this->assertNotNull($achievement->getPoints());
+        }
+
+        foreach ($information->getCategories() as $category) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category', $category);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Minimised', $category->getMinimisedAchievement());
+
+            if (!is_null($category->getChildren())) {
+                foreach ($category->getChildren() as $child) {
+                    $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Minimised', $child);
+                }
+            }
+
+            $this->assertNotNull($category->getMinimisedAchievement()->getTitle());
+            $this->assertNotNull($category->getMinimisedAchievement()->getCategoryId());
+            $this->assertNotNull($category->getMinimisedAchievement()->getFeaturedAchievementId());
         }
     }
 }

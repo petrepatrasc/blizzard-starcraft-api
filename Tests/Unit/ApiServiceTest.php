@@ -2,6 +2,9 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category;
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Minimised;
+use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Information;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\NonRanked;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
@@ -512,7 +515,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetRewardsInformationData()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'rewards-information.json')));
-        $ladderInformation = $this->apiService->getRewardsInformationData(Region::Europe);
+        $rewardsInformation = $this->apiService->getRewardsInformationData(Region::Europe);
 
         /**
          * @var $portrait Portrait
@@ -524,7 +527,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
          */
 
         // Check portrait
-        $temp = $ladderInformation->getPortraits();
+        $temp = $rewardsInformation->getPortraits();
         $portrait = $temp[0];
 
         $this->assertEquals("Kachinsky", $portrait->getTitle());
@@ -538,7 +541,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $portrait->getAchievementId());
 
         // Check terran decal
-        $temp = $ladderInformation->getTerranDecals();
+        $temp = $rewardsInformation->getTerranDecals();
         $terranDecal = $temp[0];
 
         $this->assertEquals("Akilae Tribe", $terranDecal->getTitle());
@@ -552,7 +555,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $terranDecal->getAchievementId());
 
         // Check zerg decal
-        $temp = $ladderInformation->getZergDecals();
+        $temp = $rewardsInformation->getZergDecals();
         $zergDecal = $temp[0];
 
         $this->assertEquals("Akilae Tribe", $zergDecal->getTitle());
@@ -566,7 +569,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $zergDecal->getAchievementId());
 
         // Check protoss decal
-        $temp = $ladderInformation->getProtossDecals();
+        $temp = $rewardsInformation->getProtossDecals();
         $protossDecal = $temp[0];
 
         $this->assertEquals("Akilae Tribe", $protossDecal->getTitle());
@@ -578,9 +581,9 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(25, $protossDecal->getIcon()->getOffset());
         $this->assertEquals("http://media.blizzard.com/sc2/decals/0-75.jpg", $protossDecal->getIcon()->getUrl());
         $this->assertEquals(0, $protossDecal->getAchievementId());
-        
+
         // Check skin
-        $temp = $ladderInformation->getSkins();
+        $temp = $rewardsInformation->getSkins();
         $skin = $temp[0];
 
         $this->assertEquals("Default", $skin->getTitle());
@@ -595,7 +598,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $skin->getAchievementId());
 
         // Check animation
-        $temp = $ladderInformation->getAnimations();
+        $temp = $rewardsInformation->getAnimations();
         $animation = $temp[0];
 
         $this->assertEquals("Marauder", $animation->getTitle());
@@ -608,5 +611,50 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $animation->getIcon()->getOffset());
         $this->assertEquals("http://media.blizzard.com/sc2/animations/0-75.jpg", $animation->getIcon()->getUrl());
         $this->assertEquals(0, $animation->getAchievementId());
+    }
+
+    public function testGetAchievementsInformationData()
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'achievement-information.json')));
+        $achievementsInformation = $this->apiService->getAchievementsInformationData(Region::Europe);
+
+        /**
+         * @var $achievement Standard
+         * @var $category Category
+         * @var $child Minimised
+         */
+
+        // Check achievement
+        $temp = $achievementsInformation->getAchievements();
+        $achievement = $temp[0];
+
+        $this->assertEquals("FFA Destroyer", $achievement->getTitle());
+        $this->assertEquals("Win a Free-For-All Unranked game as each race option.", $achievement->getDescription());
+        $this->assertEquals(91475320766632, $achievement->getAchievementId());
+        $this->assertEquals(4325391, $achievement->getCategoryId());
+        $this->assertEquals(10, $achievement->getPoints());
+
+        $this->assertEquals(0, $achievement->getIcon()->getXCoordinate());
+        $this->assertEquals(-375, $achievement->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $achievement->getIcon()->getWidth());
+        $this->assertEquals(75, $achievement->getIcon()->getHeight());
+        $this->assertEquals(45, $achievement->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/achievements/5-75.jpg", $achievement->getIcon()->getUrl());
+
+        // Check category
+        $temp = $achievementsInformation->getCategories();
+        $category = $temp[0];
+
+        $this->assertEquals("Liberty Campaign", $category->getMinimisedAchievement()->getTitle());
+        $this->assertEquals(4325379, $category->getMinimisedAchievement()->getCategoryId());
+        $this->assertEquals(91475320766734, $category->getMinimisedAchievement()->getFeaturedAchievementId());
+        $this->assertEquals(8, count($category->getChildren()));
+
+        $temp = $category->getChildren();
+        $child = $temp[0];
+
+        $this->assertEquals("Mar Sara Missions", $child->getTitle());
+        $this->assertEquals(3211278, $child->getCategoryId());
+        $this->assertEquals(0, $child->getFeaturedAchievementId());
     }
 }
