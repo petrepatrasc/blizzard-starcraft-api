@@ -7,7 +7,7 @@ Blizzard Starcraft 2 API
 
 Currently in development for version 0.5, updating very quickly so stay tuned!
 
-Checklist for 0.5
+Checklist for 1.0
 -----------------
 
 | API Call                  | Status    |
@@ -15,6 +15,6 @@ Checklist for 0.5
 | Player's profile          | Ready     |
 | Player's latest matches   | Ready     |
 | General ladder information| Ready     |
-| Player ladder information | Not ready |
-| Rewards information       | Not ready |
+| Player ladder information | Ready     |
+| Rewards information       | Ready     |
 | Achievements information  | Not ready |
