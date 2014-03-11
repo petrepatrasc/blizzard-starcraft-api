@@ -22,7 +22,8 @@
         "twig/twig": "*",
         "doctrine/doctrine-bundle": "*",
         "symfony/yaml": "2.1.*",
-        "symfony/validator": "2.1.*"
+        "symfony/validator": "2.1.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-0": {
