@@ -9,8 +9,9 @@ use petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation;
 use petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal;
 use petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait;
 use petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin;
+use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
-class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase
+class ApiServiceTest extends WebTestCase
 {
     /**
      * @var \petrepatrasc\BlizzardApiBundle\Service\ApiService
