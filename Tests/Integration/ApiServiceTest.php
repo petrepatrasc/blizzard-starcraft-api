@@ -5,6 +5,10 @@ namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin;
 
 class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase
 {
@@ -86,5 +90,73 @@ class ApiServiceTest extends \Symfony\Bundle\FrameworkBundle\Tests\Functional\We
             array(Region::Europe, 'getGrandmasterLeagueInformation', true),
             array(Region::Europe, 'getLeagueInformation', 151146),
         );
+    }
+
+    public function testGetRewardsInformationData()
+    {
+        $information = $this->apiService->getRewardsInformationData(Region::Europe);
+
+        /**
+         * @var $portrait Portrait
+         * @var $terranDecal Decal
+         * @var $zergDecal Decal
+         * @var $protossDecal Decal
+         * @var $animation Animation
+         * @var $skin Skin
+         */
+
+        foreach ($information->getPortraits() as $portrait) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait', $portrait);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $portrait->getIcon());
+            
+            $this->assertNotNull($portrait->getId());
+            $this->assertNotNull($portrait->getTitle());
+            $this->assertNotNull($portrait->getAchievementId());
+        }
+        
+        foreach ($information->getTerranDecals() as $terranDecal) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal', $terranDecal);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $terranDecal->getIcon());
+
+            $this->assertNotNull($terranDecal->getId());
+            $this->assertNotNull($terranDecal->getTitle());
+            $this->assertNotNull($terranDecal->getAchievementId());
+        }
+
+        foreach ($information->getZergDecals() as $zergDecal) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal', $zergDecal);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $zergDecal->getIcon());
+
+            $this->assertNotNull($zergDecal->getId());
+            $this->assertNotNull($zergDecal->getTitle());
+            $this->assertNotNull($zergDecal->getAchievementId());
+        }
+
+        foreach ($information->getProtossDecals() as $protossDecal) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal', $protossDecal);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $protossDecal->getIcon());
+
+            $this->assertNotNull($protossDecal->getId());
+            $this->assertNotNull($protossDecal->getTitle());
+            $this->assertNotNull($protossDecal->getAchievementId());
+        }
+
+        foreach ($information->getSkins() as $skin) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin', $skin);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $skin->getIcon());
+
+            $this->assertNotNull($skin->getId());
+            $this->assertNotNull($skin->getTitle());
+            $this->assertNotNull($skin->getAchievementId());
+        }
+
+        foreach ($information->getAnimations() as $animation) {
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation', $animation);
+            $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $animation->getIcon());
+
+            $this->assertNotNull($animation->getId());
+            $this->assertNotNull($animation->getTitle());
+            $this->assertNotNull($animation->getAchievementId());
+        }
     }
 }

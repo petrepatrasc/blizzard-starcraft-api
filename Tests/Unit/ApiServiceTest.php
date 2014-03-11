@@ -8,6 +8,10 @@ use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait;
+use petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin;
 use petrepatrasc\BlizzardApiBundle\Entity\Season\Entry;
 
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
@@ -47,7 +51,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getBasicInformation()->getProfilePath());
 
         // Portrait verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $profile->getPortrait());
         $portrait = $profile->getPortrait();
         $this->assertEquals(-270, $portrait->getXCoordinate());
         $this->assertEquals(-180, $portrait->getYCoordinate());
@@ -184,7 +188,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/profile/999000/1/DayNine/", $profile->getBasicInformation()->getProfilePath());
 
         // Portrait verification
-        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait', $profile->getPortrait());
+        $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Icon', $profile->getPortrait());
         $portrait = $profile->getPortrait();
         $this->assertEquals(-360, $portrait->getXCoordinate());
         $this->assertEquals(-450, $portrait->getYCoordinate());
@@ -503,5 +507,106 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $nonRanked = $currentSeasonEntry->getNonRanked();
         $this->assertInternalType('array', $nonRanked);
         $this->assertCount(0, $nonRanked);
+    }
+
+    public function testGetRewardsInformationData()
+    {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'rewards-information.json')));
+        $ladderInformation = $this->apiService->getRewardsInformationData(Region::Europe);
+
+        /**
+         * @var $portrait Portrait
+         * @var $terranDecal Decal
+         * @var $zergDecal Decal
+         * @var $protossDecal Decal
+         * @var $animation Animation
+         * @var $skin Skin
+         */
+
+        // Check portrait
+        $temp = $ladderInformation->getPortraits();
+        $portrait = $temp[0];
+
+        $this->assertEquals("Kachinsky", $portrait->getTitle());
+        $this->assertEquals(2951153716, $portrait->getId());
+        $this->assertEquals(0, $portrait->getIcon()->getXCoordinate());
+        $this->assertEquals(0, $portrait->getIcon()->getYCoordinate());
+        $this->assertEquals(90, $portrait->getIcon()->getWidth());
+        $this->assertEquals(90, $portrait->getIcon()->getHeight());
+        $this->assertEquals(0, $portrait->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/portraits/0-90.jpg", $portrait->getIcon()->getUrl());
+        $this->assertEquals(0, $portrait->getAchievementId());
+
+        // Check terran decal
+        $temp = $ladderInformation->getTerranDecals();
+        $terranDecal = $temp[0];
+
+        $this->assertEquals("Akilae Tribe", $terranDecal->getTitle());
+        $this->assertEquals(3441709157, $terranDecal->getId());
+        $this->assertEquals(0, $terranDecal->getIcon()->getXCoordinate());
+        $this->assertEquals(-225, $terranDecal->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $terranDecal->getIcon()->getWidth());
+        $this->assertEquals(75, $terranDecal->getIcon()->getHeight());
+        $this->assertEquals(24, $terranDecal->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/decals/0-75.jpg", $terranDecal->getIcon()->getUrl());
+        $this->assertEquals(0, $terranDecal->getAchievementId());
+
+        // Check zerg decal
+        $temp = $ladderInformation->getZergDecals();
+        $zergDecal = $temp[0];
+
+        $this->assertEquals("Akilae Tribe", $zergDecal->getTitle());
+        $this->assertEquals(1187203361, $zergDecal->getId());
+        $this->assertEquals(-150, $zergDecal->getIcon()->getXCoordinate());
+        $this->assertEquals(-225, $zergDecal->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $zergDecal->getIcon()->getWidth());
+        $this->assertEquals(75, $zergDecal->getIcon()->getHeight());
+        $this->assertEquals(26, $zergDecal->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/decals/0-75.jpg", $zergDecal->getIcon()->getUrl());
+        $this->assertEquals(0, $zergDecal->getAchievementId());
+
+        // Check protoss decal
+        $temp = $ladderInformation->getProtossDecals();
+        $protossDecal = $temp[0];
+
+        $this->assertEquals("Akilae Tribe", $protossDecal->getTitle());
+        $this->assertEquals(2009110693, $protossDecal->getId());
+        $this->assertEquals(-75, $protossDecal->getIcon()->getXCoordinate());
+        $this->assertEquals(-225, $protossDecal->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $protossDecal->getIcon()->getWidth());
+        $this->assertEquals(75, $protossDecal->getIcon()->getHeight());
+        $this->assertEquals(25, $protossDecal->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/decals/0-75.jpg", $protossDecal->getIcon()->getUrl());
+        $this->assertEquals(0, $protossDecal->getAchievementId());
+        
+        // Check skin
+        $temp = $ladderInformation->getSkins();
+        $skin = $temp[0];
+
+        $this->assertEquals("Default", $skin->getTitle());
+        $this->assertEquals("Thor", $skin->getName());
+        $this->assertEquals(3979921667, $skin->getId());
+        $this->assertEquals(0, $skin->getIcon()->getXCoordinate());
+        $this->assertEquals(-150, $skin->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $skin->getIcon()->getWidth());
+        $this->assertEquals(75, $skin->getIcon()->getHeight());
+        $this->assertEquals(18, $skin->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/skins/0-75.jpg", $skin->getIcon()->getUrl());
+        $this->assertEquals(0, $skin->getAchievementId());
+
+        // Check animation
+        $temp = $ladderInformation->getAnimations();
+        $animation = $temp[0];
+
+        $this->assertEquals("Marauder", $animation->getTitle());
+        $this->assertEquals("/dance", $animation->getCommand());
+        $this->assertEquals(3065782512, $animation->getId());
+        $this->assertEquals(0, $animation->getIcon()->getXCoordinate());
+        $this->assertEquals(0, $animation->getIcon()->getYCoordinate());
+        $this->assertEquals(75, $animation->getIcon()->getWidth());
+        $this->assertEquals(75, $animation->getIcon()->getHeight());
+        $this->assertEquals(0, $animation->getIcon()->getOffset());
+        $this->assertEquals("http://media.blizzard.com/sc2/animations/0-75.jpg", $animation->getIcon()->getUrl());
+        $this->assertEquals(0, $animation->getAchievementId());
     }
 }

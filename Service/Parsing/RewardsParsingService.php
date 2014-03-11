@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards;
 
-class RewardsParsingService implements ParsingInterface
+class RewardsParsingService implements ParsingInterfaceStandalone
 {
 
     /**

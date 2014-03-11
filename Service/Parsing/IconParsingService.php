@@ -3,20 +3,20 @@
 namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait;
+use petrepatrasc\BlizzardApiBundle\Entity\Icon;
 
-class PortraitParsingService implements ParsingInterface
+class IconParsingService implements ParsingInterfaceStandalone
 {
 
     /**
      * Extract a portrait information from an array.
      *
      * @param array $params
-     * @return Portrait
+     * @return Icon
      */
     public static function extract($params)
     {
-        $portrait = new Portrait();
+        $portrait = new Icon();
         $portrait->setXCoordinate($params['x'])
             ->setYCoordinate($params['y'])
             ->setWidth($params['w'])

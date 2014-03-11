@@ -4,15 +4,13 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\PositionParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\MatchParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\Player\LadderParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\PlayerProfileParsingService;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 class ApiService
 {
     const API_PROFILE_METHOD = '/api/sc2/profile/';
     const API_LADDER_METHOD = '/api/sc2/ladder/';
+    const API_REWARDS_METHOD = '/api/sc2/data/rewards';
 
     /**
      * @var CallService
@@ -42,7 +40,7 @@ class ApiService
         $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters);
         $apiData = $this->getNormalisedPlayerProfileArray($apiData);
 
-        return PlayerProfileParsingService::extract($apiData);
+        return Parsing\PlayerProfileParsingService::extract($apiData);
     }
 
     /**
@@ -61,7 +59,7 @@ class ApiService
 
         $matches = array();
         foreach ($apiData['matches'] as $match) {
-            $matches[] = MatchParsingService::extract($match);
+            $matches[] = Parsing\MatchParsingService::extract($match);
         }
 
         return $matches;
@@ -81,7 +79,7 @@ class ApiService
         $apiParameters = array($battleNetId, $realm, $playerName, 'ladders');
         $apiData = $this->makeCall($region, self::API_PROFILE_METHOD, $apiParameters, false);
 
-        $playerLadder = LadderParsingService::extract($apiData);
+        $playerLadder = Parsing\Player\LadderParsingService::extract($apiData);
 
         return $playerLadder;
     }
@@ -117,6 +115,13 @@ class ApiService
         return $this->getLeagueInformationWrapper($region, $parameters);
     }
 
+    public function getRewardsInformationData($region) {
+        $apiData = $this->makeCall($region, self::API_REWARDS_METHOD, array(), false);
+
+        $information = Parsing\Reward\InformationParsingService::extract($apiData);
+        return $information;
+    }
+
     /**
      * Customisable league method, try using the wrapper methods first.
      *
@@ -130,7 +135,7 @@ class ApiService
 
         $ladderMembers = array();
         foreach ($apiData['ladderMembers'] as $member) {
-            $ladderMembers[] = PositionParsingService::extract($member);
+            $ladderMembers[] = Parsing\Ladder\PositionParsingService::extract($member);
         }
 
         return $ladderMembers;

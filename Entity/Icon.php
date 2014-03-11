@@ -1,9 +1,9 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
+namespace petrepatrasc\BlizzardApiBundle\Entity;
 
 
-class Portrait
+class Icon
 {
 
     /**

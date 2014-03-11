@@ -4,9 +4,9 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder;
 
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\NonRanked;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterface;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 
-class NonRankedParsingService implements ParsingInterface
+class NonRankedParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract non ranked information from an array.

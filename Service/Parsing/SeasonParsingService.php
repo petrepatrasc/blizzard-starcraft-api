@@ -6,7 +6,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 
-class SeasonParsingService implements ParsingInterface
+class SeasonParsingService implements ParsingInterfaceStandalone
 {
 
     /**

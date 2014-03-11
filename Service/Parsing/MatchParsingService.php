@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 
-class MatchParsingService implements ParsingInterface
+class MatchParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract campaign information from an array.

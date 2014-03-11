@@ -3,6 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 /**
  * Class holds a representation of a player's profile.
@@ -17,7 +18,7 @@ class Player
     protected $basicInformation;
 
     /**
-     * @var Player\Portrait
+     * @var Icon
      */
     protected $portrait;
 
@@ -52,7 +53,7 @@ class Player
     protected $achievements;
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait $portrait
+     * @param Icon $portrait
      * @return $this
      */
     public function setPortrait($portrait)
@@ -62,7 +63,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Portrait
+     * @return Icon
      */
     public function getPortrait()
     {

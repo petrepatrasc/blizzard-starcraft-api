@@ -6,7 +6,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels;
 use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
 
-class SwarmLevelsParsingService implements ParsingInterface
+class SwarmLevelsParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract swarm level information from an array.

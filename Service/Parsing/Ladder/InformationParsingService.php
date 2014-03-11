@@ -4,9 +4,9 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder;
 
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Information;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterface;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 
-class InformationParsingService implements ParsingInterface
+class InformationParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract ladder information from an array.

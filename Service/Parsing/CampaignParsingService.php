@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign;
 
-class CampaignParsingService implements ParsingInterface
+class CampaignParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract campaign information from an array.

@@ -7,9 +7,9 @@ use petrepatrasc\BlizzardApiBundle\Entity\Season\Entry;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\BasicProfileParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\InformationParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder\NonRankedParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterface;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 
-class EntryParsingService implements ParsingInterface
+class EntryParsingService implements ParsingInterfaceStandalone
 {
 
     /**

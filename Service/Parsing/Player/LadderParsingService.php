@@ -4,11 +4,11 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Player;
 
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Ladder;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterface;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\Season\EntryParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\SeasonParsingService;
 
-class LadderParsingService implements ParsingInterface
+class LadderParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract player ladder information from an array.

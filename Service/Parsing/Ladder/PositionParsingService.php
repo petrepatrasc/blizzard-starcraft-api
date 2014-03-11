@@ -5,9 +5,9 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\BasicProfileParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterface;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 
-class PositionParsingService implements ParsingInterface
+class PositionParsingService implements ParsingInterfaceStandalone
 {
 
     /**

@@ -7,7 +7,7 @@ use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements;
 
-class AchievementParsingService implements ParsingInterface
+class AchievementParsingService implements ParsingInterfaceStandalone
 {
 
     /**

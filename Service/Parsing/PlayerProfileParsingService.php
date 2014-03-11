@@ -5,7 +5,7 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Player;
 
-class PlayerProfileParsingService implements ParsingInterface
+class PlayerProfileParsingService implements ParsingInterfaceStandalone
 {
     /**
      * Extract complete player profile information from an array.
@@ -15,7 +15,7 @@ class PlayerProfileParsingService implements ParsingInterface
      */
     public static function extract($params)
     {
-        $portrait = PortraitParsingService::extract($params['portrait']);
+        $portrait = IconParsingService::extract($params['portrait']);
         $career = CareerParsingService::extract($params['career']);
         $playerSwarmLevels = SwarmLevelsParsingService::extract($params['swarmLevels']);
         $campaign = CampaignParsingService::extract($params['campaign']);

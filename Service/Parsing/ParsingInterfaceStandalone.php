@@ -3,7 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
 
-interface ParsingInterface
+interface ParsingInterfaceStandalone
 {
     public static function extract($params);
 }
