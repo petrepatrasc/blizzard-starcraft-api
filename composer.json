@@ -25,8 +25,9 @@
         "symfony/validator": "2.1.*"
     },
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "petrepatrasc\\BlizzardApiBundle": ""
         }
-    }
+    },
+    "target-dir": "petrepatrasc/BlizzardApiBundle"
 }
