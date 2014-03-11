@@ -12,7 +12,7 @@ class CategoryParsingService implements ParsingInterfaceStandalone
      * Extract achievement category information from an array.
      *
      * @param array $params
-     * @return CategoryParsingService
+     * @return Category
      */
     public static function extract($params)
     {

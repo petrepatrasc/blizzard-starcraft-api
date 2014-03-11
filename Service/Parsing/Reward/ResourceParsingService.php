@@ -12,7 +12,7 @@ class ResourceParsingService implements Parsing\ParsingInterfaceExtensible
      *
      * @param array $params
      * @param Entity\Reward\Resource $instance
-     * @return \stdClass
+     * @return Entity\Reward\Resource
      */
     public static function extractExtensible($params, $instance)
     {
