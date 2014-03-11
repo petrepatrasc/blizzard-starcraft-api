@@ -1,8 +1,6 @@
 <?php
 
 namespace petrepatrasc\BlizzardApiBundle\Entity;
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements;
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
 use petrepatrasc\BlizzardApiBundle\Entity;
 
 /**
@@ -13,7 +11,7 @@ class Player
 {
 
     /**
-     * @var Basic
+     * @var Entity\Player\Basic
      */
     protected $basicInformation;
 
@@ -48,7 +46,7 @@ class Player
     protected $rewards;
 
     /**
-     * @var Achievements
+     * @var Entity\Player\Achievements
      */
     protected $achievements;
 
@@ -71,7 +69,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Career $career
+     * @param Entity\Player\Career $career
      * @return $this
      */
     public function setCareer($career)
@@ -81,7 +79,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Career
+     * @return Entity\Player\Career
      */
     public function getCareer()
     {
@@ -89,7 +87,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels $swarmLevels
+     * @param Entity\Player\SwarmLevels $swarmLevels
      * @return $this
      */
     public function setSwarmLevels($swarmLevels)
@@ -99,7 +97,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels
+     * @return Entity\Player\SwarmLevels
      */
     public function getSwarmLevels()
     {
@@ -107,7 +105,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign $campaign
+     * @param Entity\Player\Campaign $campaign
      * @return $this
      */
     public function setCampaign($campaign)
@@ -117,7 +115,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign
+     * @return Entity\Player\Campaign
      */
     public function getCampaign()
     {
@@ -125,7 +123,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Season $season
+     * @param Entity\Player\Season $season
      * @return $this
      */
     public function setSeason($season)
@@ -135,7 +133,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Season
+     * @return Entity\Player\Season
      */
     public function getSeason()
     {
@@ -143,7 +141,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards $rewards
+     * @param Entity\Player\Rewards $rewards
      * @return $this
      */
     public function setRewards($rewards)
@@ -153,7 +151,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards
+     * @return Entity\Player\Rewards
      */
     public function getRewards()
     {
@@ -161,7 +159,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements $achievements
+     * @param Entity\Player\Achievements $achievements
      * @return $this
      */
     public function setAchievements($achievements)
@@ -171,7 +169,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements
+     * @return Entity\Player\Achievements
      */
     public function getAchievements()
     {
@@ -179,7 +177,7 @@ class Player
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic $basicInformation
+     * @param Entity\Player\Basic $basicInformation
      * @return $this
      */
     public function setBasicInformation($basicInformation)
@@ -189,7 +187,7 @@ class Player
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic
+     * @return Entity\Player\Basic
      */
     public function getBasicInformation()
     {

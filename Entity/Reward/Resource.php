@@ -3,7 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity\Reward;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\Icon;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 class Resource
 {
@@ -19,7 +19,7 @@ class Resource
     protected $id;
 
     /**
-     * @var Icon
+     * @var Entity\Icon
      */
     protected $icon;
 
@@ -47,7 +47,7 @@ class Resource
     }
 
     /**
-     * @param Icon $icon
+     * @param Entity\Icon $icon
      * @return $this
      */
     public function setIcon($icon)
@@ -57,7 +57,7 @@ class Resource
     }
 
     /**
-     * @return Icon
+     * @return Entity\Icon
      */
     public function getIcon()
     {

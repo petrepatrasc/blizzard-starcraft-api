@@ -3,7 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 class Season
 {
@@ -124,10 +124,10 @@ class Season
     }
 
     /**
-     * @param SeasonStats $stats
+     * @param Entity\SeasonStats $stats
      * @return $this
      */
-    public function addSeasonStats(SeasonStats $stats)
+    public function addSeasonStats(Entity\SeasonStats $stats)
     {
         $this->stats[] = $stats;
         return $this;

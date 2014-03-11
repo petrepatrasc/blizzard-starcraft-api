@@ -2,16 +2,7 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category;
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard;
-use petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException;
-use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
-use petrepatrasc\BlizzardApiBundle\Entity\Match;
-use petrepatrasc\BlizzardApiBundle\Entity\Region;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin;
+use petrepatrasc\BlizzardApiBundle\Entity;
 use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
 class ApiServiceTest extends WebTestCase
@@ -41,14 +32,14 @@ class ApiServiceTest extends WebTestCase
 
     public function testGetPlayerLatestMatches()
     {
-        $matches = $this->apiService->getPlayerLatestMatches(Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getPlayerLatestMatches(Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));
 
         /**
-         * @var $match Match
-         * @var $latestMatch Match
+         * @var $match Entity\Match
+         * @var $latestMatch Entity\Match
          */
         foreach ($matches as $match) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Match', $match);
@@ -71,7 +62,7 @@ class ApiServiceTest extends WebTestCase
         $ladderMembers = $this->apiService->$method($region, $identifier);
 
         /**
-         * @var $member Position
+         * @var $member Entity\Ladder\Position
          */
         foreach ($ladderMembers as $member) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position', $member);
@@ -90,23 +81,23 @@ class ApiServiceTest extends WebTestCase
     public function grandmasterLeagueInformationDataProvider()
     {
         return array(
-            array(Region::Europe, 'getGrandmasterLeagueInformation', false),
-            array(Region::Europe, 'getGrandmasterLeagueInformation', true),
-            array(Region::Europe, 'getLeagueInformation', 151146),
+            array(Entity\Region::Europe, 'getGrandmasterLeagueInformation', false),
+            array(Entity\Region::Europe, 'getGrandmasterLeagueInformation', true),
+            array(Entity\Region::Europe, 'getLeagueInformation', 151146),
         );
     }
 
     public function testGetRewardsInformationData()
     {
-        $information = $this->apiService->getRewardsInformationData(Region::Europe);
+        $information = $this->apiService->getRewardsInformationData(Entity\Region::Europe);
 
         /**
-         * @var $portrait Portrait
-         * @var $terranDecal Decal
-         * @var $zergDecal Decal
-         * @var $protossDecal Decal
-         * @var $animation Animation
-         * @var $skin Skin
+         * @var $portrait Entity\Reward\Portrait
+         * @var $terranDecal Entity\Reward\Decal
+         * @var $zergDecal Entity\Reward\Decal
+         * @var $protossDecal Entity\Reward\Decal
+         * @var $animation Entity\Reward\Animation
+         * @var $skin Entity\Reward\Skin
          */
 
         foreach ($information->getPortraits() as $portrait) {
@@ -166,11 +157,11 @@ class ApiServiceTest extends WebTestCase
 
     public function testGetAchievementsInformationData()
     {
-        $information = $this->apiService->getAchievementsInformationData(Region::Europe);
+        $information = $this->apiService->getAchievementsInformationData(Entity\Region::Europe);
 
         /**
-         * @var $achievement Standard
-         * @var $category Category
+         * @var $achievement Entity\Achievement\Standard
+         * @var $category Entity\Achievement\Category
          */
 
         foreach ($information->getAchievements() as $achievement) {
@@ -205,6 +196,6 @@ class ApiServiceTest extends WebTestCase
      */
     public function testTriggerBlizzardApiException()
     {
-        $player = $this->apiService->getPlayerProfile(Region::Europe, 321412, "testtesttest");
+        $player = $this->apiService->getPlayerProfile(Entity\Region::Europe, 321412, "testtesttest");
     }
 }

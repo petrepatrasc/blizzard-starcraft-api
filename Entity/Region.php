@@ -5,7 +5,6 @@ namespace petrepatrasc\BlizzardApiBundle\Entity;
 
 class Region
 {
-
     const US = 'http://us.battle.net/';
     const Europe = 'http://eu.battle.net/';
     const Korea = 'http://kr.battle.net/';

@@ -3,10 +3,9 @@
 namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Reward;
 
 use petrepatrasc\BlizzardApiBundle\Entity;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\IconParsingService;
-use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceExtensible;
+use petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
-class ResourceParsingService implements ParsingInterfaceExtensible
+class ResourceParsingService implements Parsing\ParsingInterfaceExtensible
 {
     /**
      * Extract generic resource information from an array.
@@ -17,7 +16,7 @@ class ResourceParsingService implements ParsingInterfaceExtensible
      */
     public static function extractExtensible($params, $instance)
     {
-        $icon = IconParsingService::extract($params['icon']);
+        $icon = Parsing\IconParsingService::extract($params['icon']);
 
         if (is_null($instance)) {
             $instance = new Entity\Reward\Resource();

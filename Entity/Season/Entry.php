@@ -2,9 +2,6 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Season;
 
-
-use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Information;
-
 class Entry
 {
 

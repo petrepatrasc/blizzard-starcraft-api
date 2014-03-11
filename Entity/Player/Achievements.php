@@ -3,14 +3,13 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points;
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 class Achievements
 {
 
     /**
-     * @var Points
+     * @var Entity\Achievement\Points
      */
     protected $points;
 
@@ -38,7 +37,7 @@ class Achievements
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points $points
+     * @param Entity\Achievement\Points $points
      * @return $this
      */
     public function setPoints($points)
@@ -48,7 +47,7 @@ class Achievements
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Achievement\Points
+     * @return Entity\Achievement\Points
      */
     public function getPoints()
     {
@@ -56,10 +55,10 @@ class Achievements
     }
 
     /**
-     * @param Achievement $achievement
+     * @param Entity\Achievement $achievement
      * @return $this
      */
-    public function addAchievements(Achievement $achievement)
+    public function addAchievements(Entity\Achievement $achievement)
     {
         $this->achievements[] = $achievement;
         return $this;

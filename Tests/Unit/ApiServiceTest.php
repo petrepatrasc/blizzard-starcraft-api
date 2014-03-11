@@ -2,27 +2,15 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
 
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category;
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Minimised;
-use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard;
-use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Information;
-use petrepatrasc\BlizzardApiBundle\Entity\Ladder\NonRanked;
-use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
-use petrepatrasc\BlizzardApiBundle\Entity\Match;
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
-use petrepatrasc\BlizzardApiBundle\Entity\Region;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Animation;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Decal;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Portrait;
-use petrepatrasc\BlizzardApiBundle\Entity\Reward\Skin;
-use petrepatrasc\BlizzardApiBundle\Entity\Season\Entry;
+use petrepatrasc\BlizzardApiBundle\Entity;
+use petrepatrasc\BlizzardApiBundle\Service\ApiService;
 
 class ApiServiceTest extends \PHPUnit_Framework_TestCase
 {
     const MOCK_PATH = './Resources/mocks/';
 
     /**
-     * @var \petrepatrasc\BlizzardApiBundle\Service\ApiService
+     * @var ApiService
      */
     protected $apiService = null;
 
@@ -37,13 +25,13 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
 
         $this->callServiceMock = $this->getMock('CallService', array('makeCallToApiService'));
 
-        $this->apiService = new \petrepatrasc\BlizzardApiBundle\Service\ApiService($this->callServiceMock);
+        $this->apiService = new ApiService($this->callServiceMock);
     }
 
     public function testGetPlayerProfileLionHeart()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart.json')));
-        $profile = $this->apiService->getPlayerProfile(Region::Europe, 2048419, 'LionHeart');
+        $profile = $this->apiService->getPlayerProfile(Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Player general verification
         $this->assertEquals(2048419, $profile->getBasicInformation()->getId());
@@ -122,8 +110,8 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $seasonStats);
 
         /**
-         * @var $season1v1 \petrepatrasc\BlizzardApiBundle\Entity\SeasonStats
-         * @var $season2v2 \petrepatrasc\BlizzardApiBundle\Entity\SeasonStats
+         * @var $season1v1 Entity\SeasonStats
+         * @var $season2v2 Entity\SeasonStats
          */
         $season1v1 = $seasonStats[0];
         $season2v2 = $seasonStats[1];
@@ -168,7 +156,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $achievementsArray);
 
         /**
-         * @var $entry \petrepatrasc\BlizzardApiBundle\Entity\Achievement
+         * @var $entry Entity\Achievement
          */
         foreach ($achievementsArray as $entry) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement', $entry);
@@ -180,7 +168,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetPlayerProfileDayJ()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-dayj.json')));
-        $profile = $this->apiService->getPlayerProfile(Region::US, 999000, 'DayNine');
+        $profile = $this->apiService->getPlayerProfile(Entity\Region::US, 999000, 'DayNine');
 
         // Player general verification
         $this->assertEquals(999000, $profile->getBasicInformation()->getId());
@@ -289,7 +277,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $achievementsArray);
 
         /**
-         * @var $entry \petrepatrasc\BlizzardApiBundle\Entity\Achievement
+         * @var $entry Entity\Achievement
          */
         foreach ($achievementsArray as $entry) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Achievement', $entry);
@@ -301,14 +289,14 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetPlayerLatestMatches()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-matches.json')));
-        $matches = $this->apiService->getPlayerLatestMatches(Region::Europe, 2048419, 'LionHeart');
+        $matches = $this->apiService->getPlayerLatestMatches(Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Do a general data check.
         $this->assertGreaterThan(0, count($matches));
 
         /**
-         * @var $match Match
-         * @var $latestMatch Match
+         * @var $match Entity\Match
+         * @var $latestMatch Entity\Match
          */
         foreach ($matches as $match) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Match', $match);
@@ -341,7 +329,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $ladderMembers = $this->apiService->$method($region, $identifier);
 
         /**
-         * @var $member Position
+         * @var $member Entity\Ladder\Position
          */
         foreach ($ladderMembers as $member) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position', $member);
@@ -369,8 +357,8 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function grandmasterLeagueInformationDataProvider()
     {
         // Current season member
-        $currentSeasonMemberToCheck = new Position();
-        $character = new Basic();
+        $currentSeasonMemberToCheck = new Entity\Ladder\Position();
+        $character = new Entity\Player\Basic();
         $character->setId(4685683)
             ->setRealm(1)
             ->setDisplayName("IIIIIIIIIIII")
@@ -391,8 +379,8 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             ->setFavoriteRaceP1("PROTOSS");
 
         // Previous season member
-        $previousSeasonMemberToCheck = new Position();
-        $character = new Basic();
+        $previousSeasonMemberToCheck = new Entity\Ladder\Position();
+        $character = new Entity\Player\Basic();
         $character->setId(4149248)
             ->setRealm(1)
             ->setDisplayName("JJAKJI")
@@ -413,8 +401,8 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             ->setFavoriteRaceP1("TERRAN");
 
         // Player ladder information
-        $playerLadderInformation = new Position();
-        $character = new Basic();
+        $playerLadderInformation = new Entity\Ladder\Position();
+        $character = new Entity\Player\Basic();
         $character->setId(2048419)
             ->setRealm(1)
             ->setDisplayName("LionHeart")
@@ -435,16 +423,16 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
             ->setFavoriteRaceP1("TERRAN");
 
         return array(
-            array(Region::Europe, 'ladder-grandmaster.json', 'getGrandmasterLeagueInformation', false, $currentSeasonMemberToCheck),
-            array(Region::Europe, 'ladder-grandmaster-last.json', 'getGrandmasterLeagueInformation', true, $previousSeasonMemberToCheck),
-            array(Region::Europe, 'ladder-information.json', 'getLeagueInformation', 151146, $playerLadderInformation),
+            array(Entity\Region::Europe, 'ladder-grandmaster.json', 'getGrandmasterLeagueInformation', false, $currentSeasonMemberToCheck),
+            array(Entity\Region::Europe, 'ladder-grandmaster-last.json', 'getGrandmasterLeagueInformation', true, $previousSeasonMemberToCheck),
+            array(Entity\Region::Europe, 'ladder-information.json', 'getLeagueInformation', 151146, $playerLadderInformation),
         );
     }
 
     public function testGetPlayerLaddersInformation()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'profile-retrieval-lionheart-ladders.json')));
-        $ladderInformation = $this->apiService->getPlayerLaddersInformation(Region::Europe, 2048419, 'LionHeart');
+        $ladderInformation = $this->apiService->getPlayerLaddersInformation(Entity\Region::Europe, 2048419, 'LionHeart');
 
         // Assert types for sanity
         $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Player\Ladder', $ladderInformation);
@@ -453,9 +441,9 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $ladderInformation->getShowcasePlacement());
 
         /**
-         * @var $currentSeasonEntry Entry
-         * @var $previousSeasonEntry Entry
-         * @var $showcasePlacementEntry Entry
+         * @var $currentSeasonEntry Entity\Season\Entry
+         * @var $previousSeasonEntry Entity\Season\Entry
+         * @var $showcasePlacementEntry Entity\Season\Entry
          */
 
         // Assert one entry from current season.
@@ -474,13 +462,13 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param Entry $currentSeasonEntry
+     * @param Entity\Season\Entry $currentSeasonEntry
      */
     protected function assertPlayerLaddersCurrentSeason($currentSeasonEntry)
     {
         /**
-         * @var $ladderInformation Information
-         * @var $characterInformation Basic
+         * @var $ladderInformation Entity\Ladder\Information
+         * @var $characterInformation Entity\Player\Basic
          * @var $nonRanked array
          */
 
@@ -515,15 +503,15 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetRewardsInformationData()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'rewards-information.json')));
-        $rewardsInformation = $this->apiService->getRewardsInformationData(Region::Europe);
+        $rewardsInformation = $this->apiService->getRewardsInformationData(Entity\Region::Europe);
 
         /**
-         * @var $portrait Portrait
-         * @var $terranDecal Decal
-         * @var $zergDecal Decal
-         * @var $protossDecal Decal
-         * @var $animation Animation
-         * @var $skin Skin
+         * @var $portrait Entity\Reward\Portrait
+         * @var $terranDecal Entity\Reward\Decal
+         * @var $zergDecal Entity\Reward\Decal
+         * @var $protossDecal Entity\Reward\Decal
+         * @var $animation Entity\Reward\Animation
+         * @var $skin Entity\Reward\Skin
          */
 
         // Check portrait
@@ -616,12 +604,12 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetAchievementsInformationData()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'achievement-information.json')));
-        $achievementsInformation = $this->apiService->getAchievementsInformationData(Region::Europe);
+        $achievementsInformation = $this->apiService->getAchievementsInformationData(Entity\Region::Europe);
 
         /**
-         * @var $achievement Standard
-         * @var $category Category
-         * @var $child Minimised
+         * @var $achievement Entity\Achievement\Standard
+         * @var $category Entity\Achievement\Category
+         * @var $child Entity\Achievement\Minimised
          */
 
         // Check achievement

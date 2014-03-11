@@ -3,13 +3,13 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity\Ladder;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\Player\Basic;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 class Position
 {
 
     /**
-     * @var Basic
+     * @var Entity\Player\Basic
      */
     protected $character;
 
@@ -49,7 +49,7 @@ class Position
     protected $favoriteRaceP1;
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic $character
+     * @param Entity\Player\Basic $character
      * @return $this
      */
     public function setCharacter($character)
@@ -59,7 +59,7 @@ class Position
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic
+     * @return Entity\Player\Basic
      */
     public function getCharacter()
     {

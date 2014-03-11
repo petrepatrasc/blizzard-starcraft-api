@@ -3,7 +3,7 @@
 namespace petrepatrasc\BlizzardApiBundle\Entity\Player;
 
 
-use petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel;
+use petrepatrasc\BlizzardApiBundle\Entity;
 
 class SwarmLevels
 {
@@ -14,17 +14,17 @@ class SwarmLevels
     protected $playerLevel;
 
     /**
-     * @var SwarmLevel
+     * @var Entity\SwarmLevel
      */
     protected $terranLevel;
 
     /**
-     * @var SwarmLevel
+     * @var Entity\SwarmLevel
      */
     protected $zergLevel;
 
     /**
-     * @var SwarmLevel
+     * @var Entity\SwarmLevel
      */
     protected $protossLevel;
 
@@ -47,7 +47,7 @@ class SwarmLevels
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel $protossLevel
+     * @param Entity\SwarmLevel $protossLevel
      * @return $this
      */
     public function setProtossLevel($protossLevel)
@@ -57,7 +57,7 @@ class SwarmLevels
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel
+     * @return Entity\SwarmLevel
      */
     public function getProtossLevel()
     {
@@ -65,7 +65,7 @@ class SwarmLevels
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel $terranLevel
+     * @param Entity\SwarmLevel $terranLevel
      * @return $this
      */
     public function setTerranLevel($terranLevel)
@@ -75,7 +75,7 @@ class SwarmLevels
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel
+     * @return Entity\SwarmLevel
      */
     public function getTerranLevel()
     {
@@ -83,7 +83,7 @@ class SwarmLevels
     }
 
     /**
-     * @param \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel $zergLevel
+     * @param Entity\SwarmLevel $zergLevel
      * @return $this
      */
     public function setZergLevel($zergLevel)
@@ -93,7 +93,7 @@ class SwarmLevels
     }
 
     /**
-     * @return \petrepatrasc\BlizzardApiBundle\Entity\SwarmLevel
+     * @return Entity\SwarmLevel
      */
     public function getZergLevel()
     {
