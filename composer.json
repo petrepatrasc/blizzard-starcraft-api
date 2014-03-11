@@ -12,7 +12,6 @@
             "homepage": "http://www.petrepatrasc.ro"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
         "ext-curl": "*",
@@ -26,9 +25,8 @@
         "symfony/validator": "2.1.*"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "petrepatrasc\\BlizzardApiBundle": ""
         }
-    },
-    "target-dir": "petrepatrasc/BlizzardApiBundle"
+    }
 }
