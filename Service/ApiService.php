@@ -181,7 +181,7 @@ class ApiService
         try {
             $apiResponse = $this->callService->makeCallToApiService($region, $apiMethod, $params, $trailingSlash);
         } catch (\Exception $exception) {
-            throw new Entity\Exception\BlizzardApiException($exception->getMessage(), $exception->getCode());
+            throw new Entity\Exception\BlizzardApiException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         if (isset($apiResponse['status']) && $apiResponse['status'] == 'nok') {
