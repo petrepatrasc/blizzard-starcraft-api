@@ -18,3 +18,4 @@ Checklist for 1.0.0
 | Player ladder information | Ready     |
 | Rewards information       | Ready     |
 | Achievements information  | Not ready |
+| Exception handling        | Not ready |
