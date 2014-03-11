@@ -5,10 +5,10 @@ Blizzard Starcraft 2 API
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/badges/quality-score.png?s=a3a76a2caa656d9aadbadc9dba2e50e27634f1f0)](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/)
 
 
-Currently in development for version 0.5, updating very quickly so stay tuned!
+Currently in development for version 1.0.0, nearly there.
 
-Checklist for 1.0
------------------
+Checklist for 1.0.0
+-------------------
 
 | API Call                  | Status    |
 | ------------------------- |:---------:|
