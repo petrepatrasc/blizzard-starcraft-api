@@ -5,20 +5,31 @@ namespace petrepatrasc\BlizzardApiBundle\Service;
 use petrepatrasc\BlizzardApiBundle\Entity;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
+/**
+ * Main high-level class for services provided by the API wrapper.
+ * @package petrepatrasc\BlizzardApiBundle\Service
+ */
 class ApiService
 {
+    /**
+     * Constants with URLS.
+     * @todo In the future, these should sit in a configuration file somewhere.
+     */
     const API_PROFILE_METHOD = '/api/sc2/profile/';
     const API_LADDER_METHOD = '/api/sc2/ladder/';
     const API_REWARDS_METHOD = '/api/sc2/data/rewards';
     const API_ACHIEVEMENTS_METHOD = '/api/sc2/data/achievements';
 
     /**
-     * @var CallService
+     * The service that makes the actual API calls. As long as the API stays read-only, it will strictly be used
+     * as an extra dependency in order to mock the call to the WS.
+     *
+     * @var $callService CallService
      */
     protected $callService = null;
 
     /**
-     * @param CallService $callService
+     * @param CallService $callService The service that makes the actual API calls. As long as the API stays read-only, it will strictly be used as an extra dependency in order to mock the call to the WS.
      */
     public function __construct($callService = null)
     {
@@ -32,10 +43,10 @@ class ApiService
     /**
      * Get a player's profile via the Battle.NET API.
      *
-     * @param string $region
-     * @param int $battleNetId
-     * @param int $realm
-     * @param string $playerName
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
+     * @param int $battleNetId The Battle.NET identifier of a player.
+     * @param string $playerName The display name of the player.
+     * @param int $realm The realm where the request should be made (defaults to 1).
      * @return Entity\Player
      */
     public function getPlayerProfile($region, $battleNetId, $playerName, $realm = 1)
@@ -50,11 +61,11 @@ class ApiService
     /**
      * Get the last ten matches that a player has played.
      *
-     * @param string $region
-     * @param int $battleNetId
-     * @param string $playerName
-     * @param int $realm
-     * @return array
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
+     * @param int $battleNetId The Battle.NET identifier of a player.
+     * @param string $playerName The display name of the player.
+     * @param int $realm The realm where the request should be made (defaults to 1).
+     * @return array An array containing Entity\Match entries.
      */
     public function getPlayerLatestMatches($region, $battleNetId, $playerName, $realm = 1)
     {
@@ -72,10 +83,10 @@ class ApiService
     /**
      * Get information regarding a player's ladders.
      *
-     * @param string $region
-     * @param int $battleNetId
-     * @param string $playerName
-     * @param int $realm
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
+     * @param int $battleNetId The Battle.NET identifier of a player.
+     * @param string $playerName The display name of the player.
+     * @param int $realm The realm where the request should be made (defaults to 1).
      * @return Entity\Player\Ladder
      */
     public function getPlayerLaddersInformation($region, $battleNetId, $playerName, $realm = 1)
@@ -91,7 +102,7 @@ class ApiService
     /**
      * Get information on the grandmaster league from a region.
      *
-     * @param string $region The region for the API, use the Region class in order to maintain consistency.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @param bool $previousSeason Whether the information should be for the previous season or not.
      * @return array Array containing all of the ladder members as LadderPosition instances.
      */
@@ -109,7 +120,7 @@ class ApiService
     /**
      * Get information on a particular league from a region.
      *
-     * @param string $region The region for the API, use the Region class in order to maintain consistency.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @param int $id The ID of the league.
      * @return array
      */
@@ -122,7 +133,7 @@ class ApiService
     /**
      * Get information on the rewards that are available.
      *
-     * @param string $region The region from which the data should be retrieved.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @return Entity\Reward\Information
      */
     public function getRewardsInformationData($region)
@@ -136,7 +147,7 @@ class ApiService
     /**
      * Get information on the achievements that are available.
      *
-     * @param string $region The region from which the data should be retrieved.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @return Entity\Achievement\Information
      */
     public function getAchievementsInformationData($region)
@@ -150,7 +161,7 @@ class ApiService
     /**
      * Customisable league method, try using the wrapper methods first.
      *
-     * @param string $region The region, use the Region class in order to maintain consistency.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @param array $parameters The parameters that should be passed to the league API method.
      * @return array Array containing all of the ladder members as LadderPosition instances.
      */
@@ -169,7 +180,7 @@ class ApiService
     /**
      * Make a call to the public API.
      *
-     * @param string $region The region that should be used.
+     * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @param string $apiMethod The API method that should be called.
      * @param array $params The parameters that should be attached to the method call.
      * @param bool $trailingSlash Whether or not to include a trailing slash in the request (makes a large difference)
@@ -195,8 +206,8 @@ class ApiService
     /**
      * Return a normalised player profile array, so that we have defaults set for everything in the event that certain
      * values are not set in the array returned by the API.
-     * @param array $apiData
-     * @return array
+     * @param array $apiData The data that has been provided by the API and that should overwrite the default data.
+     * @return array The API data, merged with the default data, into a normalised JSON decoded response.
      */
     protected function getNormalisedPlayerProfileArray($apiData = array())
     {

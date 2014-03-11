@@ -2,7 +2,6 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
-
 class Category
 {
 
