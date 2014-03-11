@@ -18,10 +18,14 @@ class ApiService
     protected $callService = null;
 
     /**
-     * @param $callService
+     * @param CallService $callService
      */
-    public function __construct($callService)
+    public function __construct($callService = null)
     {
+        if (is_null($callService)) {
+            $callService = new CallService();
+        }
+
         $this->callService = $callService;
     }
 

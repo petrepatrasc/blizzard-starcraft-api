@@ -1,7 +1,11 @@
 parameters:
-#    blizzard_api.example.class: petrepatrasc\BlizzardApiBundle\Example
+    blizzard.api.service.class: petrepatrasc\BlizzardApiBundle\Service\ApiService
+    blizzard.api.call.service.class: petrepatrasc\BlizzardApiBundle\Service\CallService
 
 services:
-#    blizzard_api.example:
-#        class: %blizzard_api.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    blizzard_api.call_service:
+        class: %blizzard.api.call.service.class%
+
+    blizzard_api:
+        class: %blizzard.api.service.class%
+        arguments: [@blizzard_api.call_service]
