@@ -173,11 +173,23 @@ class ApiService
      * @param string $apiMethod The API method that should be called.
      * @param array $params The parameters that should be attached to the method call.
      * @param bool $trailingSlash Whether or not to include a trailing slash in the request (makes a large difference)
+     * @throws Entity\Exception\BlizzardApiException
      * @return array JSON decoded array of the response.
      */
     public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)
     {
-        return json_decode($this->callService->makeCallToApiService($region, $apiMethod, $params, $trailingSlash), true);
+        try {
+            $apiResponse = $this->callService->makeCallToApiService($region, $apiMethod, $params, $trailingSlash);
+        } catch (\Exception $exception) {
+            throw new Entity\Exception\BlizzardApiException($exception->getMessage(), $exception->getCode());
+        }
+
+        if (isset($apiResponse['status']) && $apiResponse['status'] = 'nok') {
+            $exception = new Entity\Exception\BlizzardApiException($apiResponse['message'], $apiResponse['code']);
+            throw $exception;
+        }
+
+        return json_decode($apiResponse, true);
     }
 
     /**

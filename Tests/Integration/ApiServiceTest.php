@@ -4,6 +4,7 @@ namespace petrepatrasc\BlizzardApiBundle\Tests\Integration;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Category;
 use petrepatrasc\BlizzardApiBundle\Entity\Achievement\Standard;
+use petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException;
 use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Entity\Match;
 use petrepatrasc\BlizzardApiBundle\Entity\Region;
@@ -197,5 +198,13 @@ class ApiServiceTest extends WebTestCase
             $this->assertNotNull($category->getMinimisedAchievement()->getCategoryId());
             $this->assertNotNull($category->getMinimisedAchievement()->getFeaturedAchievementId());
         }
+    }
+
+    /**
+     * @expectedException \petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException
+     */
+    public function testTriggerBlizzardApiException()
+    {
+        $player = $this->apiService->getPlayerProfile(Region::Europe, 321412, "testtesttest");
     }
 }
