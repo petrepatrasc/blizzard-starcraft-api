@@ -89,7 +89,7 @@ class ApiServiceTest extends WebTestCase
 
     public function testGetRewardsInformationData()
     {
-        $information = $this->apiService->getRewardsInformationData(Entity\Region::Europe);
+        $information = $this->apiService->getRewardsInformation(Entity\Region::Europe);
 
         /**
          * @var $portrait Entity\Reward\Portrait
@@ -157,7 +157,7 @@ class ApiServiceTest extends WebTestCase
 
     public function testGetAchievementsInformationData()
     {
-        $information = $this->apiService->getAchievementsInformationData(Entity\Region::Europe);
+        $information = $this->apiService->getAchievementsInformation(Entity\Region::Europe);
 
         /**
          * @var $achievement Entity\Achievement\Standard

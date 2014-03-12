@@ -136,7 +136,7 @@ class ApiService
      * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @return Entity\Reward\Information
      */
-    public function getRewardsInformationData($region)
+    public function getRewardsInformation($region)
     {
         $apiData = $this->makeCall($region, self::API_REWARDS_METHOD, array(), false);
 
@@ -150,7 +150,7 @@ class ApiService
      * @param string $region The region where the request should be made. Please use the Region class for consistency with future releases.
      * @return Entity\Achievement\Information
      */
-    public function getAchievementsInformationData($region)
+    public function getAchievementsInformation($region)
     {
         $apiData = $this->makeCall($region, self::API_ACHIEVEMENTS_METHOD, array(), false);
 

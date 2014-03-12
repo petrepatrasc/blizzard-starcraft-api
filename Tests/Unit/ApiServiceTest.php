@@ -503,7 +503,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetRewardsInformationData()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'rewards-information.json')));
-        $rewardsInformation = $this->apiService->getRewardsInformationData(Entity\Region::Europe);
+        $rewardsInformation = $this->apiService->getRewardsInformation(Entity\Region::Europe);
 
         /**
          * @var $portrait Entity\Reward\Portrait
@@ -604,7 +604,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetAchievementsInformationData()
     {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'achievement-information.json')));
-        $achievementsInformation = $this->apiService->getAchievementsInformationData(Entity\Region::Europe);
+        $achievementsInformation = $this->apiService->getAchievementsInformation(Entity\Region::Europe);
 
         /**
          * @var $achievement Entity\Achievement\Standard
