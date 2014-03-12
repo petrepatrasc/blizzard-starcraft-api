@@ -94,7 +94,7 @@ class NormalisationService
      *
      * @return array
      */
-    public function getNormalisedPlayerRewards() {
+    public static function getNormalisedPlayerRewards() {
         return array(
             'selected' => array(),
             'earned' => array()
