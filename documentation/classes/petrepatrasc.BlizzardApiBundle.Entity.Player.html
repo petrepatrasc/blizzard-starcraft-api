@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \petrepatrasc\BlizzardApiBundle\Entity\Player
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/petrepatrasc.html">petrepatrasc</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_setPortrait" title="setPortrait :: ">
+            <span class="description"></span><pre>setPortrait</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPortrait" title="getPortrait :: ">
+            <span class="description"></span><pre>getPortrait</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCareer" title="setCareer :: ">
+            <span class="description"></span><pre>setCareer</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCareer" title="getCareer :: ">
+            <span class="description"></span><pre>getCareer</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setSwarmLevels" title="setSwarmLevels :: ">
+            <span class="description"></span><pre>setSwarmLevels</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSwarmLevels" title="getSwarmLevels :: ">
+            <span class="description"></span><pre>getSwarmLevels</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCampaign" title="setCampaign :: ">
+            <span class="description"></span><pre>setCampaign</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCampaign" title="getCampaign :: ">
+            <span class="description"></span><pre>getCampaign</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setSeason" title="setSeason :: ">
+            <span class="description"></span><pre>setSeason</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSeason" title="getSeason :: ">
+            <span class="description"></span><pre>getSeason</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setRewards" title="setRewards :: ">
+            <span class="description"></span><pre>setRewards</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRewards" title="getRewards :: ">
+            <span class="description"></span><pre>getRewards</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setAchievements" title="setAchievements :: ">
+            <span class="description"></span><pre>setAchievements</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAchievements" title="getAchievements :: ">
+            <span class="description"></span><pre>getAchievements</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setBasicInformation" title="setBasicInformation :: ">
+            <span class="description"></span><pre>setBasicInformation</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getBasicInformation" title="getBasicInformation :: ">
+            <span class="description"></span><pre>getBasicInformation</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Player</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Class holds a representation of a player&#039;s profile.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>petrepatrasc\BlizzardApiBundle\Entities</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                                                                    </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_setPortrait"></a>
+                        <div class="element clickable method public  method_setPortrait" data-toggle="collapse" data-target=".method_setPortrait .collapse">
+                            <h2>setPortrait</h2>
+                            <pre>setPortrait(\petrepatrasc\BlizzardApiBundle\Entity\Icon $portrait) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$portrait</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Icon.html">\petrepatrasc\BlizzardApiBundle\Entity\Icon</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getPortrait"></a>
+                        <div class="element clickable method public  method_getPortrait" data-toggle="collapse" data-target=".method_getPortrait .collapse">
+                            <h2>getPortrait</h2>
+                            <pre>getPortrait() : \petrepatrasc\BlizzardApiBundle\Entity\Icon</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Icon.html">\petrepatrasc\BlizzardApiBundle\Entity\Icon</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setCareer"></a>
+                        <div class="element clickable method public  method_setCareer" data-toggle="collapse" data-target=".method_setCareer .collapse">
+                            <h2>setCareer</h2>
+                            <pre>setCareer(\petrepatrasc\BlizzardApiBundle\Entity\Player\Career $career) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$career</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Career.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Career</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCareer"></a>
+                        <div class="element clickable method public  method_getCareer" data-toggle="collapse" data-target=".method_getCareer .collapse">
+                            <h2>getCareer</h2>
+                            <pre>getCareer() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Career</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Career.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Career</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setSwarmLevels"></a>
+                        <div class="element clickable method public  method_setSwarmLevels" data-toggle="collapse" data-target=".method_setSwarmLevels .collapse">
+                            <h2>setSwarmLevels</h2>
+                            <pre>setSwarmLevels(\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels $swarmLevels) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$swarmLevels</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.SwarmLevels.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getSwarmLevels"></a>
+                        <div class="element clickable method public  method_getSwarmLevels" data-toggle="collapse" data-target=".method_getSwarmLevels .collapse">
+                            <h2>getSwarmLevels</h2>
+                            <pre>getSwarmLevels() : \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.SwarmLevels.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setCampaign"></a>
+                        <div class="element clickable method public  method_setCampaign" data-toggle="collapse" data-target=".method_setCampaign .collapse">
+                            <h2>setCampaign</h2>
+                            <pre>setCampaign(\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign $campaign) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$campaign</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Campaign.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCampaign"></a>
+                        <div class="element clickable method public  method_getCampaign" data-toggle="collapse" data-target=".method_getCampaign .collapse">
+                            <h2>getCampaign</h2>
+                            <pre>getCampaign() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Campaign.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setSeason"></a>
+                        <div class="element clickable method public  method_setSeason" data-toggle="collapse" data-target=".method_setSeason .collapse">
+                            <h2>setSeason</h2>
+                            <pre>setSeason(\petrepatrasc\BlizzardApiBundle\Entity\Player\Season $season) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$season</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Season.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Season</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getSeason"></a>
+                        <div class="element clickable method public  method_getSeason" data-toggle="collapse" data-target=".method_getSeason .collapse">
+                            <h2>getSeason</h2>
+                            <pre>getSeason() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Season</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Season.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Season</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setRewards"></a>
+                        <div class="element clickable method public  method_setRewards" data-toggle="collapse" data-target=".method_setRewards .collapse">
+                            <h2>setRewards</h2>
+                            <pre>setRewards(\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards $rewards) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$rewards</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Rewards.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getRewards"></a>
+                        <div class="element clickable method public  method_getRewards" data-toggle="collapse" data-target=".method_getRewards .collapse">
+                            <h2>getRewards</h2>
+                            <pre>getRewards() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Rewards.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setAchievements"></a>
+                        <div class="element clickable method public  method_setAchievements" data-toggle="collapse" data-target=".method_setAchievements .collapse">
+                            <h2>setAchievements</h2>
+                            <pre>setAchievements(\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements $achievements) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$achievements</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Achievements.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getAchievements"></a>
+                        <div class="element clickable method public  method_getAchievements" data-toggle="collapse" data-target=".method_getAchievements .collapse">
+                            <h2>getAchievements</h2>
+                            <pre>getAchievements() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Achievements.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setBasicInformation"></a>
+                        <div class="element clickable method public  method_setBasicInformation" data-toggle="collapse" data-target=".method_setBasicInformation .collapse">
+                            <h2>setBasicInformation</h2>
+                            <pre>setBasicInformation(\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic $basicInformation) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$basicInformation</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Basic.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getBasicInformation"></a>
+                        <div class="element clickable method public  method_getBasicInformation" data-toggle="collapse" data-target=".method_getBasicInformation .collapse">
+                            <h2>getBasicInformation</h2>
+                            <pre>getBasicInformation() : \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Basic.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_basicInformation"> </a>
+                            <div class="element clickable property  protected property_basicInformation" data-toggle="collapse" data-target=".property_basicInformation .collapse">
+                                <h2>basicInformation</h2>
+                                <pre>basicInformation : \petrepatrasc\BlizzardApiBundle\Entity\Player\Basic</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Basic.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Basic</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_portrait"> </a>
+                            <div class="element clickable property  protected property_portrait" data-toggle="collapse" data-target=".property_portrait .collapse">
+                                <h2>portrait</h2>
+                                <pre>portrait : \petrepatrasc\BlizzardApiBundle\Entity\Icon</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Icon.html">\petrepatrasc\BlizzardApiBundle\Entity\Icon</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_career"> </a>
+                            <div class="element clickable property  protected property_career" data-toggle="collapse" data-target=".property_career .collapse">
+                                <h2>career</h2>
+                                <pre>career : \petrepatrasc\BlizzardApiBundle\Entity\Player\Career</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Career.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Career</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_swarmLevels"> </a>
+                            <div class="element clickable property  protected property_swarmLevels" data-toggle="collapse" data-target=".property_swarmLevels .collapse">
+                                <h2>swarmLevels</h2>
+                                <pre>swarmLevels : \petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.SwarmLevels.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\SwarmLevels</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_campaign"> </a>
+                            <div class="element clickable property  protected property_campaign" data-toggle="collapse" data-target=".property_campaign .collapse">
+                                <h2>campaign</h2>
+                                <pre>campaign : \petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Campaign.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Campaign</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_season"> </a>
+                            <div class="element clickable property  protected property_season" data-toggle="collapse" data-target=".property_season .collapse">
+                                <h2>season</h2>
+                                <pre>season : \petrepatrasc\BlizzardApiBundle\Entity\Player\Season</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Season.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Season</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_rewards"> </a>
+                            <div class="element clickable property  protected property_rewards" data-toggle="collapse" data-target=".property_rewards .collapse">
+                                <h2>rewards</h2>
+                                <pre>rewards : \petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Rewards.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Rewards</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_achievements"> </a>
+                            <div class="element clickable property  protected property_achievements" data-toggle="collapse" data-target=".property_achievements .collapse">
+                                <h2>achievements</h2>
+                                <pre>achievements : \petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Achievements.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Achievements</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\petrepatrasc\BlizzardApiBundle\Entity\Player"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/petrepatrasc.BlizzardApiBundle.Entity.html">Entity</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.html">Player</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 12 Mar 2014 03:34:04 +0200.<br/>
+    </footer>
+    </body>
+</html>

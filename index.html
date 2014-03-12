@@ -28,9 +28,16 @@
         <section id="downloads" class="clearfix">
             <a href="https://github.com/petrepatrasc/blizzard-starcraft-api/zipball/master" id="download-zip"
                class="button"><span>Download .zip</span></a>
-            <a href="https://github.com/petrepatrasc/blizzard-starcraft-api/tarball/master" id="download-tar-gz"
-               class="button"><span>Download .tar.gz</span></a>
+            <a href="documentation/index.html" target="_blank" id="download-documentation"
+               class="button"><span>Documentation</span></a>
             <a href="https://github.com/petrepatrasc/blizzard-starcraft-api" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section>
+            <a href="https://travis-ci.org/petrepatrasc/blizzard-starcraft-api"><img src="https://travis-ci.org/petrepatrasc/blizzard-starcraft-api.png?branch=master" alt="Travis CI Status"/></a>
+            <a href="https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/"><img src="https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/badges/quality-score.png?s=a3a76a2caa656d9aadbadc9dba2e50e27634f1f0" alt="Scrutinizer Score"/></a>
         </section>
 
         <hr>
@@ -40,17 +47,17 @@
                 <a name="what-is-this" class="anchor" href="#what-is-this"><span
                         class="octicon octicon-link"></span></a>What is this project about?</h3>
 
-            <p>This project is a PHP API wrapper for Blizzard Entertainment's Starcraft 2.
+            <p>This project is an open-source PHP API wrapper for Blizzard Entertainment's Starcraft 2.
                 It provides a clear and easy way to interface with the methods exposed for data minining purposes,
                 and allows for developers to interact with native PHP objects and an extensible architecture in
-                order to expose new functionality and data grouping, while have less worry on data mapping.</p>
+                order to expose new functionality and data grouping, while having less to worry about data mapping.</p>
 
             <h3><a name="key-features" class="anchor" href="#key-features"><span
                     class="octicon octicon-link"></span></a>What are the key features?</h3>
 
             <ul>
                 <li>Support for PHP 5.3 and later.</li>
-                <li>Integrate via Composer or stand-alone.</li>
+                <li>Integration via Composer or stand-alone.</li>
                 <li>Extensible architecture, customisable for future needs.</li>
                 <li>Integrates with the Symfony 2 framework as a Bundle.</li>
                 <li>Very high standard of testing.</li>
@@ -121,6 +128,22 @@ class TestClass
             <pre><code>$this->get('blizzard_api')->getGrandmasterLeagueInformation(Region::Europe);</code></pre>
 
             <h3>
+                <a name="quick-overview" class="anchor" href="#quick-overview"><span
+                        class="octicon octicon-link"></span></a>Quick overview</h3>
+
+            <p>The best place to start would be to have a look at the <a href="documentation/classes/petrepatrasc.BlizzardApiBundle.Service.ApiService.html" target="_blank">ApiService documentation</a>. Essentially, the methods
+            that are exposed are:</p>
+
+            <pre><code>public function getPlayerProfile($region, $battleNetId, $playerName, $realm = 1)
+public function getPlayerLatestMatches($region, $battleNetId, $playerName, $realm = 1)
+public function getPlayerLaddersInformation($region, $battleNetId, $playerName, $realm = 1)
+public function getGrandmasterLeagueInformation($region, $previousSeason = false)
+public function getLeagueInformation($region, $id)
+public function getRewardsInformation($region)
+public function getAchievementsInformation($region)
+public function makeCall($region, $apiMethod, $params = array(), $trailingSlash = true)</code></pre>
+
+            <h3>
                 <a name="quality-assurance" class="anchor" href="#quality-assurance"><span
                         class="octicon octicon-link"></span></a>How is the quality of the package ensured?</h3>
 
@@ -141,10 +164,14 @@ class TestClass
             integration tests fail. At the moment, I'm looking at setting up a mini road-map, but I'm sure I'll revisit
             this package once the other one evolves.</p>
 
+            <p>I also want to make sure that everything is properly explained in comments. All of the public things are,
+            but for future purposes, there may be value in ensuring that the overall design is also explained somewhere.</p>
+
             <p>For any questions and support, please open an issue on the GitHub repository, email me at: <em>petre@dreamlabs.ro</em> or tweet to <a href="https://twitter.com/petrepatrasc">@petrepatrasc</a>. Thanks for reading, and hope you enjoy!</p>
         </section>
 
         <footer>
+            ©2014 StarCraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries.<br><br>
             Blizzard Starcraft 2 API is maintained by <a class="user-mention" href="https://github.com/petrepatrasc" target="_blank">@petrepatrasc</a>.<br>
             Tactile theme by <a
                 href="https://twitter.com/jasonlong">Jason Long</a>.

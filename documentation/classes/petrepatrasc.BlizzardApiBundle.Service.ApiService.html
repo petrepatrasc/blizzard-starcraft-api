@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \petrepatrasc\BlizzardApiBundle\Service\ApiService
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/petrepatrasc.html">petrepatrasc</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: ">
+            <span class="description"></span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPlayerProfile" title="getPlayerProfile :: Get a player&#039;s profile via the Battle.NET API.">
+            <span class="description">Get a player&#039;s profile via the Battle.NET API.</span><pre>getPlayerProfile</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPlayerLatestMatches" title="getPlayerLatestMatches :: Get the last ten matches that a player has played.">
+            <span class="description">Get the last ten matches that a player has played.</span><pre>getPlayerLatestMatches</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPlayerLaddersInformation" title="getPlayerLaddersInformation :: Get information regarding a player&#039;s ladders.">
+            <span class="description">Get information regarding a player&#039;s ladders.</span><pre>getPlayerLaddersInformation</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getGrandmasterLeagueInformation" title="getGrandmasterLeagueInformation :: Get information on the grandmaster league from a region.">
+            <span class="description">Get information on the grandmaster league from a region.</span><pre>getGrandmasterLeagueInformation</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getLeagueInformation" title="getLeagueInformation :: Get information on a particular league from a region.">
+            <span class="description">Get information on a particular league from a region.</span><pre>getLeagueInformation</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRewardsInformationData" title="getRewardsInformationData :: Get information on the rewards that are available.">
+            <span class="description">Get information on the rewards that are available.</span><pre>getRewardsInformationData</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAchievementsInformationData" title="getAchievementsInformationData :: Get information on the achievements that are available.">
+            <span class="description">Get information on the achievements that are available.</span><pre>getAchievementsInformationData</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_makeCall" title="makeCall :: Make a call to the public API.">
+            <span class="description">Make a call to the public API.</span><pre>makeCall</pre>
+        </a>
+    </li>
+
+                                                                                                        </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                            <li class="method protected">
+                            <a href="#method_getLeagueInformationWrapper" title="getLeagueInformationWrapper :: Customisable league method, try using the wrapper methods first.">
+                                <span class="description">Customisable league method, try using the wrapper methods first.</span><pre>getLeagueInformationWrapper</pre>
+                            </a>
+                        </li>
+                                                                                                                    <li class="method protected">
+                            <a href="#method_getNormalisedPlayerProfileArray" title="getNormalisedPlayerProfileArray :: Return a normalised player profile array, so that we have defaults set for everything in the event that certain
+values are not set in the array returned by the API.">
+                                <span class="description">Return a normalised player profile array, so that we have defaults set for everything in the event that certain
+values are not set in the array returned by the API.</span><pre>getNormalisedPlayerProfileArray</pre>
+                            </a>
+                        </li>
+                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_API_PROFILE_METHOD" title="API_PROFILE_METHOD :: Constants with URLS.">
+                        <span class="description">Constants with URLS.</span><pre>API_PROFILE_METHOD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_API_LADDER_METHOD" title="API_LADDER_METHOD :: ">
+                        <span class="description"></span><pre>API_LADDER_METHOD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_API_REWARDS_METHOD" title="API_REWARDS_METHOD :: ">
+                        <span class="description"></span><pre>API_REWARDS_METHOD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_API_ACHIEVEMENTS_METHOD" title="API_ACHIEVEMENTS_METHOD :: ">
+                        <span class="description"></span><pre>API_ACHIEVEMENTS_METHOD</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>ApiService</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Main high-level class for services provided by the API wrapper.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>petrepatrasc\BlizzardApiBundle\Service</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                                                                    </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>__construct</h2>
+                            <pre>__construct(\petrepatrasc\BlizzardApiBundle\Service\CallService $callService = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callService</h4>
+                                                <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Service.CallService.html">\petrepatrasc\BlizzardApiBundle\Service\CallService</a></code><p><p>The service that makes the actual API calls. As long as the API stays read-only, it will strictly be used as an extra dependency in order to mock the call to the WS.</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getPlayerProfile"></a>
+                        <div class="element clickable method public  method_getPlayerProfile" data-toggle="collapse" data-target=".method_getPlayerProfile .collapse">
+                            <h2>Get a player&#039;s profile via the Battle.NET API.</h2>
+                            <pre>getPlayerProfile(string $region, int $battleNetId, string $playerName, int $realm = 1) : \petrepatrasc\BlizzardApiBundle\Entity\Player</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$battleNetId</h4>
+                                                <code>int</code><p><p>The Battle.NET identifier of a player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$playerName</h4>
+                                                <code>string</code><p><p>The display name of the player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$realm</h4>
+                                                <code>int</code><p><p>The realm where the request should be made (defaults to 1).</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.html">\petrepatrasc\BlizzardApiBundle\Entity\Player</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getPlayerLatestMatches"></a>
+                        <div class="element clickable method public  method_getPlayerLatestMatches" data-toggle="collapse" data-target=".method_getPlayerLatestMatches .collapse">
+                            <h2>Get the last ten matches that a player has played.</h2>
+                            <pre>getPlayerLatestMatches(string $region, int $battleNetId, string $playerName, int $realm = 1) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$battleNetId</h4>
+                                                <code>int</code><p><p>The Battle.NET identifier of a player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$playerName</h4>
+                                                <code>string</code><p><p>The display name of the player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$realm</h4>
+                                                <code>int</code><p><p>The realm where the request should be made (defaults to 1).</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>An array containing Entity\Match entries.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getPlayerLaddersInformation"></a>
+                        <div class="element clickable method public  method_getPlayerLaddersInformation" data-toggle="collapse" data-target=".method_getPlayerLaddersInformation .collapse">
+                            <h2>Get information regarding a player&#039;s ladders.</h2>
+                            <pre>getPlayerLaddersInformation(string $region, int $battleNetId, string $playerName, int $realm = 1) : \petrepatrasc\BlizzardApiBundle\Entity\Player\Ladder</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$battleNetId</h4>
+                                                <code>int</code><p><p>The Battle.NET identifier of a player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$playerName</h4>
+                                                <code>string</code><p><p>The display name of the player.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$realm</h4>
+                                                <code>int</code><p><p>The realm where the request should be made (defaults to 1).</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Player.Ladder.html">\petrepatrasc\BlizzardApiBundle\Entity\Player\Ladder</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getGrandmasterLeagueInformation"></a>
+                        <div class="element clickable method public  method_getGrandmasterLeagueInformation" data-toggle="collapse" data-target=".method_getGrandmasterLeagueInformation .collapse">
+                            <h2>Get information on the grandmaster league from a region.</h2>
+                            <pre>getGrandmasterLeagueInformation(string $region, bool $previousSeason = false) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$previousSeason</h4>
+                                                <code>bool</code><p><p>Whether the information should be for the previous season or not.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Array containing all of the ladder members as LadderPosition instances.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getLeagueInformation"></a>
+                        <div class="element clickable method public  method_getLeagueInformation" data-toggle="collapse" data-target=".method_getLeagueInformation .collapse">
+                            <h2>Get information on a particular league from a region.</h2>
+                            <pre>getLeagueInformation(string $region, int $id) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>int</code><p><p>The ID of the league.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getRewardsInformationData"></a>
+                        <div class="element clickable method public  method_getRewardsInformationData" data-toggle="collapse" data-target=".method_getRewardsInformationData .collapse">
+                            <h2>Get information on the rewards that are available.</h2>
+                            <pre>getRewardsInformationData(string $region) : \petrepatrasc\BlizzardApiBundle\Entity\Reward\Information</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Reward.Information.html">\petrepatrasc\BlizzardApiBundle\Entity\Reward\Information</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getAchievementsInformationData"></a>
+                        <div class="element clickable method public  method_getAchievementsInformationData" data-toggle="collapse" data-target=".method_getAchievementsInformationData .collapse">
+                            <h2>Get information on the achievements that are available.</h2>
+                            <pre>getAchievementsInformationData(string $region) : \petrepatrasc\BlizzardApiBundle\Entity\Achievement\Information</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/petrepatrasc.BlizzardApiBundle.Entity.Achievement.Information.html">\petrepatrasc\BlizzardApiBundle\Entity\Achievement\Information</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getLeagueInformationWrapper"></a>
+                        <div class="element clickable method protected  method_getLeagueInformationWrapper" data-toggle="collapse" data-target=".method_getLeagueInformationWrapper .collapse">
+                            <h2>Customisable league method, try using the wrapper methods first.</h2>
+                            <pre>getLeagueInformationWrapper(string $region, array $parameters) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>The parameters that should be passed to the league API method.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Array containing all of the ladder members as LadderPosition instances.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_makeCall"></a>
+                        <div class="element clickable method public  method_makeCall" data-toggle="collapse" data-target=".method_makeCall .collapse">
+                            <h2>Make a call to the public API.</h2>
+                            <pre>makeCall(string $region, string $apiMethod, array $params = array(), bool $trailingSlash = true) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$region</h4>
+                                                <code>string</code><p><p>The region where the request should be made. Please use the Region class for consistency with future releases.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$apiMethod</h4>
+                                                <code>string</code><p><p>The API method that should be called.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p><p>The parameters that should be attached to the method call.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$trailingSlash</h4>
+                                                <code>bool</code><p><p>Whether or not to include a trailing slash in the request (makes a large difference)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>JSON decoded array of the response.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getNormalisedPlayerProfileArray"></a>
+                        <div class="element clickable method protected  method_getNormalisedPlayerProfileArray" data-toggle="collapse" data-target=".method_getNormalisedPlayerProfileArray .collapse">
+                            <h2>Return a normalised player profile array, so that we have defaults set for everything in the event that certain
+values are not set in the array returned by the API.</h2>
+                            <pre>getNormalisedPlayerProfileArray(array $apiData = array()) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$apiData</h4>
+                                                <code>array</code><p><p>The data that has been provided by the API and that should overwrite the default data.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>The API data, merged with the default data, into a normalised JSON decoded response.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_API_PROFILE_METHOD"> </a>
+                            <div class="element clickable constant  constant_API_PROFILE_METHOD" data-toggle="collapse" data-target=".constant_API_PROFILE_METHOD .collapse">
+                                <h2>Constants with URLS.</h2>
+                                <pre>API_PROFILE_METHOD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        todo
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>In the future, these should sit in a configuration file somewhere.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_API_LADDER_METHOD"> </a>
+                            <div class="element clickable constant  constant_API_LADDER_METHOD" data-toggle="collapse" data-target=".constant_API_LADDER_METHOD .collapse">
+                                <h2>API_LADDER_METHOD</h2>
+                                <pre>API_LADDER_METHOD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_API_REWARDS_METHOD"> </a>
+                            <div class="element clickable constant  constant_API_REWARDS_METHOD" data-toggle="collapse" data-target=".constant_API_REWARDS_METHOD .collapse">
+                                <h2>API_REWARDS_METHOD</h2>
+                                <pre>API_REWARDS_METHOD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_API_ACHIEVEMENTS_METHOD"> </a>
+                            <div class="element clickable constant  constant_API_ACHIEVEMENTS_METHOD" data-toggle="collapse" data-target=".constant_API_ACHIEVEMENTS_METHOD .collapse">
+                                <h2>API_ACHIEVEMENTS_METHOD</h2>
+                                <pre>API_ACHIEVEMENTS_METHOD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_callService"> </a>
+                            <div class="element clickable property  protected property_callService" data-toggle="collapse" data-target=".property_callService .collapse">
+                                <h2>The service that makes the actual API calls. As long as the API stays read-only, it will strictly be used
+as an extra dependency in order to mock the call to the WS.</h2>
+                                <pre>callService : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>CallService</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\petrepatrasc\BlizzardApiBundle\Service\ApiService"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/petrepatrasc.BlizzardApiBundle.Service.html">Service</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/petrepatrasc.BlizzardApiBundle.Service.ApiService.html">ApiService</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 12 Mar 2014 03:34:03 +0200.<br/>
+    </footer>
+    </body>
+</html>
