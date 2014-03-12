@@ -645,4 +645,12 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3211278, $child->getCategoryId());
         $this->assertEquals(0, $child->getFeaturedAchievementId());
     }
+
+    /**
+     * @expectedException \petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException
+     */
+    public function testMakeCallWhenExceptionIsHit() {
+        $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'resource-not-found.json')));
+        $callResponse = $this->apiService->makeCall(Entity\Region::Europe, ApiService::API_REWARDS_METHOD, array(), false);
+    }
 }

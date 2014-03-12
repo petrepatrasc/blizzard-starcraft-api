@@ -195,12 +195,14 @@ class ApiService
             throw new Entity\Exception\BlizzardApiException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
+        $apiResponse = json_decode($apiResponse, true);
+
         if (isset($apiResponse['status']) && $apiResponse['status'] == 'nok') {
             $exception = new Entity\Exception\BlizzardApiException($apiResponse['message'], $apiResponse['code']);
             throw $exception;
         }
 
-        return json_decode($apiResponse, true);
+        return $apiResponse;
     }
 
     /**
