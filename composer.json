@@ -23,7 +23,8 @@
         "doctrine/doctrine-bundle": "*",
         "symfony/yaml": "2.1.*",
         "symfony/validator": "2.1.*",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+        "phpunit/phpunit": "~3.6"
     },
     "autoload": {
         "psr-0": {
