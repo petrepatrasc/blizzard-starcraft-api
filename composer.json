@@ -21,10 +21,10 @@
     "require-dev": {
         "twig/twig": "*",
         "doctrine/doctrine-bundle": "*",
-        "symfony/yaml": "2.1.*",
-        "symfony/validator": "2.1.*",
+        "symfony/yaml": "~2.4.0",
+        "symfony/validator": "2.*",
         "satooshi/php-coveralls": "dev-master",
-        "phpunit/phpunit": "~3.6"
+        "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-0": {
