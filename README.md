@@ -8,7 +8,6 @@ Blizzard Starcraft 2 API
 [![License](https://poser.pugx.org/petrepatrasc/blizzard-starcraft-api/license.png)](https://packagist.org/packages/petrepatrasc/blizzard-starcraft-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/531fc965ec1375abd1000165/badge.png)](https://www.versioneye.com/user/projects/531fc965ec1375abd1000165)
 
-
 # What is this project about?
 This project is an open-source PHP API wrapper for Blizzard Entertainment's Starcraft 2. It provides a clear and easy way to interface with the methods exposed for data minining purposes, and allows for developers to interact with native PHP objects and an extensible architecture in order to expose new functionality and data grouping, while having less to worry about data mapping.
 
