@@ -3,7 +3,7 @@ Blizzard Starcraft 2 API
 
 [![Build Status](https://travis-ci.org/petrepatrasc/blizzard-starcraft-api.png?branch=master)](https://travis-ci.org/petrepatrasc/blizzard-starcraft-api)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/badges/quality-score.png?s=a3a76a2caa656d9aadbadc9dba2e50e27634f1f0)](https://scrutinizer-ci.com/g/petrepatrasc/blizzard-starcraft-api/)
-[![Coverage Status](https://coveralls.io/repos/petrepatrasc/blizzard-starcraft-api/badge.png)](https://coveralls.io/r/petrepatrasc/blizzard-starcraft-api)
+[![Coverage Status](https://coveralls.io/repos/petrepatrasc/blizzard-starcraft-api/badge.png?branch=master)](https://coveralls.io/r/petrepatrasc/blizzard-starcraft-api?branch=master)
 [![Packagist Stable Version](https://poser.pugx.org/petrepatrasc/blizzard-starcraft-api/v/stable.png)](https://packagist.org/packages/petrepatrasc/blizzard-starcraft-api)
 [![License](https://poser.pugx.org/petrepatrasc/blizzard-starcraft-api/license.png)](https://packagist.org/packages/petrepatrasc/blizzard-starcraft-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/531fc965ec1375abd1000165/badge.png)](https://www.versioneye.com/user/projects/531fc965ec1375abd1000165)
