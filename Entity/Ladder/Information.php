@@ -2,46 +2,65 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Ladder;
 
-
+/**
+ * Holds information regarding a ladder entry.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Ladder
+ */
 class Information
 {
 
     /**
+     * The name of the ladder.
+     *
      * @var string
      */
     protected $ladderName;
 
     /**
+     * The ID of the ladder.
+     *
      * @var int
      */
     protected $ladderId;
 
     /**
+     * The division in which the ladder is set.
+     *
      * @var int
      */
     protected $division;
 
     /**
+     * The rank within the ladder.
+     *
      * @var int
      */
     protected $rank;
 
     /**
+     * The league of the ladder.
+     *
      * @var string
      */
     protected $league;
 
     /**
+     * The type of the ladder (ie. HOTS_SOLO, HOTS_TWOS)
+     *
      * @var string
      */
     protected $matchMakingQueue;
 
     /**
+     * The number of wins that the team has.
+     *
      * @var int
      */
     protected $wins;
 
     /**
+     * The number of losses that the team has.
+     *
      * @var int
      */
     protected $losses;
