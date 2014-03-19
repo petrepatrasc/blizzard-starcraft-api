@@ -6,6 +6,10 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing;
 use petrepatrasc\BlizzardApiBundle\Entity\Player\Season;
 use petrepatrasc\BlizzardApiBundle\Entity\SeasonStats;
 
+/**
+ * Handles parsing season entities from the response of the API.
+ * @package petrepatrasc\BlizzardApiBundle\Service\Parsing
+ */
 class SeasonParsingService implements ParsingInterfaceStandalone
 {
 
@@ -27,14 +31,29 @@ class SeasonParsingService implements ParsingInterfaceStandalone
             return $season;
         }
 
+        $statsWrapper = self::extractSeasonStatsData($params);
+        $season->setStats($statsWrapper);
+
+        return $season;
+    }
+
+    /**
+     * Extract season stat data from the API response.
+     *
+     * @param array $params
+     * @return array
+     */
+    public static function extractSeasonStatsData($params)
+    {
+        $statsWrapper = array();
         foreach ($params['stats'] as $stats) {
             $seasonStats = new SeasonStats();
             $seasonStats->setType($stats['type'])
                 ->setWins($stats['wins'])
                 ->setGames($stats['games']);
-            $season->addSeasonStats($seasonStats);
-        }
 
-        return $season;
+            $statsWrapper[] = $seasonStats;
+        }
+        return $statsWrapper;
     }
 }

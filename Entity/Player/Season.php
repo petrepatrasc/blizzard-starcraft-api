@@ -122,14 +122,4 @@ class Season
     {
         return $this->totalGamesThisSeason;
     }
-
-    /**
-     * @param Entity\SeasonStats $stats
-     * @return $this
-     */
-    public function addSeasonStats(Entity\SeasonStats $stats)
-    {
-        $this->stats[] = $stats;
-        return $this;
-    }
 }
