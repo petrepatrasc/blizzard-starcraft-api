@@ -2,21 +2,31 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
-
+/**
+ * Minimised information regarding an achievement. It's essentially a smaller version of the Achievement\Standard entity,
+ * but they don't quite have a parent -> child relationship.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Achievement
+ */
 class Minimised
 {
 
     /**
+     * The title of the achievement.
+     *
      * @var string
      */
     protected $title;
 
     /**
+     * The category ID of the achievement.
+     *
      * @var int
      */
     protected $categoryId;
 
     /**
+     * The achievement ID that is featured by this entry.
+     *
      * @var int
      */
     protected $featuredAchievementId;

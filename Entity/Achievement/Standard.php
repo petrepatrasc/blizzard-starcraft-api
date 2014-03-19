@@ -5,35 +5,51 @@ namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
 use petrepatrasc\BlizzardApiBundle\Entity\Icon;
 
+/**
+ * Basic Achievement entity data structure. Holds the most detail regarding a single achievement entry.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Achievement
+ */
 class Standard
 {
 
     /**
+     * The title of the achievement.
+     *
      * @var string
      */
     protected $title;
 
     /**
+     * The description of the achievement.
+     *
      * @var string
      */
     protected $description;
 
     /**
+     * The ID of the achievement.
+     *
      * @var int
      */
     protected $achievementId;
 
     /**
+     * The ID of the category that the achievement belongs to.
+     *
      * @var int
      */
     protected $categoryId;
 
     /**
+     * The points associated to the achievement.
+     *
      * @var int
      */
     protected $points;
 
     /**
+     * The Icon of the achievement.
+     *
      * @var Icon
      */
     protected $icon;

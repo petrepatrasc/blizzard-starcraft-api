@@ -2,15 +2,23 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
+/**
+ * Contains the entity definition for achievement categories.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Achievement
+ */
 class Category
 {
 
     /**
+     * Holds achievement data, but in a minimised format, smaller than the Achievement\Standard definition.
+     *
      * @var Minimised
      */
     protected $minimisedAchievement;
 
     /**
+     * Holds the children of the category.
+     *
      * @var array
      */
     protected $children;

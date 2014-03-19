@@ -2,16 +2,23 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
-
+/**
+ * Holds achievement points information.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Achievement
+ */
 class Points
 {
 
     /**
+     * The total points held.
+     *
      * @var int
      */
     protected $totalPoints;
 
     /**
+     * The category points held.
+     *
      * @var array
      */
     protected $categoryPoints;

@@ -2,16 +2,23 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Entity\Achievement;
 
-
+/**
+ * Contains achievement information data, which is a general overview on all of the achievements available.
+ * @package petrepatrasc\BlizzardApiBundle\Entity\Achievement
+ */
 class Information
 {
 
     /**
+     * The achievements that are currently defined in the system.
+     *
      * @var array
      */
     protected $achievements;
 
     /**
+     * The categories that are currently defined in the system.
+     *
      * @var array
      */
     protected $categories;
