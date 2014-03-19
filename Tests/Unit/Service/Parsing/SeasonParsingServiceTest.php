@@ -41,4 +41,28 @@ class SeasonParsingServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($mockData['stats'][0]['wins'], $statsEntry->getWins());
         $this->assertEquals($mockData['stats'][0]['games'], $statsEntry->getGames());
     }
+
+    public function testExtractSeasonStatsData()
+    {
+        $mockData = array(
+            'stats' => array(
+                array(
+                    'type' => '1v1',
+                    'wins' => 52,
+                    'games' => 73
+                )
+            )
+        );
+
+        $result = SeasonParsingService::extractSeasonStatsData($mockData);
+
+        /**
+         * @var $statsEntry SeasonStats
+         */
+        $statsEntry = $result[0];
+
+        $this->assertEquals($mockData['stats'][0]['type'], $statsEntry->getType());
+        $this->assertEquals($mockData['stats'][0]['wins'], $statsEntry->getWins());
+        $this->assertEquals($mockData['stats'][0]['games'], $statsEntry->getGames());
+    }
 }
