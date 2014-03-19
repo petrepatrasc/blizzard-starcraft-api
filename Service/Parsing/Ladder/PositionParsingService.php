@@ -7,11 +7,15 @@ use petrepatrasc\BlizzardApiBundle\Entity\Ladder\Position;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\BasicProfileParsingService;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing\ParsingInterfaceStandalone;
 
+/**
+ * Handle parsing ladder positions entries as retrieved from the API.
+ * @package petrepatrasc\BlizzardApiBundle\Service\Parsing\Ladder
+ */
 class PositionParsingService implements ParsingInterfaceStandalone
 {
 
     /**
-     * Extract ladder position information from an array.
+     * Extract ladder position entry from an array.
      *
      * @param array $params
      * @return Position
