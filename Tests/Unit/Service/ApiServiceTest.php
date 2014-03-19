@@ -1,6 +1,6 @@
 <?php
 
-namespace petrepatrasc\BlizzardApiBundle\Tests\Unit;
+namespace petrepatrasc\BlizzardApiBundle\Tests\Unit\Service;
 
 use petrepatrasc\BlizzardApiBundle\Entity;
 use petrepatrasc\BlizzardApiBundle\Service\ApiService;
