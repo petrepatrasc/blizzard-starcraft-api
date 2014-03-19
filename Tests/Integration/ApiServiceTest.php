@@ -15,8 +15,7 @@ class ApiServiceTest extends WebTestCase
     public function setUp()
     {
         parent::setUp();
-        $callService = new \petrepatrasc\BlizzardApiBundle\Service\CallService();
-        $this->apiService = new \petrepatrasc\BlizzardApiBundle\Service\ApiService($callService);
+        $this->apiService = new \petrepatrasc\BlizzardApiBundle\Service\ApiService();
     }
 
     public function testGetProfileSanityCheckThatApiIsActuallyResponding()
