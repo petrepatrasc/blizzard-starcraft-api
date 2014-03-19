@@ -5,6 +5,11 @@ namespace petrepatrasc\BlizzardApiBundle\Service\Parsing\Reward;
 use petrepatrasc\BlizzardApiBundle\Entity;
 use petrepatrasc\BlizzardApiBundle\Service\Parsing;
 
+/**
+ * Handles the parsing of reward resources entities, and offers functionality for children that inherit from
+ * parent Resource objects.
+ * @package petrepatrasc\BlizzardApiBundle\Service\Parsing\Reward
+ */
 class ResourceParsingService implements Parsing\ParsingInterfaceExtensible
 {
     /**
