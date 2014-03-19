@@ -53,14 +53,4 @@ class Achievements
     {
         return $this->points;
     }
-
-    /**
-     * @param Entity\Achievement $achievement
-     * @return $this
-     */
-    public function addAchievements(Entity\Achievement $achievement)
-    {
-        $this->achievements[] = $achievement;
-        return $this;
-    }
 }
