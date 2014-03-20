@@ -2,6 +2,7 @@
 
 namespace petrepatrasc\BlizzardApiBundle\Service;
 use petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException;
+use petrepatrasc\StarcraftConnectionLayerBundle\Service\ConnectionService;
 
 /**
  * Handles calling the Battle.NET service. Added for extensibility at the moment.
@@ -9,6 +10,17 @@ use petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException;
  */
 class CallService
 {
+    /**
+     * @var ConnectionService
+     */
+    protected $connectivityLayer;
+
+    /**
+     * Class constructor.
+     */
+    public function __construct() {
+        $this->connectivityLayer = new ConnectionService();
+    }
 
     /**
      * Make a call to the Battle.NET Api Service.
@@ -29,12 +41,30 @@ class CallService
             $battleNetUrl .= '/';
         }
 
-        $result = @file_get_contents($battleNetUrl);
+        $result = $this->getConnectivityLayer()->getBlizzardApi()->retrieveData($battleNetUrl);
 
-        if ($result === FALSE) {
-            throw new BlizzardApiException("Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found", 404);
+        if ($result === null) {
+            throw new BlizzardApiException("No data was returned from the server", 500);
         } else {
             return $result;
         }
+    }
+
+    /**
+     * @param \petrepatrasc\StarcraftConnectionLayerBundle\Service\ConnectionService $connectivityLayer
+     * @return $this
+     */
+    public function setConnectivityLayer($connectivityLayer)
+    {
+        $this->connectivityLayer = $connectivityLayer;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\StarcraftConnectionLayerBundle\Service\ConnectionService
+     */
+    public function getConnectivityLayer()
+    {
+        return $this->connectivityLayer;
     }
 }

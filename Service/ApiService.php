@@ -29,6 +29,11 @@ class ApiService
     protected $callService = null;
 
     /**
+     * @var string
+     */
+    protected $authorizationToken = null;
+
+    /**
      * @param CallService $callService The service that makes the actual API calls. As long as the API stays read-only, it will strictly be used as an extra dependency in order to mock the call to the WS.
      */
     public function __construct($callService = null)
@@ -218,5 +223,24 @@ class ApiService
         $apiData['campaign'] = array_merge($normalisedArray['campaign'], $apiData['campaign']);
         $apiData['career'] = array_merge($normalisedArray['career'], $apiData['career']);
         return $apiData;
+    }
+
+    /**
+     * @param string $authorizationToken
+     * @return $this
+     */
+    public function setAuthorizationToken($authorizationToken)
+    {
+        $this->authorizationToken = $authorizationToken;
+        $this->callService->getConnectivityLayer()->getBlizzardApi()->setAuthorizationToken($authorizationToken);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizationToken()
+    {
+        return $this->authorizationToken;
     }
 }

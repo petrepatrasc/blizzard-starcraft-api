@@ -29,6 +29,15 @@ class ApiServiceTest extends WebTestCase
         $this->assertEquals("/profile/2048419/1/LionHeart/", $profile->getBasicInformation()->getProfilePath());
     }
 
+    /**
+     * @expectedException \petrepatrasc\BlizzardApiBundle\Entity\Exception\BlizzardApiException
+     * @expectedExceptionMessage Invalid Application
+     */
+    public function testThatAnInvalidApplicationKeyWillNotWork() {
+        $this->apiService->setAuthorizationToken("BNET c1fbf21b79c03191d:+3fE0RaKc+PqxN0gi8va5GQC35A=");
+        $this->apiService->getPlayerProfile(\petrepatrasc\BlizzardApiBundle\Entity\Region::Europe, 2048419, 'LionHeart');
+    }
+
     public function testGetPlayerLatestMatches()
     {
         $matches = $this->apiService->getPlayerLatestMatches(Entity\Region::Europe, 2048419, 'LionHeart');
@@ -40,6 +49,7 @@ class ApiServiceTest extends WebTestCase
          * @var $match Entity\Match
          * @var $latestMatch Entity\Match
          */
+        $this->assertInternalType('array', $matches);
         foreach ($matches as $match) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Match', $match);
             $this->assertInternalType('string', $match->getMap());

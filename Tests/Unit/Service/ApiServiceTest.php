@@ -23,7 +23,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->callServiceMock = $this->getMock('CallService', array('makeCallToApiService'));
+        $this->callServiceMock = $this->getMock('CallService', array('makeCallToApiService', 'getConnectivityLayer'));
 
         $this->apiService = new ApiService($this->callServiceMock);
     }
@@ -298,6 +298,7 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
          * @var $match Entity\Match
          * @var $latestMatch Entity\Match
          */
+        $this->assertInternalType('array', $matches);
         foreach ($matches as $match) {
             $this->assertInstanceOf('\petrepatrasc\BlizzardApiBundle\Entity\Match', $match);
             $this->assertInternalType('string', $match->getMap());
@@ -652,5 +653,19 @@ class ApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testMakeCallWhenExceptionIsHit() {
         $this->callServiceMock->expects($this->atLeastOnce())->method('makeCallToApiService')->withAnyParameters()->will($this->returnValue(file_get_contents(self::MOCK_PATH . 'resource-not-found.json')));
         $callResponse = $this->apiService->makeCall(Entity\Region::Europe, ApiService::API_REWARDS_METHOD, array(), false);
+    }
+
+    public function testThatSettingAnAuthorizationKeyIsPropagatedToAllLayers() {
+        $blizzardServiceMock = $this->getMock('\petrepatrasc\StarcraftConnectionLayer\Service\BlizzardApi', array('setAuthorizationToken'));
+        $blizzardServiceMock->expects($this->atLeastOnce())->method('setAuthorizationToken')->withAnyParameters()->will($this->returnValue($blizzardServiceMock));
+
+        $connectivityLayerMock = $this->getMock('\petrepatrasc\StarcraftConnectionLayer\Service\ConnectionService', array('getBlizzardApi'));
+        $connectivityLayerMock->expects($this->atLeastOnce())->method('getBlizzardApi')->withAnyParameters()->will($this->returnValue($blizzardServiceMock));
+
+        $this->callServiceMock->expects($this->atLeastOnce())->method('getConnectivityLayer')->withAnyParameters()->will($this->returnValue($connectivityLayerMock));
+        $sampleAuthorizationToken = "TEST";
+
+        $this->apiService->setAuthorizationToken($sampleAuthorizationToken);
+        $this->assertEquals($sampleAuthorizationToken, $this->apiService->getAuthorizationToken());
     }
 }
