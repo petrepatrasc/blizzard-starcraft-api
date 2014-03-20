@@ -3,13 +3,13 @@
     "type": "symfony-bundle",
     "description": "A PHP 5.3+ wrapper for the Starcraft 2 API",
     "keywords": ["PHP", "Starcraft 2", "API", "Blizzard", "Symfony"],
-    "homepage": "http://petrepatrasc.github.io",
+    "homepage": "http://petrepatrasc.github.io/blizzard-starcraft-api",
     "license": "MIT",
     "authors": [
         {
             "name": "Petre Pătrașc",
             "email": "petre@dreamlabs.ro",
-            "homepage": "http://petrepatrasc.github.io/blizzard-starcraft-api"
+            "homepage": "http://petrepatrasc.github.io"
         }
     ],
     "require": {
