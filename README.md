@@ -24,15 +24,3 @@ This project is an open-source PHP API wrapper for Blizzard Entertainment's Star
 
 # Project information
 Please read more about the project on it's dedicated [GitHub Page](http://petrepatrasc.github.io/blizzard-starcraft-api/) or read the [documentation](http://petrepatrasc.github.io/blizzard-starcraft-api/documentation/index.html).
-
-# Checklist for 1.0
-
-| API Call                  | Status    |
-| ------------------------- |:---------:|
-| Player's profile          | Ready     |
-| Player's latest matches   | Ready     |
-| General ladder information| Ready     |
-| Player ladder information | Ready     |
-| Rewards information       | Ready     |
-| Achievements information  | Ready     |
-| Exception handling        | Ready     |
